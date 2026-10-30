@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Warp Projects</title>
+<meta property="og:title" content="Warp Projects">
+<meta property="og:description" content="Warp Projects 1.0 beta — an independent studio publishing open-source projects.">
+<meta property="og:type" content="website">
+<meta name="description" content="Warp Projects — download our projects, see exactly what you are getting and explore everything in detail before you commit.">
+<meta name="theme-color" content="#000000">
+<link rel="icon" type="image/svg+xml" sizes="any" href="assets/img/favicon.svg">
+<link rel="apple-touch-icon" href="assets/img/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="assets/js/theme-init.js"></script>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav-wrap">
+  <div class="nav">
+    <a class="brand" href="#home" data-goto="home" aria-label="Warp Projects — Main Menu">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 40 40" width="34" height="34">
+          <text x="21" y="31" text-anchor="middle" font-family="Inter, Arial Black, Arial, sans-serif" font-size="29" font-weight="900" letter-spacing="-2" fill="currentColor">W</text>
+          <g transform="translate(2.2 3.4) rotate(-9 6 4)">
+            <rect width="12.5" height="8.4" rx="1" fill="#E30A17"/>
+            <circle cx="4.6" cy="4.2" r="2.15" fill="#ffffff"/>
+            <circle cx="5.65" cy="4.05" r="1.72" fill="#E30A17"/>
+            <path d="M0 -4.4 L1.06 -1.46 L4.19 -1.36 L1.71 0.56 L2.59 3.56 L0 1.8 L-2.59 3.56 L-1.71 0.56 L-4.19 -1.36 L-1.06 -1.46 Z"
+                  transform="translate(8.55 4.2) scale(0.235)" fill="#ffffff"/>
+          </g>
+        </svg>
+      </span>
+      <span class="brand-word">Warp <span>Projects</span></span>
+    </a>
+
+    <nav class="tabs" id="tabs" aria-label="Sections">
+      <span class="tab-glow" id="tabGlow" aria-hidden="true"></span>
+      <button class="tab is-active" type="button" data-view="home" aria-current="page">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M4 10.6 12 4l8 6.6V19a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 19v-8.4Z"/>
+          <path d="M9.4 20.5v-6.1h5.2v6.1"/>
+        </svg>
+        <span data-i18n="nav.home">Main Menu</span>
+      </button>
+      <button class="tab" type="button" data-view="projects">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="m8.6 7.2-4.4 4.8 4.4 4.8"/>
+          <path d="m15.4 7.2 4.4 4.8-4.4 4.8"/>
+          <path d="M13.4 4.6 10.6 19.4"/>
+        </svg>
+        <span data-i18n="nav.projects">Projects</span>
+      </button>
+      <button class="tab" type="button" data-view="members">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="9.2" cy="8.2" r="3.1"/>
+          <path d="M3 19.4c0-3 2.8-4.9 6.2-4.9s6.2 1.9 6.2 4.9"/>
+          <path d="M15.9 5.5a3 3 0 0 1 0 5.6"/>
+          <path d="M17.6 14.9c2.2.6 3.5 2.1 3.5 4.2"/>
+        </svg>
+        <span data-i18n="nav.members">Warp Projects Team</span>
+      </button>
+      <button class="tab" type="button" data-view="patch">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M6.5 3.5h7.6L18.5 8v12.5h-12z"/>
+          <path d="M14 3.6V8h4.4"/>
+          <path d="M9.2 12.4h6.2"/>
+          <path d="M9.2 15.9h6.2"/>
+        </svg>
+        <span data-i18n="nav.patch">Patch Notes</span>
+      </button>
+    </nav>
+
+    <div class="nav-end">
+      <button class="nav-license" type="button" id="licenseTab" data-goto="license">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 3.4 19 6v5.6c0 4.2-2.8 7.4-7 9-4.2-1.6-7-4.8-7-9V6l7-2.6Z"/>
+          <path d="m9.1 11.7 2.1 2.1 4-4.2"/>
+        </svg>
+        <span data-i18n="nav.license">License</span>
+      </button>
+
+      <div class="lang" id="lang">
+        <button class="lang-btn" type="button" id="langBtn" aria-haspopup="listbox" aria-expanded="false" aria-label="Change language">
+          <span class="lang-flag" id="langFlag" aria-hidden="true"></span>
+          <span class="lang-name" id="langName">English</span>
+          <svg class="lang-chev" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3.5 6 8 10.5 12.5 6"/>
+          </svg>
+        </button>
+        <div class="lang-menu" id="langMenu" role="listbox" aria-label="Language"></div>
+      </div>
+
+      <button class="theme" type="button" id="themeToggle" role="switch" aria-checked="false" aria-label="Switch theme" data-i18n-aria="theme.label">
+        <span class="theme-knob" aria-hidden="true">
+          <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.4 14.7A8.6 8.6 0 0 1 9.3 3.6a8.6 8.6 0 1 0 11.1 11.1Z"/>
+          </svg>
+          <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 2.4v2.2M12 19.4v2.2M2.4 12h2.2M19.4 12h2.2M5.2 5.2l1.6 1.6M17.2 17.2l1.6 1.6M18.8 5.2l-1.6 1.6M6.8 17.2l-1.6 1.6"/>
+          </svg>
+        </span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="view is-active" id="view-home" aria-label="Main Menu">
+    <div class="hero">
+      <div class="wgrid" id="wgrid" aria-hidden="true"><div class="wgrid-track" id="wgridTrack"></div></div>
+      <div class="hero-scrim" aria-hidden="true"></div>
+      <div class="hero-inner">
+        <h1 class="hero-title">Warp Projects</h1>
+        <p class="hero-sub" data-i18n="hero.sub">This site was built so you can download our projects, see exactly what is inside each one, and explore everything in detail before you commit. Thanks in advance for choosing us.</p>
+      </div>
+      <span class="hero-scroll" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 4.5v15"/><path d="m5.5 13 6.5 6.5 6.5-6.5"/>
+        </svg>
+      </span>
+    </div>
+
+    <section class="about" id="about">
+      <div class="wrap">
+        <p class="kicker" data-i18n="about.kicker">About</p>
+        <h2 class="section-title" data-i18n="about.title">About Warp Projects</h2>
+        <div class="about-copy">
+          <p data-i18n="about.p1">Warp Projects is an independent studio that publishes open-source projects. That is what we do: build them, document them clearly and publish everything in one place.</p>
+          <p data-i18n="about.p2">Every release here is free to download. You can read what is inside, check the requirements and inspect the project before anything touches your machine — that is the whole point of this site.</p>
+        </div>
+        <div class="about-actions">
+          <button class="btn btn-solid" type="button" data-goto="projects">
+            <span data-i18n="about.cta.projects">Explore projects</span>
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 8h10.4M9 3.8 13.2 8 9 12.2"/></svg>
+          </button>
+          <a class="btn btn-ghost" href="https://discord.gg/yNzFWsM7uf" target="_blank" rel="noopener noreferrer">
+            <span data-i18n="about.cta.discord">Join the Discord</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="showcase">
+      <div class="wrap">
+        <header class="section-head">
+          <p class="kicker" data-i18n="video.kicker">Showcase</p>
+          <h2 class="section-title" data-i18n="video.title">Warp Projects in motion</h2>
+          <p class="section-sub" data-i18n="video.sub">A short walkthrough of what we build and how to use it.</p>
+        </header>
+        <div class="video-frame" id="videoFrame">
+          <div class="video-inner">
+            <div class="video-placeholder">
+              <span class="video-play" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.3c0-.8.9-1.3 1.6-.9l10 6.2c.6.4.6 1.4 0 1.8l-10 6.2c-.7.4-1.6-.1-1.6-.9V5.3Z"/></svg>
+              </span>
+              <span class="video-caption" data-i18n="video.soon">Video coming soon</span>
+            </div>
+            <!-- VIDEO: replace .video-placeholder above with your YouTube embed, e.g.
+                 <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Warp Projects" allowfullscreen></iframe> -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq" id="faq">
+      <div class="wrap">
+        <header class="section-head">
+          <p class="kicker" data-i18n="faq.kicker">FAQ</p>
+          <h2 class="section-title" data-i18n="faq.title">Frequently asked questions</h2>
+          <p class="section-sub" data-i18n="faq.sub">Everything people ask us most, in one place. Still stuck? The Discord is always open.</p>
+        </header>
+        <ul class="faq-list">
+          <li>
+            <details>
+              <summary>
+                <span data-i18n="faq.q1">What exactly is Warp Projects?</span>
+                <span class="faq-chev" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 6 8 10.5 12.5 6"/></svg></span>
+              </summary>
+              <div class="faq-panel"><p data-i18n="faq.a1">Warp Projects is an independent studio that publishes open-source projects. Everything we finish ends up here, free to download and inspect before you install anything.</p></div>
+            </details>
+          </li>
+          <li>
+            <details>
+              <summary>
+                <span data-i18n="faq.q2">How do I download a project?</span>
+                <span class="faq-chev" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 6 8 10.5 12.5 6"/></svg></span>
+              </summary>
+              <div class="faq-panel"><p data-i18n="faq.a2">Open the Projects tab, pick a project and read its page: what is included, the version, the platforms and any requirements. The download button is right there — no account and no waiting.</p></div>
+            </details>
+          </li>
+          <li>
+            <details>
+              <summary>
+                <span data-i18n="faq.q3">Are the projects really free?</span>
+                <span class="faq-chev" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 6 8 10.5 12.5 6"/></svg></span>
+              </summary>
+              <div class="faq-panel"><p data-i18n="faq.a3">Yes. Every public release on this site is free to download and use. There are no paid tiers, no locked files and no hidden ads — if a project ever changes, it will be clearly marked.</p></div>
+            </details>
+          </li>
+          <li>
+            <details>
+              <summary>
+                <span data-i18n="faq.q4">Which platforms do you support?</span>
+                <span class="faq-chev" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 6 8 10.5 12.5 6"/></svg></span>
+              </summary>
+              <div class="faq-panel"><p data-i18n="faq.a4">Most releases target Windows, with occasional web projects that run entirely in the browser. Each project page lists exactly what it supports, so you know before you download.</p></div>
+            </details>
+          </li>
+          <li>
+            <details>
+              <summary>
+                <span data-i18n="faq.q5">How often are projects updated?</span>
+                <span class="faq-chev" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 6 8 10.5 12.5 6"/></svg></span>
+              </summary>
+              <div class="faq-panel"><p data-i18n="faq.a5">Whenever there is something worth shipping. Big releases and fixes are announced on our Discord and YouTube, and each project page shows its latest version and date.</p></div>
+            </details>
+          </li>
+          <li>
+            <details>
+              <summary>
+                <span data-i18n="faq.q6">Something is broken, or I have an idea. Where do I write?</span>
+                <span class="faq-chev" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 6 8 10.5 12.5 6"/></svg></span>
+              </summary>
+              <div class="faq-panel"><p data-i18n="faq.a6">If you find a bug or have an idea, write to us on Discord. You can post your idea in the general channel and discuss it with the team. For a bug, open a ticket with detailed information and attach a screenshot so we can see exactly what went wrong. Thanks in advance!</p></div>
+            </details>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </section>
+
+  <section class="view" id="view-projects" aria-label="Projects">
+    <div class="page">
+      <div class="page-head">
+        <p class="kicker" data-i18n="projects.kicker">Library</p>
+        <h1 data-i18n="projects.title">Projects</h1>
+        <p class="lead" data-i18n="projects.sub">A look at what we are building right now. New projects appear here as soon as they are ready.</p>
+        <span class="badge"><i aria-hidden="true"></i><span data-i18n="projects.badge">Projects in development</span></span>
+      </div>
+      <div class="cards" id="projectCards">
+        <article class="project-cover" aria-label="Coming soon">
+          <span class="cover-sheen" aria-hidden="true"></span>
+          <div class="cover-art" aria-hidden="true">
+            <span class="cover-w">W</span>
+          </div>
+          <div class="cover-foot">
+            <p class="cover-name">soon.</p>
+          </div>
+        </article>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="view-project" aria-label="Project details">
+    <div class="page pj-page">
+      <div class="pj-bar">
+        <a class="pj-back" href="#projects" data-goto="projects">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5.5 8.5 12 15 18.5"/></svg>
+          <span data-i18n="project.back">All projects</span>
+        </a>
+        <div class="pj-ident">
+          <span class="pj-eyebrow" data-i18n="projects.title">Projects</span>
+          <h1 class="pj-name" id="pjName">Warp Launcher</h1>
+        </div>
+      </div>
+
+      <div class="pj-layout">
+        <div class="pj-main">
+          <div class="video-frame pj-media" id="pjMedia">
+            <div class="video-inner">
+              <div class="video-placeholder">
+                <span class="video-play" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.3c0-.8.9-1.3 1.6-.9l10 6.2c.6.4.6 1.4 0 1.8l-10 6.2c-.7.4-1.6-.1-1.6-.9V5.3Z"/></svg>
+                </span>
+                <span class="video-caption" data-i18n="project.video">Project video — coming soon</span>
+              </div>
+              <span class="pj-media-label" id="pjMediaLabel">Warp Launcher</span>
+              <!-- VIDEO: replace .video-placeholder above with your YouTube embed, e.g.
+                   <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Warp Launcher" allowfullscreen></iframe> -->
+            </div>
+          </div>
+
+          <div class="pj-screens">
+            <div class="pj-sec-head">
+              <h2 class="pj-sec-title" data-i18n="project.screens">Screenshots</h2>
+              <span class="pj-count" id="pjCount">01 / 04</span>
+            </div>
+            <div class="pj-shots" id="pjShots"></div>
+          </div>
+
+          <div class="pj-about">
+            <h2 class="pj-sec-title" data-i18n="project.about">About this project</h2>
+            <p class="pj-desc" id="pjDesc"></p>
+            <ul class="pj-features" id="pjFeatures"></ul>
+          </div>
+        </div>
+
+        <aside class="pj-side">
+          <div class="pj-cover" aria-hidden="true"><span class="pj-cover-mark">W</span></div>
+          <span class="pj-status"><i aria-hidden="true"></i><span data-i18n="project.status">In development</span></span>
+          <p class="pj-side-tagline" id="pjSideTagline"></p>
+          <div class="pj-meta">
+            <div class="pj-meta-row"><span data-i18n="project.developer">Developer</span><b>Warp Projects</b></div>
+            <div class="pj-meta-row"><span data-i18n="project.released">Released</span><b id="pjReleased"></b></div>
+            <div class="pj-meta-row"><span data-i18n="project.updated">Last update</span><b id="pjUpdated"></b></div>
+            <div class="pj-meta-row"><span data-i18n="project.version">Version</span><b id="pjVersion"></b></div>
+            <div class="pj-meta-row"><span data-i18n="project.size">Size</span><b id="pjSize"></b></div>
+            <div class="pj-meta-row"><span data-i18n="project.license">License</span><b id="pjLicense"></b></div>
+            <div class="pj-meta-row"><span data-i18n="project.platform">Platform</span><b id="pjPlatform"></b></div>
+          </div>
+          <button class="pj-download" type="button" id="pjDownload">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5v11"/><path d="m7.5 10 4.5 4.5L16.5 10"/><path d="M4.5 19.5h15"/></svg>
+            <span class="pj-dl-text">
+              <span class="pj-dl-label" data-i18n="project.download">Download</span>
+              <span class="pj-dl-sub" data-i18n="project.notReleased">Not released yet</span>
+            </span>
+          </button>
+          <p class="pj-note" data-i18n="project.note">No account. No hassle. No ads.</p>
+        </aside>
+      </div>
+
+      <div class="pj-more">
+        <h2 class="pj-sec-title" data-i18n="project.more">More projects</h2>
+        <div class="pj-more-grid" id="pjMore"></div>
+      </div>
+    </div>
+
+    <div class="pj-lightbox" id="pjLightbox" aria-hidden="true">
+      <div class="pj-lightbox-inner" role="dialog" aria-modal="true" aria-label="Screenshot">
+        <button class="pj-lightbox-close" type="button" id="pjLightboxClose" aria-label="Close">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+        </button>
+        <div class="pj-lightbox-art"><span class="pj-lightbox-mark">W</span></div>
+        <div class="pj-lightbox-bar">
+          <span id="pjLightboxCap">Warp Launcher — Screenshot 01</span>
+          <span id="pjLightboxCount">01 / 04</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="view-members" aria-label="Warp Projects Team">
+    <div class="page">
+      <div class="page-head">
+        <p class="kicker" data-i18n="members.kicker">Team</p>
+        <h1 data-i18n="members.title">Warp Projects Team</h1>
+        <div class="team-head-row">
+          <p class="lead" data-i18n="members.sub">The people behind the projects.</p>
+          <div class="team-filters" id="teamFilters" role="group" aria-label="Filter team">
+            <button class="team-filter is-active" type="button" data-filter="all" aria-pressed="true">All <span class="team-filter-count">7</span></button>
+            <button class="team-filter" type="button" data-filter="developer" aria-pressed="false">Developers <span class="team-filter-count">1</span></button>
+            <button class="team-filter" type="button" data-filter="admin" aria-pressed="false">Admins <span class="team-filter-count">5</span></button>
+            <button class="team-filter" type="button" data-filter="editor" aria-pressed="false">Editors <span class="team-filter-count">1</span></button>
+            <button class="team-filter" type="button" data-filter="artist" aria-pressed="false">Artists <span class="team-filter-count">1</span></button>
+          </div>
+        </div>
+      </div>
+      <div class="team-grid">
+        <article class="member-card is-owner" data-role="owner" style="--accent:#ff0000">
+          <div class="member-avatar">
+            <span class="member-initial" aria-hidden="true">W</span>
+            <img src="data:image/webp;base64,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" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.remove()">
+          </div>
+          <span class="member-role"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.2l3.4 2.2L12 4.4l5.6 6 3.4-2.2-1.7 9.3H4.7L3 8.2Z"/><path d="M6.4 20.1h11.2"/></svg>Warp Projects Owner</span>
+          <h3 class="member-name">Wrexx</h3>
+          <p class="member-display">wrexx_1132</p>
+        </article>
+        <article class="member-card" data-role="admin" style="--accent:#c33e29">
+          <div class="member-avatar">
+            <span class="member-initial" aria-hidden="true">W</span>
+            <img src="data:image/webp;base64,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" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.remove()">
+          </div>
+          <span class="member-role">Admin</span>
+          <h3 class="member-name">Arelox</h3>
+          <p class="member-display">areloxxs</p>
+        </article>
+        <article class="member-card" data-role="admin" style="--accent:#1c1c1c">
+          <div class="member-avatar">
+            <span class="member-initial" aria-hidden="true">W</span>
+            <img src="data:image/webp;base64,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" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.remove()">
+          </div>
+          <span class="member-role">Admin</span>
+          <h3 class="member-name">Mag</h3>
+          <p class="member-display">magentaxv</p>
+        </article>
+        <article class="member-card" data-role="admin" style="--accent:#ffffff">
+          <div class="member-avatar">
+            <span class="member-initial" aria-hidden="true">W</span>
+            <img src="data:image/webp;base64,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" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.remove()">
+          </div>
+          <span class="member-role">Admin</span>
+          <h3 class="member-name">!_SYROX_</h3>
+          <p class="member-display">syrox_5401</p>
+        </article>
+        <article class="member-card" data-role="admin" style="--accent:#f2efef">
+          <div class="member-avatar">
+            <span class="member-initial" aria-hidden="true">W</span>
+            <img src="data:image/webp;base64,UklGRl4HAABXRUJQVlA4IFIHAACQJACdASqAAIAAPm0ylUekIqIhJZRrmIANiWUA1D1Q33RsLkXpL27V3O07r+H2tHOF70mFnG/WhQl20y92D32A6L/DbkF9G/Q/9W+wd0gPRdK0Pl3vzkCJhGV14ReuUFvXGOKEhgPpIyNNBD2sdWBvbhzLtm/y5O0M5V729MOFbUH0N+5x7jw1maUhxXwosFo/5dWESCBG4x9XlAldBlHaA9R3dZ8t3e33Nbjl/aJpQDPybvreILROKMfwUIoiJtr48+HCmd7chDeoHhvNzltFSG1/Q0ApQiM9N0AawcmvwT2p1NtN2KYQsQopzeUHjy0hIaTJLBPwiREzIGBSOj/hB52I6sieo8ovwNW+mPg4lE17TWd5Rr6R8SX7qOQ3xyh3jyqj/OR20u6CB0HAAP7/rbrwfHBqgk/h9mff2l6yY/7QsJQir8KH8sjQ9zctXcD30ASCNd1NcSpl4R6EZaMdmXyR6VetzkN9y5kr9GTC21HzvYZUNCo598NwPJ8i5Kh8w/L+p+7KmL1pN0sCPJ+McZuEPSI5htokqaxTMnAyKSz+sZh0w1tQdV/mFcUrWxmAXh79aEVZJvcsbQPbWjAqXJDrnvnGfdmx3xOizPXQD9M/fLb+ERvC4QxGrEvBNEv2J+8O6kDgErxjlLiXoWyYjACVlLO7IEDIPqWFPNIcZq0Ca2x4BQxZw4asVHrltLPCdkfLFtoAM0Dc1xr6U0LIqG37dvOSXCsZH2v2UYQWtqC+szHMRH0irKMGoYMdp1nOxX26DG09CZP40jviwE1/+ybCsZwARMv9cpXLJHXi2aEP8Qfjm26CYQJ8cdNYNZYQruyRILa2ifmMdVAq4WHSOA4bbtBcvBkz4CQWDLCvYjwZr3coaJr95bfRD1PWPzAziIfB/82/GCY0b5in8kQhTH6uRkBt2PGT/UgQox9ZHuOabsVZT0hXUAFRiXLxAvC/RY3vwZfTh5rDi5TZcylqKQbySalMTZtdrN50GiL9/FLKCIFy1OC5yrL80ovsznwk8tgykHfY3HKL4ZiQUkrapchrOvlcR4mBE/5OQtLsAIX3hRgWwcRn0DY6ys9OpwPCFnu4RenImgVvBqJATtBYtOv3wDPkTWSj5pmQUO5JTItEV7fg0JamvcAtV9+ESz/e2BvJgOXzfj/OETf9K7McbeOvPsErJcibHWboK9gATknHyUyjq+lz/Kms+MCZZwAxNi2h4thTyPWNWPusk08+jeGyX2k2lhW9O212I97hGCrOKx6jEEjZ7rt9PEbZV4uC7aQkGErr0nfupm6e2lnOh6wdczirnU9mm3vy1k8BtqlPilW+CXjmcLFc15jz9Wf2ZlPwgtQp5GtgTbbhYNGCdjaVQknNdXvnaZnCkBU6TKjxi7Tl+zepZVQxSvfQvXQO41fvb0fYnA4cxokI4ULS8a/diVQ2uyePU0mQ4kZX8BV3nczznx8nTvRhUkLk0bYdDedOZQgk6lm1kOZGtzc6hA+/6S3FzfMw2SbWAxgG3nAxKC38VK8gCOQRYUPba2saGYhsG/37HjEBKQyyizA4LOaIRQXS9h9Z9NJTnjRR6961oFdErG+t3lP7IZA24TJuLZ6Io/Yi1UdxGg06AfAC+K5NMhMs+3iqC1NKoHtLV/iYnSdz4NekMVL4u/suVj1ubYp34JFuP0PczUZF2n6PilKn1vxpAvjZHvJyMh1ZbcKbLoCiVS/0b317qFCqxXpfopY14INrQsJL/j4kFZLl4tGToEGybebRFyeIogzwGgbpgnKYxFs0/HiJIkSVimLYUf2AdQMFGk3glFsAk+4no57iJ8MoQ5qYryR4ekZUvJzGFeP3R+b0ez7iCB1oxd87nbfsTcYbTpnzMGUgQoDjUcSNvpT/ZJunDrdscUCz27+ocU014uaYcA7t7P5qeJCEH/n51iIYJpbWGZPBchfXu610mTs8hzNpzmp1u1sdI/IpC8tet6tyC8kZVazVxwDhw1851+PtxpT0jKz3RJ2RuNV2dVAxiMyc6amFoNYF47ZjhrTlw8J9Avlgcipyy9bzR+3+j3lgf/a0ijV3AYV8qWmlVA08Xh+BQ8BiZ9dw4nYIWC92MyicUSwmDrKkSL4me+WlyT31zjq8MNVWzkLS/soKZJas4Loq+Y6Eh4oIYEm3eqE6Ux1DHtOdpyinidDod63SvHfuzeTYX/D182wr5lp+v+wb++Te5mzIvFM8hnnLsRyCWC3b3kHUbJI/AHwP/qrm4U23Fog00OKBsdG92KdJyVH7O4qLV17zpwVbt63EAsYTjBqsbY+RqUdMsfjvfaWkSZijOyJjHvSUg69pgFlpfdgiyOTfjh/VpmB3hESyevAdSvs2QuZuAnySWpgCg/C6ROXzcK+YOZHpV5no+i2+Ne9Q34zrmhL82a3wR+R2Ccje9jOb4COvei98GRuSuaMy68adicIkUAAZ5YS9j7wCBsk3N7GUi98dCeKQAGwWXxFcvBcEc80ZmroKwWAAAA==" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.remove()">
+          </div>
+          <span class="member-role">Admin</span>
+          <h3 class="member-name">! Shadow</h3>
+          <p class="member-display">shadow08263</p>
+        </article>
+        <article class="member-card" data-role="editor" style="--accent:#704a4b">
+          <div class="member-avatar">
+            <span class="member-initial" aria-hidden="true">W</span>
+            <img src="data:image/webp;base64,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" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.remove()">
+          </div>
+          <div class="member-role-row">
+            <span class="member-role">Editor</span>
+            <a class="member-social" href="https://www.youtube.com/@Alp-vvx" target="_blank" rel="noopener noreferrer" aria-label="Alp on YouTube" title="YouTube">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.6 7.2a2.8 2.8 0 0 0-1.97-1.98C17.9 4.75 12 4.75 12 4.75s-5.9 0-7.63.47A2.8 2.8 0 0 0 2.4 7.2 29.2 29.2 0 0 0 2 12a29.2 29.2 0 0 0 .4 4.8 2.8 2.8 0 0 0 1.97 1.98c1.73.47 7.63.47 7.63.47s5.9 0 7.63-.47a2.8 2.8 0 0 0 1.97-1.98A29.2 29.2 0 0 0 22 12a29.2 29.2 0 0 0-.4-4.8ZM10.2 15.15V8.85L15.45 12l-5.25 3.15Z"/></svg>
+            </a>
+          </div>
+          <h3 class="member-name">Alp</h3>
+          <p class="member-display">alp1212</p>
+        </article>
+        <article class="member-card" data-role="developer" style="--accent:#8f8f8f">
+          <div class="member-avatar">
+            <span class="member-initial member-question" aria-hidden="true">?</span>
+          </div>
+          <span class="member-role">Developer</span>
+          <h3 class="member-name">Twexx</h3>
+          <p class="member-display">tweex0459</p>
+        </article>
+        <article class="member-card" data-role="artist" style="--accent:#8f6fae">
+          <div class="member-avatar">
+            <span class="member-initial" aria-hidden="true">W</span>
+            <img src="data:image/webp;base64,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" alt="">
+          </div>
+          <span class="member-role">Artist</span>
+          <h3 class="member-name">LYN3X</h3>
+          <p class="member-display">lyn3x.kittyboi</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="view-patch" aria-label="Patch Notes">
+    <div class="page">
+      <div class="page-head">
+        <p class="kicker" data-i18n="patch.kicker">Changelog</p>
+        <h1 data-i18n="patch.title">Patch Notes</h1>
+        <p class="lead" data-i18n="patch.lead">Every change we ship to the site and the projects, newest first. Small fixes, new pages, new releases — all logged here.</p>
+        <span class="badge"><i aria-hidden="true"></i><span data-i18n="patch.badge">Updated · October 2026</span></span>
+      </div>
+
+      <div class="pn-list">
+        <p class="pn-empty">nothing</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="view-license" aria-label="License">
+    <div class="lic-bg" aria-hidden="true">
+      <span class="lic-orb lic-orb-a"></span>
+      <span class="lic-orb lic-orb-b"></span>
+      <span class="lic-orb lic-orb-c"></span>
+      <span class="lic-grid"></span>
+      <span class="lic-scan"></span>
+    </div>
+    <div class="page lic-page">
+      <div class="lic-card">
+        <span class="lic-mark" aria-hidden="true">W</span>
+        <p class="lic-kicker" data-i18n="license.kicker">License</p>
+        <h1 class="lic-title" data-i18n="license.title">Open source. Openly shared.</h1>
+        <p class="lic-body" data-i18n="license.body">Warp Projects are fully open source. As long as they are not used for malicious purposes, anyone is free to use, study and improve them. We accept no responsibility in any situation. Thank you for using us.</p>
+
+        <ul class="lic-points">
+          <li class="lic-point">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.6 12.4 9.4 17 19.4 6.6"/></svg>
+            <p><b data-i18n="license.p1t">Free to use</b><span data-i18n="license.p1">No account, no paywall, no tracking.</span></p>
+          </li>
+          <li class="lic-point">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8.6 7.6-4.2 4.4 4.2 4.4"/><path d="m15.4 7.6 4.2 4.4-4.2 4.4"/></svg>
+            <p><b data-i18n="license.p2t">Open to study</b><span data-i18n="license.p2">Read the code, fork it, learn from it.</span></p>
+          </li>
+          <li class="lic-point">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.4 19 6v5.6c0 4.2-2.8 7.4-7 9-4.2-1.6-7-4.8-7-9V6l7-2.6Z"/><path d="m9.1 11.7 2.1 2.1 4-4.2"/></svg>
+            <p><b data-i18n="license.p3t">Use responsibly</b><span data-i18n="license.p3">No guarantee is provided for any other site or page outside ours, including in cases of misuse or modification.</span></p>
+          </li>
+        </ul>
+
+        <p class="lic-thanks" data-i18n="license.thanks">Thank you for using us.</p>
+        <p class="lic-copy">© 2026 Warp Projects · All rights reserved.</p>
+      </div>
+    </div>
+  </section>
+
+  </main>
+<footer class="foot">
+  <div class="foot-inner">
+    <div class="foot-cols">
+      <nav class="foot-pages" aria-label="Pages">
+        <p class="foot-kicker" data-i18n="foot.pages">Pages</p>
+        <a class="foot-link" href="#home" data-goto="home">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 10.6 12 4l8 6.6V19a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 19v-8.4Z"/>
+            <path d="M9.4 20.5v-6.1h5.2v6.1"/>
+          </svg>
+          <span data-i18n="nav.home">Main Menu</span>
+        </a>
+        <a class="foot-link" href="#projects" data-goto="projects">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="m8.6 7.2-4.4 4.8 4.4 4.8"/>
+            <path d="m15.4 7.2 4.4 4.8-4.4 4.8"/>
+            <path d="M13.4 4.6 10.6 19.4"/>
+          </svg>
+          <span data-i18n="nav.projects">Projects</span>
+        </a>
+        <a class="foot-link" href="#members" data-goto="members">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="9.2" cy="8.2" r="3.1"/>
+            <path d="M3 19.4c0-3 2.8-4.9 6.2-4.9s6.2 1.9 6.2 4.9"/>
+            <path d="M15.9 5.5a3 3 0 0 1 0 5.6"/>
+            <path d="M17.6 14.9c2.2.6 3.5 2.1 3.5 4.2"/>
+          </svg>
+          <span data-i18n="nav.members">Warp Projects Team</span>
+        </a>
+        <a class="foot-link" href="#patch" data-goto="patch">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M6.5 3.5h7.6L18.5 8v12.5h-12z"/>
+            <path d="M14 3.6V8h4.4"/>
+            <path d="M9.2 12.4h6.2"/>
+            <path d="M9.2 15.9h6.2"/>
+          </svg>
+          <span data-i18n="nav.patch">Patch Notes</span>
+        </a>
+        <a class="foot-link" href="#license" data-goto="license">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 3.4 19 6v5.6c0 4.2-2.8 7.4-7 9-4.2-1.6-7-4.8-7-9V6l7-2.6Z"/>
+            <path d="m9.1 11.7 2.1 2.1 4-4.2"/>
+          </svg>
+          <span data-i18n="nav.license">License</span>
+        </a>
+      </nav>
+      <div class="foot-community">
+        <p class="foot-kicker" data-i18n="foot.title">Join the community</p>
+        <div class="socials">
+      <a class="social" style="--brand:#5865F2" href="https://discord.gg/yNzFWsM7uf" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.6 12.6 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.056c2.053 1.508 4.041 2.423 5.993 3.03a.078.078 0 0 0 .084-.028c.462-.63.873-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 12.99 12.99 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .077-.011c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.197.373.291a.077.077 0 0 1-.006.128 12.3 12.3 0 0 1-1.873.891.077.077 0 0 0-.041.107c.36.698.772 1.363 1.225 1.993a.076.076 0 0 0 .084.029c1.961-.607 3.95-1.522 6.002-3.03a.077.077 0 0 0 .032-.055c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.029zM8.02 15.331c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.211 0 2.176 1.095 2.157 2.419 0 1.333-.956 2.419-2.157 2.419zm7.975 0c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.211 0 2.175 1.095 2.157 2.419 0 1.333-.946 2.419-2.157 2.419z"/>
+        </svg>
+        <span>Discord Community</span>
+      </a>
+      <a class="social" style="--brand:#FF0033" href="https://www.youtube.com/@warp-projects" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+        </svg>
+        <span>YouTube</span>
+      </a>
+      <a class="social" style="--brand:#8b949e" href="https://github.com/huhhuhhhuhhuhhh/warp-projects" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+        </svg>
+        <span>GitHub</span>
+      </a>
+      <a class="social" style="--brand:#A06EC2" href="https://guns.lol/warpprojects" target="_blank" rel="noopener noreferrer">
+        <span class="guns-mark" aria-hidden="true"></span>
+        <span>guns.lol</span>
+      </a>
+        </div>
+      </div>
+    </div>
+    <p class="foot-note">© 2026 <span>Warp Projects</span> · <span data-i18n="foot.rights">All rights reserved.</span></p>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"><span id="toastText"></span></div>
+
+<div class="intro" id="intro" role="dialog" aria-modal="true" aria-labelledby="introTitle" aria-describedby="introText" hidden>
+  <div class="intro-card">
+    <div class="intro-top">
+      <span class="intro-brand">
+        <span class="intro-w" aria-hidden="true">W</span>
+        <span class="intro-name">Warp <span>Projects</span></span>
+      </span>
+      <button class="intro-x" type="button" id="introClose" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M6 6l12 12M18 6 6 18"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="intro-body">
+      <p class="intro-kicker">In development</p>
+      <h2 class="intro-title" id="introTitle">Warp Projects 1.0 <em>(beta)</em></h2>
+      <p class="intro-text" id="introText">There are no projects right now. This page is still under development and there are no projects yet.</p>
+      <label class="intro-check">
+        <input type="checkbox" id="introDontShow">
+        <span>Don't show this again</span>
+      </label>
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/app.js"></script>
+<script src="assets/js/intro.js"></script>
+</body>
+</html>
