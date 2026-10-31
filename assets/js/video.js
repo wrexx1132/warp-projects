@@ -35,10 +35,30 @@
     }
 
     frame.addEventListener('click', function (e) {
-      if (e.target && e.target.closest && e.target.closest('a')) return;
+      if (e.target && e.target.closest && (e.target.closest('a') || e.target.closest('.video-full'))) return;
       e.preventDefault();
       toggle();
     });
+
+    /* Fullscreen: the top-right button expands the whole frame, Esc or the same button exits. */
+    var fullBtn = frame.querySelector('.video-full');
+    if (fullBtn) {
+      fullBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var doc = document;
+        if (doc.fullscreenElement === frame || doc.webkitFullscreenElement === frame) {
+          (doc.exitFullscreen || doc.webkitExitFullscreen).call(doc);
+        } else if (frame.requestFullscreen) {
+          var req = frame.requestFullscreen();
+          if (req && typeof req.catch === 'function') req.catch(function () {});
+        } else if (frame.webkitRequestFullscreen) {
+          frame.webkitRequestFullscreen();
+        } else if (video.webkitEnterFullscreen) {
+          video.webkitEnterFullscreen();
+        }
+      });
+    }
 
     video.addEventListener('play', sync);
     video.addEventListener('pause', sync);
@@ -84,6 +104,23 @@
     frame.addEventListener('pointermove', light);
     frame.addEventListener('pointerleave', dim);
   });
+
+  /* Keep the fullscreen icon and labels in sync (Esc included). */
+  function syncFullscreen() {
+    var current = document.fullscreenElement || document.webkitFullscreenElement || null;
+    frames.forEach(function (frame) {
+      var on = current === frame;
+      frame.classList.toggle('is-fullscreen', on);
+      var btn = frame.querySelector('.video-full');
+      if (btn) {
+        btn.setAttribute('aria-label', on ? 'Exit fullscreen' : 'Fullscreen');
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+      }
+    });
+  }
+
+  document.addEventListener('fullscreenchange', syncFullscreen);
+  document.addEventListener('webkitfullscreenchange', syncFullscreen);
 
   /* Leaving the page or switching tabs stops playback. */
   window.addEventListener('hashchange', function () {

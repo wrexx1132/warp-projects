@@ -1578,6 +1578,61 @@ main { flex: 1 0 auto; display: flex; flex-direction: column; }
 .video-frame.is-playing:hover .video-toggle,
 .video-frame.is-playing .video-toggle:focus-visible { opacity: 1; }
 
+/* fullscreen control, top-right corner */
+.video-full {
+  position: absolute;
+  top: 14px; right: 14px;
+  width: 38px; height: 38px;
+  display: grid; place-items: center;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, .18);
+  background: rgba(8, 8, 8, .38);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  color: rgba(255, 255, 255, .82);
+  cursor: pointer;
+  z-index: 5;
+  opacity: .55;
+  transition: opacity .25s ease, color .25s ease, border-color .25s ease,
+              background-color .25s ease, transform .25s ease;
+}
+.vf-icon { display: grid; place-items: center; }
+.video-full svg { width: 17px; height: 17px; }
+.video-full .vf-exit { display: none; }
+.video-frame.is-fullscreen .video-full .vf-enter { display: none; }
+.video-frame.is-fullscreen .video-full .vf-exit { display: grid; }
+.video-frame:hover .video-full { opacity: 1; }
+.video-full:hover,
+.video-full:focus-visible {
+  opacity: 1;
+  color: #fff;
+  border-color: rgba(255, 255, 255, .45);
+  background: rgba(8, 8, 8, .6);
+  transform: scale(1.06);
+}
+.video-full:active { transform: scale(.94); }
+.video-full:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+
+/* fullscreen presentation */
+.video-frame:fullscreen,
+.video-frame:-webkit-full-screen {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+  background: #000;
+}
+.video-frame:fullscreen .video-inner,
+.video-frame:-webkit-full-screen .video-inner {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+  border-radius: 0;
+}
+.video-frame:fullscreen video,
+.video-frame:-webkit-full-screen video { object-fit: contain; }
+
 /* ---- faq ---- */
 .faq { padding: clamp(64px, 9vw, 112px) 0 clamp(70px, 10vw, 120px); }
 .faq-list { margin-top: clamp(28px, 4vw, 40px); max-width: 880px; }
@@ -2042,6 +2097,8 @@ main { flex: 1 0 auto; display: flex; flex-direction: column; }
   .pj-shots { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .video-toggle { width: 54px; height: 54px; }
   .video-toggle svg { width: 18px; height: 18px; }
+  .video-full { top: 10px; right: 10px; width: 34px; height: 34px; border-radius: 9px; }
+  .video-full svg { width: 15px; height: 15px; }
   .pj-lightbox-bar { padding: 10px 12px; font-size: 10.5px; }
 }
 
