@@ -947,6 +947,16 @@
     catch (e) { window.scrollTo(0, 0); }
   }
 
+  /* keep the active tab visible when the tab bar scrolls sideways on phones */
+  function revealTab(tab) {
+    if (!tabsWrap || !tab) return;
+    if (tabsWrap.scrollWidth <= tabsWrap.clientWidth + 2) return;
+    var left = tab.offsetLeft - (tabsWrap.clientWidth - tab.offsetWidth) / 2;
+    left = Math.max(0, Math.min(left, tabsWrap.scrollWidth - tabsWrap.clientWidth));
+    try { tabsWrap.scrollTo({ left: left, behavior: 'smooth' }); }
+    catch (e) { tabsWrap.scrollLeft = left; }
+  }
+
   function showView(name) {
     var found = false;
     views.forEach(function (v) {
@@ -971,6 +981,7 @@
     }
     hoveredTab = null;
     positionGlow(activeTab(), false);
+    revealTab(activeTab());
     return name;
   }
 

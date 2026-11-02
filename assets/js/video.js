@@ -149,7 +149,9 @@
     return CUES[l] ? l : 'en';
   }
 
-  var cc = { lang: siteLang(), on: true, picked: false };
+  /* Subtitles are always on: the English captions burned into the picture are
+     never shown, the localized line is always drawn in their place. */
+  var cc = { lang: siteLang(), picked: false };
   var MASK_FROM = 12.35;
   var players = [];
   var frames = Array.prototype.slice.call(document.querySelectorAll('.video-frame'));
@@ -229,12 +231,13 @@
     function renderCue() {
       if (!cueEl) return;
       var t = video.currentTime || 0;
-      var text = cc.on ? cueAt(t) : '';
+      var text = cueAt(t);
       cueEl.textContent = text;
       cueEl.classList.toggle('is-on', !!text);
       frame.classList.toggle('has-cue', !!text);
-      var showMask = cc.on && t >= MASK_FROM;
-      if (inner) inner.classList.toggle('is-masked', showMask);
+      /* the caption band of the picture is always covered, so the burned-in
+         English line can never appear, not even for a frame */
+      if (inner) inner.classList.toggle('is-masked', t >= MASK_FROM);
     }
 
     function syncTime() {
@@ -267,32 +270,17 @@
 
     function buildMenu() {
       if (!menu) return;
-      var L = labels();
       menu.innerHTML = '';
-      var offBtn = document.createElement('button');
-      offBtn.type = 'button';
-      offBtn.className = 'vp-mi';
-      offBtn.setAttribute('role', 'menuitemradio');
-      offBtn.setAttribute('aria-checked', String(!cc.on));
-      offBtn.innerHTML = '<span class="vp-mi-name">' + L.off + '</span><span class="vp-mi-tick" aria-hidden="true">✓</span>';
-      offBtn.addEventListener('click', function (e) {
-        e.stopPropagation();
-        cc.on = false;
-        closeMenu();
-        players.forEach(function (p) { p.renderCue(); p.syncCc(); });
-      });
-      menu.appendChild(offBtn);
       LANGS.forEach(function (lang) {
         var b = document.createElement('button');
         b.type = 'button';
         b.className = 'vp-mi';
         b.setAttribute('role', 'menuitemradio');
-        b.setAttribute('aria-checked', String(cc.on && cc.lang === lang.code));
+        b.setAttribute('aria-checked', String(cc.lang === lang.code));
         b.innerHTML = '<span class="vp-mi-name">' + lang.label + '</span><span class="vp-mi-tick" aria-hidden="true">✓</span>';
         b.addEventListener('click', function (e) {
           e.stopPropagation();
           cc.lang = lang.code;
-          cc.on = true;
           cc.picked = true;
           closeMenu();
           players.forEach(function (p) { p.renderCue(); p.syncCc(); });
@@ -303,13 +291,12 @@
 
     function syncCc() {
       if (ccBtn) {
-        ccBtn.classList.toggle('is-on', cc.on);
+        ccBtn.classList.add('is-on');
         ccBtn.setAttribute('aria-label', labels().subs);
       }
       if (menu) {
         Array.prototype.forEach.call(menu.querySelectorAll('.vp-mi'), function (el, i) {
-          var on = i === 0 ? !cc.on : (cc.on && LANGS[i - 1] && cc.lang === LANGS[i - 1].code);
-          el.setAttribute('aria-checked', String(!!on));
+          el.setAttribute('aria-checked', String(!!LANGS[i] && cc.lang === LANGS[i].code));
         });
       }
     }
