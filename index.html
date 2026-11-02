@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <script src="assets/js/theme-init.js?v=5"></script>
-<link rel="stylesheet" href="assets/css/style.css?v=6">
+<link rel="stylesheet" href="assets/css/style.css?v=7">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -706,20 +706,38 @@
       </button>
     </div>
 
+    <div class="intro-meta">
+      <span class="intro-chip"><i aria-hidden="true"></i>Beta build</span>
+      <span class="intro-build">v1.0.0-beta · 2026.11</span>
+    </div>
+
     <div class="intro-body">
-      <p class="intro-kicker">In development</p>
+      <p class="intro-kicker">First look</p>
       <h2 class="intro-title" id="introTitle">Warp Projects 1.0 <em>(beta)</em></h2>
       <p class="intro-text" id="introText">There are no projects right now. This page is still under development and there are no projects yet.</p>
+
+      <ul class="intro-status">
+        <li><span>Projects live</span><strong>0</strong></li>
+        <li><span>Source</span><strong>Open</strong></li>
+        <li><span>Build</span><strong>Pre-release</strong></li>
+      </ul>
+
+      <div class="intro-actions">
+        <button class="intro-btn intro-btn-solid" type="button" id="introEnter">Enter the site</button>
+        <button class="intro-btn" type="button" id="introPatch">What's new</button>
+      </div>
+
       <label class="intro-check">
         <input type="checkbox" id="introDontShow">
         <span>Don't show this again</span>
       </label>
+      <p class="intro-note">You are looking at a pre-release build — things may change.</p>
     </div>
   </div>
 </div>
 
 <script src="assets/js/app.js?v=6"></script>
-<script src="assets/js/intro.js?v=5"></script>
+<script src="assets/js/intro.js?v=6"></script>
 <script src="assets/js/protect.js?v=5"></script>
 <script src="assets/js/video.js?v=6"></script>
 <script src="assets/js/qr-code.min.js?v=5"></script>

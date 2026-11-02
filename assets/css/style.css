@@ -2692,6 +2692,131 @@ html.intro-lock { overflow: hidden; }
 .intro-check input:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
 .intro-check:hover { color: rgba(255, 255, 255, .8); }
 
+/* ---- beta build look ---- */
+.intro-card { width: min(100%, 520px); }
+.intro-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(255, 255, 255, .055) 1px, transparent 1.4px);
+  background-size: 18px 18px;
+  opacity: .65;
+}
+.intro-top, .intro-meta, .intro-body { position: relative; z-index: 1; }
+.intro-meta {
+  margin-top: 16px;
+  padding: 9px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-top: 1px solid rgba(255, 255, 255, .08);
+  border-bottom: 1px solid rgba(255, 255, 255, .08);
+}
+.intro-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, .22);
+  background: rgba(255, 255, 255, .04);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .19em;
+  text-transform: uppercase;
+  color: #fff;
+  white-space: nowrap;
+}
+.intro-chip i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 8px rgba(255, 255, 255, .85);
+  animation: introPulse 1.8s ease-in-out infinite;
+}
+@keyframes introPulse { 0%, 100% { opacity: 1; } 50% { opacity: .22; } }
+.intro-build {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: .13em;
+  color: rgba(255, 255, 255, .38);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.intro-kicker { color: rgba(255, 255, 255, .45); }
+.intro-title { font-size: clamp(25px, 4.6vw, 31px); }
+.intro-status {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border: 1px solid rgba(255, 255, 255, .1);
+  border-radius: 13px;
+  background: rgba(255, 255, 255, .03);
+  overflow: hidden;
+}
+.intro-status li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 10px 6px 11px;
+  border-left: 1px solid rgba(255, 255, 255, .08);
+}
+.intro-status li:first-child { border-left: 0; }
+.intro-status span {
+  font-size: 8.5px;
+  font-weight: 800;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, .4);
+  white-space: nowrap;
+}
+.intro-status strong {
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: -.02em;
+  color: #fff;
+  white-space: nowrap;
+}
+.intro-actions { margin-top: 16px; display: flex; gap: 8px; }
+.intro-btn {
+  flex: 1 1 0;
+  min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  border-radius: 11px;
+  border: 1px solid rgba(255, 255, 255, .2);
+  background: rgba(255, 255, 255, .04);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: -.01em;
+  transition: transform .25s cubic-bezier(.22, 1, .36, 1),
+              background-color .25s ease,
+              border-color .25s ease;
+}
+.intro-btn:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, .1);
+  border-color: rgba(255, 255, 255, .4);
+}
+.intro-btn:active { transform: scale(.98); }
+.intro-btn:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.intro-btn-solid { background: #fff; color: #050505; border-color: #fff; }
+.intro-btn-solid:hover { background: #e6e6e6; border-color: #e6e6e6; }
+.intro-note {
+  margin-top: 12px;
+  font-size: 11px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, .34);
+}
+
 @media (max-width: 420px) {
   .intro { padding: 14px; }
   .intro-card { padding: 16px 16px 22px; border-radius: 18px; }
@@ -2865,6 +2990,16 @@ body { -webkit-tap-highlight-color: transparent; }
   }
   .intro-title { font-size: 25px; }
   .intro-text { max-width: 38ch; font-size: 13.4px; }
-  .intro-check { margin-top: 20px; min-height: 34px; }
+  .intro-check { margin-top: 18px; min-height: 34px; }
   .intro-x { width: 36px; height: 36px; }
+  .intro-status strong { font-size: 13px; }
+  .intro-status span { letter-spacing: .12em; }
+}
+
+@media (max-width: 380px) {
+  .intro-status span { font-size: 7.5px; }
+  .intro-status strong { font-size: 11.5px; }
+  .intro-status li { padding: 9px 4px 10px; }
+  .intro-btn { font-size: 12px; padding: 0 10px; }
+  .intro-build { font-size: 8.5px; letter-spacing: .08em; }
 }

@@ -8,6 +8,8 @@
 
   var closeBtn = document.getElementById('introClose');
   var dontShow = document.getElementById('introDontShow');
+  var enterBtn = document.getElementById('introEnter');
+  var patchBtn = document.getElementById('introPatch');
   var lastFocus = null;
 
   function seen() {
@@ -34,7 +36,7 @@
     }
     if (e.key !== 'Tab') return;
 
-    var focusables = [closeBtn, dontShow].filter(Boolean);
+    var focusables = [closeBtn, enterBtn, patchBtn, dontShow].filter(Boolean);
     if (!focusables.length) return;
     var first = focusables[0];
     var last = focusables[focusables.length - 1];
@@ -60,6 +62,14 @@
   }
 
   if (closeBtn) closeBtn.addEventListener('click', close);
+  if (enterBtn) enterBtn.addEventListener('click', close);
+  if (patchBtn) {
+    patchBtn.addEventListener('click', function () {
+      close();
+      var tab = document.querySelector('.tab[data-view="patch"]');
+      if (tab) tab.click();
+    });
+  }
   el.addEventListener('click', function (e) {
     if (e.target === el) close();
   });
