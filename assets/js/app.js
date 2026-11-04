@@ -1330,10 +1330,22 @@
       /* a normal visit can use the 5 minute cache; a reload asks for a fresh copy */
       var navEntry = window.performance && performance.getEntriesByType ? performance.getEntriesByType('navigation')[0] : null;
       var isReload = navEntry ? navEntry.type === 'reload' : !!(window.performance && performance.navigation && performance.navigation.type === 1);
-      var endpoint = 'https://discord-lookup.lookupbotdc.workers.dev/search/' + id + (isReload ? '?t=' + Date.now() : '');
 
-      fetch(endpoint, { cache: 'no-store', referrerPolicy: 'no-referrer' })
-        .then(function (res) { return res.ok ? res.json() : null; })
+      function lookup(fresh, attempt) {
+        var endpoint = 'https://discord-lookup.lookupbotdc.workers.dev/search/' + id + (fresh ? '?t=' + Date.now() : '');
+        return fetch(endpoint, { cache: 'no-store', referrerPolicy: 'no-referrer' })
+          .then(function (res) {
+            /* if the fresh request is rate limited, settle for the cached copy */
+            if (res.status === 429) {
+              if (fresh) return lookup(false, attempt);
+              if (attempt < 2) return new Promise(function (r) { setTimeout(r, 4000); }).then(function () { return lookup(false, attempt + 1); });
+              return null;
+            }
+            return res.ok ? res.json() : null;
+          });
+      }
+
+      lookup(isReload, 0)
         .then(function (data) {
           if (!data) return;
           var src = data.avatar_url_gif || data.avatar_url;
