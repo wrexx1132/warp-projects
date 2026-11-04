@@ -1114,13 +1114,16 @@ main { flex: 1 0 auto; display: flex; flex-direction: column; }
   padding: 26px 18px 24px;
   text-align: center;
   border-radius: 18px;
-  border: 1px solid color-mix(in srgb, var(--accent) 26%, var(--line-soft));
+  border: 1px solid color-mix(in srgb, var(--accent) 36%, var(--line-soft));
   background:
-    radial-gradient(120% 100% at 50% 0%,
-      color-mix(in srgb, var(--accent) 11%, transparent),
-      transparent 62%),
-    var(--panel);
-  box-shadow: var(--card-shadow);
+    radial-gradient(130% 105% at 50% -8%,
+      color-mix(in srgb, var(--accent) 26%, transparent),
+      transparent 60%),
+    linear-gradient(180deg,
+      color-mix(in srgb, var(--accent) 10%, var(--panel)),
+      var(--panel) 74%);
+  box-shadow: var(--card-shadow),
+              0 0 46px -32px color-mix(in srgb, var(--accent) 85%, transparent);
   overflow: hidden;
   isolation: isolate;
   transition: transform .4s cubic-bezier(.22,1,.36,1),
@@ -1132,19 +1135,28 @@ main { flex: 1 0 auto; display: flex; flex-direction: column; }
   position: absolute; inset: 0 0 auto;
   height: 1px;
   background: linear-gradient(90deg, transparent,
-    color-mix(in srgb, var(--accent) 70%, transparent), transparent);
-  opacity: .85;
+    color-mix(in srgb, var(--accent) 82%, transparent), transparent);
+  opacity: .95;
+}
+.member-card::after {
+  content: "";
+  position: absolute; inset: auto 0 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent,
+    color-mix(in srgb, var(--accent) 52%, transparent), transparent);
+  opacity: .6;
+  pointer-events: none;
 }
 .member-card:hover {
   transform: translateY(-4px);
-  border-color: color-mix(in srgb, var(--accent) 52%, var(--line));
+  border-color: color-mix(in srgb, var(--accent) 64%, var(--line));
   box-shadow: var(--card-shadow),
-              0 0 40px -18px color-mix(in srgb, var(--accent) 70%, transparent);
+              0 0 54px -18px color-mix(in srgb, var(--accent) 85%, transparent);
 }
 .member-card.is-owner {
-  border-color: color-mix(in srgb, var(--accent) 38%, var(--line-soft));
+  border-color: color-mix(in srgb, var(--accent) 48%, var(--line-soft));
   box-shadow: var(--card-shadow),
-              0 0 46px -26px color-mix(in srgb, var(--accent) 70%, transparent);
+              0 0 54px -22px color-mix(in srgb, var(--accent) 80%, transparent);
 }
 
 .member-avatar {
@@ -1153,10 +1165,10 @@ main { flex: 1 0 auto; display: flex; flex-direction: column; }
   border-radius: 50%;
   display: grid; place-items: center;
   overflow: hidden;
-  border: 1.5px solid color-mix(in srgb, var(--accent) 55%, var(--text));
-  background: color-mix(in srgb, var(--accent) 18%, var(--panel));
-  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 9%, transparent),
-              0 0 30px -16px color-mix(in srgb, var(--accent) 80%, transparent);
+  border: 1.5px solid color-mix(in srgb, var(--accent) 62%, var(--text));
+  background: color-mix(in srgb, var(--accent) 24%, var(--panel));
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 12%, transparent),
+              0 0 32px -14px color-mix(in srgb, var(--accent) 85%, transparent);
   transition: transform .45s cubic-bezier(.22,1,.36,1), box-shadow .4s ease;
 }
 .is-owner .member-avatar { width: 92px; height: 92px; }
@@ -1182,9 +1194,9 @@ main { flex: 1 0 auto; display: flex; flex-direction: column; }
   margin-top: 18px;
   padding: 4px 10px;
   border-radius: 999px;
-  border: 1px solid color-mix(in srgb, var(--accent) 38%, transparent);
-  background: color-mix(in srgb, var(--accent) 12%, transparent);
-  color: color-mix(in srgb, var(--accent) 58%, var(--text));
+  border: 1px solid color-mix(in srgb, var(--accent) 50%, transparent);
+  background: color-mix(in srgb, var(--accent) 16%, transparent);
+  color: color-mix(in srgb, var(--accent) 66%, var(--text));
   font-size: 10px; font-weight: 800;
   letter-spacing: .14em; text-transform: uppercase;
   white-space: nowrap;
@@ -1203,8 +1215,8 @@ main { flex: 1 0 auto; display: flex; flex-direction: column; }
   justify-content: center;
   width: 26px; height: 26px;
   border-radius: 8px;
-  border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--line-soft));
-  background: color-mix(in srgb, var(--accent) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 42%, var(--line-soft));
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
   color: var(--faint);
   text-decoration: none;
   transition: color .25s ease, border-color .25s ease,

@@ -1340,12 +1340,18 @@
       try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) { /* ignore */ }
     }
 
-    /* very dark profile colours read as "no colour" on a card, so keep the existing accent */
+    /* very dark profile colours read as black on a card, so lift them while keeping the hue */
     function accentColor(value, fallback) {
       if (typeof value !== 'number' || !isFinite(value) || value <= 0) return fallback;
       var r = (value >> 16) & 255, g = (value >> 8) & 255, b = value & 255;
-      if (Math.max(r, g, b) < 40) return fallback;
-      return '#' + ('000000' + value.toString(16)).slice(-6);
+      var max = Math.max(r, g, b);
+      if (max < 40) {
+        var k = 128 / max;
+        r = Math.min(255, Math.round(r * k));
+        g = Math.min(255, Math.round(g * k));
+        b = Math.min(255, Math.round(b * k));
+      }
+      return '#' + ('000000' + ((r << 16) | (g << 8) | b).toString(16)).slice(-6);
     }
 
     function showImage(img, src, done) {
