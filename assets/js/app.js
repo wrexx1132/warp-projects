@@ -1314,6 +1314,47 @@
 
   refreshTeamCounts();
 
+  /* ---------- live discord avatars ---------- */
+  (function () {
+    var holders = Array.prototype.slice.call(document.querySelectorAll('[data-discord-avatar]'));
+    if (!holders.length || !window.fetch) return;
+
+    function refresh(holder) {
+      var img = holder.querySelector('img');
+      if (!img) return;
+
+      var id = '';
+      try { id = atob(holder.getAttribute('data-discord-avatar') || ''); } catch (e) { /* ignore */ }
+      if (!/^\d{17,20}$/.test(id)) return;
+
+      fetch('https://discord-lookup.lookupbotdc.workers.dev/search/' + id, { cache: 'no-store', referrerPolicy: 'no-referrer' })
+        .then(function (res) { return res.ok ? res.json() : null; })
+        .then(function (data) {
+          if (!data) return;
+          var src = data.avatar_url_gif || data.avatar_url;
+          if (!src) return;
+          src += (src.indexOf('?') === -1 ? '?' : '&') + 'size=256';
+          if (img.getAttribute('src') === src) return;
+          /* only swap once the new picture is fully loaded */
+          var probe = new Image();
+          probe.onload = function () { img.src = src; };
+          probe.onerror = function () {
+            /* some networks block the Discord CDN; go through a cached image proxy */
+            var proxied = 'https://images.weserv.nl/?url=' + encodeURIComponent(src.replace(/^https?:\/\//, ''));
+            var fallback = new Image();
+            fallback.onload = function () { img.src = proxied; };
+            fallback.src = proxied;
+          };
+          probe.src = src;
+        })
+        .catch(function () { /* keep the embedded fallback */ });
+    }
+
+    holders.forEach(function (holder, i) {
+      setTimeout(function () { refresh(holder); }, i * 220);
+    });
+  })();
+
   /* ---------- init ---------- */
   buildGrid();
   buildLangMenu();
