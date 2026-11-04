@@ -1314,38 +1314,61 @@
 
   refreshTeamCounts();
 
-  /* ---------- live discord avatars ---------- */
+  /* ---------- team avatars ---------- */
   (function () {
-    var holders = Array.prototype.slice.call(document.querySelectorAll('[data-discord-avatar]'));
+    var holders = Array.prototype.slice.call(document.querySelectorAll('[data-av]'));
     if (!holders.length || !window.fetch) return;
+
+    /* ids live scrambled in the markup so the profile links are not readable at a glance */
+    var KEY = ['warp', '-te', 'am-', 'av2', '6'].join('');
+
+    function decode(token) {
+      try {
+        var s = token.split('').reverse().join('').replace(/-/g, '+').replace(/_/g, '/');
+        while (s.length % 4) s += '=';
+        var raw = atob(s), out = '';
+        for (var i = 0; i < raw.length; i++) out += String.fromCharCode(raw.charCodeAt(i) ^ KEY.charCodeAt(i % KEY.length));
+        return out;
+      } catch (e) { return ''; }
+    }
 
     function refresh(holder) {
       var img = holder.querySelector('img');
       if (!img) return;
 
-      var id = '';
-      try { id = atob(holder.getAttribute('data-discord-avatar') || ''); } catch (e) { /* ignore */ }
+      var id = decode(holder.getAttribute('data-av') || '');
       if (!/^\d{17,20}$/.test(id)) return;
 
       /* a normal visit can use the 5 minute cache; a reload asks for a fresh copy */
       var navEntry = window.performance && performance.getEntriesByType ? performance.getEntriesByType('navigation')[0] : null;
       var isReload = navEntry ? navEntry.type === 'reload' : !!(window.performance && performance.navigation && performance.navigation.type === 1);
 
-      function lookup(fresh, attempt) {
+      var opts = { cache: 'no-store', referrerPolicy: 'no-referrer' };
+
+      function fromWorker(fresh) {
         var endpoint = 'https://discord-lookup.lookupbotdc.workers.dev/search/' + id + (fresh ? '?t=' + Date.now() : '');
-        return fetch(endpoint, { cache: 'no-store', referrerPolicy: 'no-referrer' })
+        return fetch(endpoint, opts)
           .then(function (res) {
+            if (res.ok) return res.json();
             /* if the fresh request is rate limited, settle for the cached copy */
-            if (res.status === 429) {
-              if (fresh) return lookup(false, attempt);
-              if (attempt < 2) return new Promise(function (r) { setTimeout(r, 4000); }).then(function () { return lookup(false, attempt + 1); });
-              return null;
-            }
-            return res.ok ? res.json() : null;
-          });
+            if (res.status === 429 && fresh) return fromWorker(false);
+            return null;
+          })
+          .catch(function () { return null; });
       }
 
-      lookup(isReload, 0)
+      function fromBackup() {
+        return fetch('https://japi.rest/discord/v1/user/' + id, opts)
+          .then(function (res) { return res.ok ? res.json() : null; })
+          .then(function (json) {
+            if (!json || !json.data || !json.data.avatarURL) return null;
+            return { avatar_url: json.data.avatarURL };
+          })
+          .catch(function () { return null; });
+      }
+
+      fromWorker(isReload)
+        .then(function (data) { return data || fromBackup(); })
         .then(function (data) {
           if (!data) return;
           var src = data.avatar_url_gif || data.avatar_url;
@@ -1367,9 +1390,13 @@
         .catch(function () { /* keep the embedded fallback */ });
     }
 
-    holders.forEach(function (holder, i) {
-      setTimeout(function () { refresh(holder); }, i * 900);
-    });
+    function start() {
+      holders.forEach(function (holder, i) {
+        setTimeout(function () { refresh(holder); }, i * 1200);
+      });
+    }
+
+    start();
   })();
 
   /* ---------- init ---------- */
