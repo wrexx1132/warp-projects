@@ -1327,7 +1327,12 @@
       try { id = atob(holder.getAttribute('data-discord-avatar') || ''); } catch (e) { /* ignore */ }
       if (!/^\d{17,20}$/.test(id)) return;
 
-      fetch('https://discord-lookup.lookupbotdc.workers.dev/search/' + id, { cache: 'no-store', referrerPolicy: 'no-referrer' })
+      /* a normal visit can use the 5 minute cache; a reload asks for a fresh copy */
+      var navEntry = window.performance && performance.getEntriesByType ? performance.getEntriesByType('navigation')[0] : null;
+      var isReload = navEntry ? navEntry.type === 'reload' : !!(window.performance && performance.navigation && performance.navigation.type === 1);
+      var endpoint = 'https://discord-lookup.lookupbotdc.workers.dev/search/' + id + (isReload ? '?t=' + Date.now() : '');
+
+      fetch(endpoint, { cache: 'no-store', referrerPolicy: 'no-referrer' })
         .then(function (res) { return res.ok ? res.json() : null; })
         .then(function (data) {
           if (!data) return;
