@@ -1332,12 +1332,100 @@
       } catch (e) { return ''; }
     }
 
-    function refresh(holder) {
-      var img = holder.querySelector('img');
-      if (!img) return;
+    function readCache(key) {
+      try { return JSON.parse(localStorage.getItem(key) || 'null'); } catch (e) { return null; }
+    }
 
-      var id = decode(holder.getAttribute('data-av') || '');
-      if (!/^\d{17,20}$/.test(id)) return;
+    function writeCache(key, value) {
+      try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) { /* ignore */ }
+    }
+
+    /* very dark profile colours read as "no colour" on a card, so keep the existing accent */
+    function accentColor(value, fallback) {
+      if (typeof value !== 'number' || !isFinite(value) || value <= 0) return fallback;
+      var r = (value >> 16) & 255, g = (value >> 8) & 255, b = value & 255;
+      if (Math.max(r, g, b) < 40) return fallback;
+      return '#' + ('000000' + value.toString(16)).slice(-6);
+    }
+
+    function showImage(img, src, done) {
+      if (!src) return;
+      if (img.getAttribute('src') === src) { if (done) done(src); return; }
+      /* only swap once the new picture is fully loaded */
+      var probe = new Image();
+      probe.onload = function () { img.src = src; if (done) done(src); };
+      probe.onerror = function () {
+        if (src.indexOf('images.weserv.nl') !== -1) return;
+        /* some networks block the Discord CDN; go through a cached image proxy */
+        var proxied = 'https://images.weserv.nl/?url=' + encodeURIComponent(src.replace(/^https?:\/\//, ''));
+        var fallback = new Image();
+        fallback.onload = function () { img.src = proxied; if (done) done(proxied); };
+        fallback.src = proxied;
+      };
+      probe.src = src;
+    }
+
+    /* keep a tiny copy of the accepted picture so the next reload shows it instantly */
+    function saveThumb(src, cacheKey, hash, accent) {
+      if (!src) return;
+      var proxySrc = src.indexOf('images.weserv.nl') !== -1
+        ? src
+        : 'https://images.weserv.nl/?url=' + encodeURIComponent(src.replace(/^https?:\/\//, ''));
+      var image = new Image();
+      image.crossOrigin = 'anonymous';
+      image.onload = function () {
+        try {
+          var size = 160;
+          var canvas = document.createElement('canvas');
+          canvas.width = size; canvas.height = size;
+          var ctx = canvas.getContext('2d');
+          var scale = Math.max(size / image.width, size / image.height);
+          var w = image.width * scale, h = image.height * scale;
+          ctx.drawImage(image, (size - w) / 2, (size - h) / 2, w, h);
+          var thumb = canvas.toDataURL('image/webp', 0.82);
+          var current = readCache(cacheKey);
+          if (current && current.hash && current.hash !== hash) return;
+          writeCache(cacheKey, { hash: hash, src: src, accent: accent, thumb: thumb });
+        } catch (e) { /* ignore */ }
+      };
+      image.src = proxySrc;
+    }
+
+    function prepare(holder) {
+      var img = holder.querySelector('img');
+      var card = holder.closest ? holder.closest('.member-card') : null;
+      if (!img) return null;
+
+      var token = holder.getAttribute('data-av') || '';
+      var id = decode(token);
+      if (!/^\d{17,20}$/.test(id)) return null;
+
+      var cacheKey = 'warp.av.' + token;
+      var fallbackAccent = card ? (card.getAttribute('data-accent') || card.style.getPropertyValue('--accent').trim()) : '';
+      if (card && fallbackAccent && !card.getAttribute('data-accent')) card.setAttribute('data-accent', fallbackAccent);
+
+      /* show the last accepted picture straight away, so a reload never falls back to an old one */
+      var cached = readCache(cacheKey);
+      if (cached) {
+        if (cached.accent && card) card.style.setProperty('--accent', cached.accent);
+        /* the thumbnail is a data URI, so it paints immediately without a network round-trip */
+        if (cached.thumb) img.src = cached.thumb;
+        if (cached.src) {
+          showImage(img, cached.src, function (finalSrc) {
+            if (finalSrc && finalSrc !== cached.src) {
+              writeCache(cacheKey, { hash: cached.hash, src: finalSrc, accent: cached.accent, thumb: cached.thumb });
+            }
+          });
+        }
+      }
+
+      return { img: img, card: card, id: id, cacheKey: cacheKey, fallbackAccent: fallbackAccent, cached: cached };
+    }
+
+    function refresh(state) {
+      if (!state) return;
+      var img = state.img, card = state.card, id = state.id;
+      var cacheKey = state.cacheKey, fallbackAccent = state.fallbackAccent, cached = state.cached;
 
       /* a normal visit can use the 5 minute cache; a reload asks for a fresh copy */
       var navEntry = window.performance && performance.getEntriesByType ? performance.getEntriesByType('navigation')[0] : null;
@@ -1362,7 +1450,11 @@
           .then(function (res) { return res.ok ? res.json() : null; })
           .then(function (json) {
             if (!json || !json.data || !json.data.avatarURL) return null;
-            return { avatar_url: json.data.avatarURL };
+            return {
+              avatar_url: json.data.avatarURL,
+              accent_color: json.data.accent_color,
+              avatar: json.data.avatar
+            };
           })
           .catch(function () { return null; });
       }
@@ -1371,28 +1463,40 @@
         .then(function (data) { return data || fromBackup(); })
         .then(function (data) {
           if (!data) return;
+
+          var accentValue = data.user && typeof data.user.accent_color === 'number' ? data.user.accent_color : data.accent_color;
+          var accent = accentColor(accentValue, fallbackAccent);
+          if (card && accent) card.style.setProperty('--accent', accent);
+
+          var hash = (data.user && data.user.avatar) || data.avatar || '';
           var src = data.avatar_url_gif || data.avatar_url;
           if (!src) return;
           src += (src.indexOf('?') === -1 ? '?' : '&') + 'size=256';
-          if (img.getAttribute('src') === src) return;
-          /* only swap once the new picture is fully loaded */
-          var probe = new Image();
-          probe.onload = function () { img.src = src; };
-          probe.onerror = function () {
-            /* some networks block the Discord CDN; go through a cached image proxy */
-            var proxied = 'https://images.weserv.nl/?url=' + encodeURIComponent(src.replace(/^https?:\/\//, ''));
-            var fallback = new Image();
-            fallback.onload = function () { img.src = proxied; };
-            fallback.src = proxied;
-          };
-          probe.src = src;
+
+          var current = img.getAttribute('src') || '';
+          if ((hash && cached && cached.hash === hash && current) || current === src) {
+            writeCache(cacheKey, {
+              hash: hash,
+              src: (cached && cached.src) || current || src,
+              accent: accent,
+              thumb: cached && cached.thumb
+            });
+            return;
+          }
+
+          showImage(img, src, function (finalSrc) {
+            var final = finalSrc || src;
+            writeCache(cacheKey, { hash: hash, src: final, accent: accent });
+            saveThumb(final, cacheKey, hash, accent);
+          });
         })
-        .catch(function () { /* keep the embedded fallback */ });
+        .catch(function () { /* keep the last accepted picture */ });
     }
 
     function start() {
-      holders.forEach(function (holder, i) {
-        setTimeout(function () { refresh(holder); }, i * 1200);
+      var states = holders.map(prepare);
+      states.forEach(function (state, i) {
+        setTimeout(function () { refresh(state); }, i * 1200);
       });
     }
 
