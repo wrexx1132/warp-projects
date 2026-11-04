@@ -1356,7 +1356,7 @@
     }
 
     holders.forEach(function (holder, i) {
-      setTimeout(function () { refresh(holder); }, i * 220);
+      setTimeout(function () { refresh(holder); }, i * 900);
     });
   })();
 
