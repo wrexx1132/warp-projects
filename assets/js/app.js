@@ -1428,10 +1428,13 @@
       return { img: img, card: card, id: id, cacheKey: cacheKey, fallbackAccent: fallbackAccent, cached: cached };
     }
 
-    function refresh(state) {
+    function refresh(state, force) {
       if (!state) return;
       var img = state.img, card = state.card, id = state.id;
-      var cacheKey = state.cacheKey, fallbackAccent = state.fallbackAccent, cached = state.cached;
+      var cacheKey = state.cacheKey, fallbackAccent = state.fallbackAccent;
+      /* always use the latest accepted picture, even after a later background refresh */
+      var cached = readCache(cacheKey);
+      state.cached = cached;
 
       /* a normal visit can use the 5 minute cache; a reload asks for a fresh copy */
       var navEntry = window.performance && performance.getEntriesByType ? performance.getEntriesByType('navigation')[0] : null;
@@ -1465,7 +1468,7 @@
           .catch(function () { return null; });
       }
 
-      fromWorker(isReload)
+      fromWorker(force || isReload)
         .then(function (data) { return data || fromBackup(); })
         .then(function (data) {
           if (!data) return;
@@ -1499,14 +1502,29 @@
         .catch(function () { /* keep the last accepted picture */ });
     }
 
-    function start() {
-      var states = holders.map(prepare);
+    var states = [];
+    var lastCheck = Date.now();
+
+    function refreshAll(force) {
       states.forEach(function (state, i) {
-        setTimeout(function () { refresh(state); }, i * 1200);
+        setTimeout(function () { refresh(state, force); }, i * 1200);
       });
     }
 
+    function start() {
+      states = holders.map(prepare);
+      refreshAll(false);
+    }
+
     start();
+
+    /* when the tab comes back, pick up profile colour or avatar changes made meanwhile */
+    document.addEventListener('visibilitychange', function () {
+      if (document.visibilityState !== 'visible') return;
+      if (Date.now() - lastCheck < 5 * 60 * 1000) return;
+      lastCheck = Date.now();
+      refreshAll(true);
+    });
   })();
 
   /* ---------- init ---------- */
