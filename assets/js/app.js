@@ -64,6 +64,8 @@
       'project.about': 'About this project',
       'project.download': 'Download',
       'project.notReleased': 'Not released yet',
+      'project.noInfo': 'No info yet',
+      'project.noInfoSub': 'This project is not published yet. Details will appear here once it is ready.',
       'project.note': 'No account. No hassle. No ads.',
       'project.more': 'More projects',
       'project.developer': 'Developer',
@@ -149,6 +151,8 @@
       'project.about': 'Bu proje hakkında',
       'project.download': 'İndir',
       'project.notReleased': 'Henüz yayınlanmadı',
+      'project.noInfo': 'Henüz bilgi yok',
+      'project.noInfoSub': 'Bu proje henüz yayınlanmadı. Hazır olduğunda detaylar burada görünecek.',
       'project.note': 'Hesap yok, uğraşma yok, reklam yok.',
       'project.more': 'Diğer projeler',
       'project.developer': 'Geliştirici',
@@ -234,6 +238,8 @@
       'project.about': 'Über dieses Projekt',
       'project.download': 'Download',
       'project.notReleased': 'Noch nicht veröffentlicht',
+      'project.noInfo': 'Noch keine Info',
+      'project.noInfoSub': 'Dieses Projekt ist noch nicht veröffentlicht. Details erscheinen hier, sobald es fertig ist.',
       'project.note': 'Kein Konto. Kein Aufwand. Keine Werbung.',
       'project.more': 'Weitere Projekte',
       'project.developer': 'Entwickler',
@@ -319,6 +325,8 @@
       'project.about': 'À propos de ce projet',
       'project.download': 'Télécharger',
       'project.notReleased': 'Pas encore publié',
+      'project.noInfo': 'Pas encore d\'infos',
+      'project.noInfoSub': 'Ce projet n\'est pas encore publié. Les détails apparaîtront ici dès qu\'il sera prêt.',
       'project.note': 'Sans compte. Sans effort. Sans pub.',
       'project.more': 'Autres projets',
       'project.developer': 'Développeur',
@@ -404,6 +412,8 @@
       'project.about': 'Sobre este proyecto',
       'project.download': 'Descargar',
       'project.notReleased': 'Aún no publicado',
+      'project.noInfo': 'Aún sin información',
+      'project.noInfoSub': 'Este proyecto aún no está publicado. Los detalles aparecerán aquí cuando esté listo.',
       'project.note': 'Sin cuenta. Sin complicaciones. Sin anuncios.',
       'project.more': 'Más proyectos',
       'project.developer': 'Desarrollador',
@@ -489,6 +499,8 @@
       'project.about': 'Sobre este projeto',
       'project.download': 'Baixar',
       'project.notReleased': 'Ainda não publicado',
+      'project.noInfo': 'Ainda sem informações',
+      'project.noInfoSub': 'Este projeto ainda não foi publicado. Os detalhes aparecerão aqui quando estiver pronto.',
       'project.note': 'Sem conta. Sem complicação. Sem anúncios.',
       'project.more': 'Mais projetos',
       'project.developer': 'Desenvolvedor',
@@ -574,6 +586,8 @@
       'project.about': 'О проекте',
       'project.download': 'Скачать',
       'project.notReleased': 'Ещё не опубликовано',
+      'project.noInfo': 'Пока нет информации',
+      'project.noInfoSub': 'Этот проект ещё не опубликован. Детали появятся здесь, когда он будет готов.',
       'project.note': 'Без аккаунта. Без возни. Без рекламы.',
       'project.more': 'Другие проекты',
       'project.developer': 'Разработчик',
@@ -659,6 +673,8 @@
       'project.about': 'このプロジェクトについて',
       'project.download': 'ダウンロード',
       'project.notReleased': '未リリース',
+      'project.noInfo': '情報はまだありません',
+      'project.noInfoSub': 'このプロジェクトはまだ公開されていません。準備ができ次第、ここに詳細が表示されます。',
       'project.note': 'アカウント不要。手間なし。広告なし。',
       'project.more': '他のプロジェクト',
       'project.developer': '開発元',
@@ -965,6 +981,11 @@
   }
 
   function renderShots(project) {
+    if (!project.labels || !project.labels.length) {
+      pjShots.innerHTML = '';
+      pjCount.textContent = '';
+      return;
+    }
     pjShots.innerHTML = project.labels.map(function (label, i) {
       return '<button class="pj-shot' + (i === 0 ? ' is-active' : '') + '" type="button" data-shot="' + i +
         '" aria-label="' + escapeHtml(project.name) + ' — ' + escapeHtml(label) + '">' +
@@ -991,9 +1012,30 @@
     }).join('');
   }
 
+  /* the placeholder shown on the project page until a real project is published */
+  function soonProject() {
+    var d = I18N[currentLang] || I18N.en;
+    var dash = '—';
+    return {
+      id: 'soon',
+      name: 'soon.',
+      tagline: d['project.noInfo'] || 'No info yet',
+      desc: d['project.noInfoSub'] || 'This project is not published yet. Details will appear here once it is ready.',
+      version: dash,
+      released: dash,
+      updated: dash,
+      size: dash,
+      license: dash,
+      platform: dash,
+      labels: [],
+      features: []
+    };
+  }
+
   function openProject(id, opts) {
     opts = opts || {};
-    var project = PROJECTS[id];
+    var isSoon = id === 'soon';
+    var project = isSoon ? soonProject() : PROJECTS[id];
     if (!project) {
       /* a deep link can arrive before the project files have loaded */
       if (!projectsLoaded) {
@@ -1025,6 +1067,13 @@
     renderMore(id);
 
     showView('project');
+
+    var pjView = document.getElementById('view-project');
+    if (pjView) pjView.classList.toggle('is-soon', isSoon);
+    if (pjDownload) {
+      if (isSoon) pjDownload.setAttribute('aria-disabled', 'true');
+      else pjDownload.removeAttribute('aria-disabled');
+    }
 
     if (!opts.silent) {
       try { history.pushState({ project: id }, '', '#project-' + id); }
@@ -1156,6 +1205,15 @@
       var value = dict[el.dataset.i18nAria];
       if (value) el.setAttribute('aria-label', value);
     });
+
+    /* keep the placeholder project page in the selected language */
+    if (currentProject === 'soon') {
+      var soon = soonProject();
+      pjName.textContent = soon.name;
+      pjMediaLabel.textContent = soon.name;
+      pjSideTagline.textContent = soon.tagline;
+      pjDesc.textContent = soon.desc;
+    }
 
     var meta = null;
     for (var i = 0; i < LANGS.length; i++) {
