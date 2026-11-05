@@ -1,0 +1,24 @@
+{
+  "id": "warp-sync",
+  "name": "Warp Sync",
+  "tagline": "Keep your presets, themes and configs on every machine.",
+  "desc": "Warp Sync moves your presets, themes and config files between devices without a cloud account. Transfers are end-to-end encrypted, and the conflict view shows exactly what changed before anything is merged. It keeps working offline and catches up when you reconnect.",
+  "version": "v1.2.6",
+  "released": "15 Aug 2026",
+  "updated": "11 Oct 2026",
+  "size": "64.3 MB",
+  "license": "Open source · MIT",
+  "platform": "Windows · macOS · Linux",
+  "labels": [
+    "Overview",
+    "Devices",
+    "Conflict view",
+    "Settings"
+  ],
+  "features": [
+    "Sync presets, themes and config files between devices",
+    "End-to-end encrypted transfer, no cloud account",
+    "Conflict view shows exactly what changed",
+    "Works offline and merges when you reconnect"
+  ]
+}

@@ -586,6 +586,31 @@ main { flex: 1 0 auto; display: flex; flex-direction: column; }
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.project-cover.is-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+.project-cover.is-link:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 3px;
+}
+.cover-meta {
+  margin-left: auto;
+  padding-left: 14px;
+  flex: none;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: .01em;
+  color: var(--faint);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+@media (max-width: 420px) {
+  .cover-meta { display: none; }
+}
 
 /* ---- project detail (Steam-style) ---- */
 .pj-page { padding-top: clamp(26px, 4vw, 44px); }

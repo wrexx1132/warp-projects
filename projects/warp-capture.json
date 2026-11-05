@@ -1,0 +1,24 @@
+{
+  "id": "warp-capture",
+  "name": "Warp Capture",
+  "tagline": "Instant, clean screen capture with zero setup.",
+  "desc": "Press the hotkey and the clip is already saved. Warp Capture handles full screen, window and region recording, then lets you trim and crop before exporting a clean PNG or MP4 with no watermark. It sits in the tray and uses almost nothing until you call it.",
+  "version": "v1.0.0",
+  "released": "02 Oct 2026",
+  "updated": "20 Oct 2026",
+  "size": "128.5 MB",
+  "license": "Open source",
+  "platform": "Windows 10 / 11",
+  "labels": [
+    "Overview",
+    "Capture bar",
+    "Trim",
+    "Export"
+  ],
+  "features": [
+    "Full screen, window and region capture",
+    "Instant PNG and MP4 output with no watermark",
+    "Built-in trim and crop before saving",
+    "Runs quietly in the tray"
+  ]
+}

@@ -716,116 +716,73 @@
   };
 
   /* ---------- projects ---------- */
-  var PROJECTS = {
-    'warp-launcher': {
-      name: 'Warp Launcher',
-      tagline: 'One clean launcher for every Warp release.',
-      desc: 'Warp Launcher keeps every build we publish in one place. It detects what is already installed, shows the exact version and file size before anything starts, and updates quietly in the background. Built to stay out of the way: no ads, no bundles and no extra services running behind your back.',
-      version: 'v1.4.0',
-      released: '12 Sep 2026',
-      updated: '18 Oct 2026',
-      size: '42.8 MB',
-      license: 'Open source',
-      platform: 'Windows 10 / 11',
-      labels: ['Overview', 'Library', 'Update history', 'Settings'],
-      features: [
-        'Every Warp release in one library, with version and size',
-        'Silent background updates — no pop-ups, no restarts',
-        'Portable mode leaves nothing outside its own folder',
-        'No account and no telemetry'
-      ]
-    },
-    'warp-overlay': {
-      name: 'Warp Overlay',
-      tagline: 'A minimal performance overlay that stays out of the way.',
-      desc: 'A tiny frame-time overlay with a two-pixel border and a readout you can actually read. It shows FPS, frame time and memory without covering the interface you are working in, and every hotkey is rebindable. Open source, so you can check exactly what it measures.',
-      version: 'v0.9.2',
-      released: '03 Oct 2026',
-      updated: '21 Oct 2026',
-      size: '18.6 MB',
-      license: 'Open source · MIT',
-      platform: 'Windows 10 / 11',
-      labels: ['Overview', 'In use', 'Readout', 'Settings'],
-      features: [
-        'Live FPS, frame time and memory readout',
-        'Two-pixel border that never covers the game',
-        'Hotkeys toggles, fully rebindable',
-        'Open source — audit every line'
-      ]
-    },
-    'warp-studio': {
-      name: 'Warp Studio',
-      tagline: 'A lightweight workspace for building and testing interfaces.',
-      desc: 'Warp Studio puts a live preview next to the code you are editing. Components are shared across every project, so a change made once lands everywhere it is used. Export a static build in one click, then check it in light and dark without leaving the app.',
-      version: 'v2.1.0',
-      released: '27 Jun 2026',
-      updated: '24 Oct 2026',
-      size: '1.2 GB',
-      license: 'Open source · GPL-3.0',
-      platform: 'Windows · macOS',
-      labels: ['Overview', 'Editor', 'Components', 'Export'],
-      features: [
-        'Live preview next to the code you are editing',
-        'Shared component library across projects',
-        'One-click export to a static build',
-        'Light and dark workspaces'
-      ]
-    },
-    'warp-sync': {
-      name: 'Warp Sync',
-      tagline: 'Keep your presets, themes and configs on every machine.',
-      desc: 'Warp Sync moves your presets, themes and config files between devices without a cloud account. Transfers are end-to-end encrypted, and the conflict view shows exactly what changed before anything is merged. It keeps working offline and catches up when you reconnect.',
-      version: 'v1.2.6',
-      released: '15 Aug 2026',
-      updated: '11 Oct 2026',
-      size: '64.3 MB',
-      license: 'Open source · MIT',
-      platform: 'Windows · macOS · Linux',
-      labels: ['Overview', 'Devices', 'Conflict view', 'Settings'],
-      features: [
-        'Sync presets, themes and config files between devices',
-        'End-to-end encrypted transfer, no cloud account',
-        'Conflict view shows exactly what changed',
-        'Works offline and merges when you reconnect'
-      ]
-    },
-    'warp-capture': {
-      name: 'Warp Capture',
-      tagline: 'Instant, clean screen capture with zero setup.',
-      desc: 'Press the hotkey and the clip is already saved. Warp Capture handles full screen, window and region recording, then lets you trim and crop before exporting a clean PNG or MP4 with no watermark. It sits in the tray and uses almost nothing until you call it.',
-      version: 'v1.0.0',
-      released: '02 Oct 2026',
-      updated: '20 Oct 2026',
-      size: '128.5 MB',
-      license: 'Open source',
-      platform: 'Windows 10 / 11',
-      labels: ['Overview', 'Capture bar', 'Trim', 'Export'],
-      features: [
-        'Full screen, window and region capture',
-        'Instant PNG and MP4 output with no watermark',
-        'Built-in trim and crop before saving',
-        'Runs quietly in the tray'
-      ]
-    },
-    'warp-toolkit': {
-      name: 'Warp Toolkit',
-      tagline: 'A compact set of utilities we use every single day.',
-      desc: 'Twelve small tools in one download: hash checker, archive inspector, batch renamer, encoding helper and more. Every tool opens instantly, works from the command line and is documented in the same place. The full source is published under Apache-2.0.',
-      version: 'v3.0.1',
-      released: '19 May 2026',
-      updated: '09 Oct 2026',
-      size: '862 MB',
-      license: 'Open source · Apache-2.0',
-      platform: 'Windows 10 / 11',
-      labels: ['Overview', 'Tool list', 'Command line', 'Documentation'],
-      features: [
-        'Twelve small tools in one 862 MB bundle',
-        'Hash checker, archive inspector, batch renamer and more',
-        'Command line mode for scripting',
-        'Open source under Apache-2.0'
-      ]
-    }
-  };
+  /* every project is one file in /projects; index.json lists them in order */
+  var PROJECTS = {};
+  var projectsLoaded = false;
+  var projectsLoading = null;
+  var pendingProject = null;
+
+  function escapeHtml(value) {
+    return String(value == null ? '' : value).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  function projectInitial(name) {
+    var letter = String(name || '').replace(/[^A-Za-z0-9]/g, '').charAt(0);
+    return (letter || 'W').toUpperCase();
+  }
+
+  function renderProjectCards() {
+    var wrap = document.getElementById('projectCards');
+    if (!wrap) return;
+    var ids = Object.keys(PROJECTS);
+    if (!ids.length) return;
+    wrap.innerHTML = ids.map(function (id) {
+      var p = PROJECTS[id];
+      return '<a class="project-cover is-link" href="#project-' + encodeURIComponent(id) + '" data-project="' + escapeHtml(id) + '">' +
+        '<span class="cover-sheen" aria-hidden="true"></span>' +
+        '<div class="cover-art" aria-hidden="true"><span class="cover-w">' + escapeHtml(projectInitial(p.name)) + '</span></div>' +
+        '<div class="cover-foot">' +
+          '<p class="cover-name">' + escapeHtml(p.name) + '</p>' +
+          '<span class="cover-meta">' + escapeHtml(p.version) + ' \u00b7 ' + escapeHtml(p.size) + '</span>' +
+        '</div>' +
+      '</a>';
+    }).join('');
+  }
+
+  function loadProjects() {
+    if (projectsLoading) return projectsLoading;
+    projectsLoading = fetch('projects/index.json', { cache: 'no-store' })
+      .then(function (res) { return res.ok ? res.json() : []; })
+      .then(function (list) {
+        var files = Array.isArray(list) ? list : (list && list.projects) || [];
+        return Promise.all(files.map(function (file) {
+          return fetch('projects/' + file, { cache: 'no-store' })
+            .then(function (res) { return res.ok ? res.json() : null; })
+            .catch(function () { return null; });
+        }));
+      })
+      .then(function (items) {
+        items.forEach(function (project) {
+          if (project && project.id) PROJECTS[project.id] = project;
+        });
+        projectsLoaded = true;
+        renderProjectCards();
+        if (pendingProject) {
+          var id = pendingProject;
+          pendingProject = null;
+          openProject(id, { silent: true });
+          scrollTop();
+        }
+        return PROJECTS;
+      })
+      .catch(function () {
+        projectsLoaded = true;
+        return PROJECTS;
+      });
+    return projectsLoading;
+  }
 
   /* ---------- elements ---------- */
   var tabsWrap = document.getElementById('tabs');
@@ -1010,7 +967,7 @@
   function renderShots(project) {
     pjShots.innerHTML = project.labels.map(function (label, i) {
       return '<button class="pj-shot' + (i === 0 ? ' is-active' : '') + '" type="button" data-shot="' + i +
-        '" aria-label="' + project.name + ' — ' + label + '">' +
+        '" aria-label="' + escapeHtml(project.name) + ' — ' + escapeHtml(label) + '">' +
         '<span class="pj-shot-index">' + pad2(i + 1) + '</span>' +
         '</button>';
     }).join('');
@@ -1023,11 +980,11 @@
     }).slice(0, 3);
     pjMore.innerHTML = ids.map(function (id) {
       var p = PROJECTS[id];
-      return '<a class="pj-more-item" href="#project-' + id + '" data-project="' + id + '">' +
+      return '<a class="pj-more-item" href="#project-' + encodeURIComponent(id) + '" data-project="' + escapeHtml(id) + '">' +
         '<span class="pj-more-thumb" aria-hidden="true"></span>' +
         '<span class="pj-more-text">' +
-          '<span class="pj-more-name">' + p.name + '</span>' +
-          '<span class="pj-more-size">' + p.size + ' · ' + p.version + '</span>' +
+          '<span class="pj-more-name">' + escapeHtml(p.name) + '</span>' +
+          '<span class="pj-more-size">' + escapeHtml(p.size) + ' · ' + escapeHtml(p.version) + '</span>' +
         '</span>' +
         ARROW_SVG.replace('<svg ', '<svg class="pj-more-arrow" ') +
         '</a>';
@@ -1037,7 +994,16 @@
   function openProject(id, opts) {
     opts = opts || {};
     var project = PROJECTS[id];
-    if (!project) { setView('projects'); return; }
+    if (!project) {
+      /* a deep link can arrive before the project files have loaded */
+      if (!projectsLoaded) {
+        pendingProject = id;
+        loadProjects();
+        return;
+      }
+      setView('projects');
+      return;
+    }
 
     currentProject = id;
     pjName.textContent = project.name;
@@ -1052,7 +1018,7 @@
     pjPlatform.textContent = project.platform;
 
     pjFeatures.innerHTML = project.features.map(function (f) {
-      return '<li>' + f + '</li>';
+      return '<li>' + escapeHtml(f) + '</li>';
     }).join('');
 
     renderShots(project);
@@ -1530,6 +1496,7 @@
   /* ---------- init ---------- */
   buildGrid();
   buildLangMenu();
+  loadProjects();
 
   applyTheme(root.dataset.theme === 'light' ? 'light' : 'dark', false);
   applyLang(root.dataset.lang && I18N[root.dataset.lang] ? root.dataset.lang : (store.get('warp.lang') || 'en'), false);

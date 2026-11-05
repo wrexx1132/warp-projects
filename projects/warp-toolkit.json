@@ -1,0 +1,24 @@
+{
+  "id": "warp-toolkit",
+  "name": "Warp Toolkit",
+  "tagline": "A compact set of utilities we use every single day.",
+  "desc": "Twelve small tools in one download: hash checker, archive inspector, batch renamer, encoding helper and more. Every tool opens instantly, works from the command line and is documented in the same place. The full source is published under Apache-2.0.",
+  "version": "v3.0.1",
+  "released": "19 May 2026",
+  "updated": "09 Oct 2026",
+  "size": "862 MB",
+  "license": "Open source · Apache-2.0",
+  "platform": "Windows 10 / 11",
+  "labels": [
+    "Overview",
+    "Tool list",
+    "Command line",
+    "Documentation"
+  ],
+  "features": [
+    "Twelve small tools in one 862 MB bundle",
+    "Hash checker, archive inspector, batch renamer and more",
+    "Command line mode for scripting",
+    "Open source under Apache-2.0"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "id": "warp-studio",
+  "name": "Warp Studio",
+  "tagline": "A lightweight workspace for building and testing interfaces.",
+  "desc": "Warp Studio puts a live preview next to the code you are editing. Components are shared across every project, so a change made once lands everywhere it is used. Export a static build in one click, then check it in light and dark without leaving the app.",
+  "version": "v2.1.0",
+  "released": "27 Jun 2026",
+  "updated": "24 Oct 2026",
+  "size": "1.2 GB",
+  "license": "Open source · GPL-3.0",
+  "platform": "Windows · macOS",
+  "labels": [
+    "Overview",
+    "Editor",
+    "Components",
+    "Export"
+  ],
+  "features": [
+    "Live preview next to the code you are editing",
+    "Shared component library across projects",
+    "One-click export to a static build",
+    "Light and dark workspaces"
+  ]
+}
