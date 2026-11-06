@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <script src="assets/js/theme-init.js?v=5"></script>
-<link rel="stylesheet" href="assets/css/style.css?v=13">
+<link rel="stylesheet" href="assets/css/style.css?v=14">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -72,6 +72,14 @@
           <path d="M9.2 15.9h6.2"/>
         </svg>
         <span data-i18n="nav.patch">Patch Notes</span>
+      </button>
+      <button class="tab" type="button" data-view="help">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="9"/>
+          <path d="M9.6 9.2a2.6 2.6 0 0 1 5.1.6c0 1.7-2.4 2-2.4 3.7"/>
+          <path d="M12.2 17.1h.01"/>
+        </svg>
+        <span data-i18n="nav.help">Help</span>
       </button>
     </nav>
 
@@ -501,6 +509,39 @@
     </div>
   </section>
 
+  <section class="view" id="view-help" aria-label="Help">
+    <div class="page help-page">
+      <div class="page-head">
+        <h1 data-i18n="help.title">Help</h1>
+        <p class="lead" data-i18n="help.sub">Small team, fast answers. Discord is the quickest way to reach us.</p>
+      </div>
+
+      <div class="help-card">
+        <span class="help-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M9.6 9.2a2.6 2.6 0 0 1 5.1.6c0 1.7-2.4 2-2.4 3.7"/>
+            <path d="M12.2 17.1h.01"/>
+          </svg>
+        </span>
+        <div class="help-copy">
+          <p data-i18n="help.p1">Use the ticket channels on our Discord server for:</p>
+          <ul class="help-list">
+            <li data-i18n="help.li1">Bug reports</li>
+            <li data-i18n="help.li2">Download or install problems</li>
+            <li data-i18n="help.li3">Feature ideas and project suggestions</li>
+            <li data-i18n="help.li4">Anything else</li>
+          </ul>
+          <p class="help-line">
+            <span data-i18n="help.p2">Open a ticket on our</span>
+            <a class="help-discord" href="https://discord.gg/yNzFWsM7uf" target="_blank" rel="noopener noreferrer">Discord</a>
+            <span data-i18n="help.p3">server and we will get back to you.</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="view" id="view-license" aria-label="License">
     <div class="lic-bg" aria-hidden="true">
       <span class="lic-orb lic-orb-a"></span>
@@ -575,6 +616,14 @@
             <path d="M9.2 15.9h6.2"/>
           </svg>
           <span data-i18n="nav.patch">Patch Notes</span>
+        </a>
+        <a class="foot-link" href="#help" data-goto="help">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M9.6 9.2a2.6 2.6 0 0 1 5.1.6c0 1.7-2.4 2-2.4 3.7"/>
+            <path d="M12.2 17.1h.01"/>
+          </svg>
+          <span data-i18n="nav.help">Help</span>
         </a>
         <a class="foot-link" href="#license" data-goto="license">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -651,14 +700,6 @@
   <div class="intro-card">
     <div class="intro-top">
       <span class="intro-brand">
-        <span class="intro-flag" role="img" aria-label="Türkiye" title="Türkiye">
-          <svg viewBox="0 0 1200 800" aria-hidden="true" focusable="false">
-            <rect width="1200" height="800" fill="#e30a17"/>
-            <circle cx="425" cy="400" r="200" fill="#fff"/>
-            <circle cx="475" cy="400" r="160" fill="#e30a17"/>
-            <path fill="#fff" d="m583.3 400 180.9 58.8-111.8-153.9v190.2l111.8-153.9z"/>
-          </svg>
-        </span>
         <span class="intro-w" aria-hidden="true">W</span>
         <span class="intro-name">Warp <span>Projects</span></span>
       </span>
@@ -681,7 +722,7 @@
   </div>
 </div>
 
-<script src="assets/js/app.js?v=21"></script>
+<script src="assets/js/app.js?v=22"></script>
 <script src="assets/js/intro.js?v=7"></script>
 <script src="assets/js/protect.js?v=5"></script>
 <script src="assets/js/video.js?v=6"></script>

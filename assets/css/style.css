@@ -2684,17 +2684,6 @@ html.intro-lock { overflow: hidden; }
   letter-spacing: -.06em;
 }
 .intro-name span { font-weight: 500; color: rgba(255, 255, 255, .52); }
-.intro-flag {
-  align-self: center;
-  width: 19px;
-  height: 13px;
-  margin: 0 2px 0 0;
-  flex: none;
-  border-radius: 2.5px;
-  overflow: hidden;
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, .28), 0 2px 7px -2px rgba(0, 0, 0, .75);
-}
-.intro-flag svg { display: block; width: 100%; height: 100%; }
 .intro-x {
   width: 33px;
   height: 33px;
@@ -2959,4 +2948,88 @@ body { -webkit-tap-highlight-color: transparent; }
   .intro-text { max-width: 38ch; font-size: 13.4px; }
   .intro-check { margin-top: 20px; min-height: 34px; }
   .intro-x { width: 36px; height: 36px; }
+}
+
+/* ---- help ---- */
+.help-page .page-head { max-width: 640px; }
+.help-card {
+  margin-top: clamp(24px, 3.2vw, 36px);
+  display: flex;
+  gap: 18px;
+  width: 100%;
+  max-width: 640px;
+  padding: 22px;
+  border-radius: 18px;
+  border: 1px solid var(--line-soft);
+  background: var(--panel);
+  box-shadow: var(--card-shadow);
+}
+.help-icon {
+  flex: none;
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: 11px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+}
+.help-icon svg { width: 19px; height: 19px; }
+.help-copy { min-width: 0; }
+.help-copy > p:first-child {
+  font-size: 13.4px;
+  line-height: 1.65;
+  color: var(--muted);
+}
+.help-list {
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 7px;
+}
+.help-list li {
+  position: relative;
+  padding-left: 16px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text);
+}
+.help-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: .55em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--faint);
+}
+.help-line {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line-soft);
+  font-size: 13.4px;
+  line-height: 1.65;
+  color: var(--muted);
+}
+.help-discord {
+  color: #5865f2;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+  text-decoration-color: color-mix(in srgb, #5865f2 50%, transparent);
+  border-radius: 3px;
+  transition: color .2s ease, text-decoration-color .2s ease;
+}
+[data-theme="dark"] .help-discord { color: #8b96ff; }
+.help-discord:hover {
+  color: #4752c4;
+  text-decoration-color: currentColor;
+}
+[data-theme="dark"] .help-discord:hover { color: #aab2ff; }
+.help-discord:focus-visible { outline: 2px solid #5865f2; outline-offset: 2px; }
+@media (max-width: 520px) {
+  .help-card { flex-direction: column; gap: 13px; padding: 18px; }
 }
