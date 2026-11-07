@@ -1446,14 +1446,24 @@
 
   function scrollToEvent() {
     if (!eventSection) return;
-    requestAnimationFrame(function () {
-      var nav = document.querySelector('.nav-wrap');
-      var offset = nav ? nav.getBoundingClientRect().height : 0;
-      var top = eventSection.getBoundingClientRect().top + (window.pageYOffset || 0) - offset - 10;
-      top = Math.max(0, top);
-      try { window.scrollTo({ top: top, behavior: 'smooth' }); }
+    var nav = document.querySelector('.nav-wrap');
+    var offset = nav ? nav.getBoundingClientRect().height : 0;
+    var top = eventSection.getBoundingClientRect().top + (window.pageYOffset || 0) - offset - 10;
+    top = Math.max(0, top);
+    var startY = window.pageYOffset || 0;
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var jump = function () {
+      try { window.scrollTo({ top: top, behavior: 'auto' }); }
       catch (e) { window.scrollTo(0, top); }
-    });
+    };
+    if (reduce) { jump(); return; }
+    try { window.scrollTo({ top: top, behavior: 'smooth' }); }
+    catch (e) { jump(); }
+    /* if smooth scrolling is unavailable, finish the jump instead */
+    clearTimeout(scrollToEvent.fallback);
+    scrollToEvent.fallback = setTimeout(function () {
+      if (Math.abs((window.pageYOffset || 0) - startY) < 4) jump();
+    }, 500);
   }
 
   function openEventSection() {
