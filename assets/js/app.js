@@ -42,7 +42,7 @@
       'nav.event': 'Event',
       'event.kicker': 'Event',
       'event.title': 'Events and new projects',
-      'event.sub': 'New drops, events and project reveals land here first. The stage is ready — the art is on its way.',
+      'event.sub': 'New drops, events and project reveals land here first. Keep an eye on this space.',
       'event.join': 'Join',
       'event.none': 'no event yet',
       'help.title': 'Help',
@@ -145,7 +145,7 @@
       'nav.event': 'Etkinlik',
       'event.kicker': 'Etkinlik',
       'event.title': 'Etkinlikler ve yeni projeler',
-      'event.sub': 'Yeni çıkışlar, etkinlikler ve proje tanıtımları ilk burada. Sahne hazır — görseller yolda.',
+      'event.sub': 'Yeni çıkışlar, etkinlikler ve proje tanıtımları ilk burada paylaşılır. Bu alanı takipte kal.',
       'event.join': 'Katıl',
       'event.none': 'etkinlik yok',
       'help.title': 'Yardım',
@@ -248,7 +248,7 @@
       'nav.event': 'Event',
       'event.kicker': 'Event',
       'event.title': 'Events und neue Projekte',
-      'event.sub': 'Neue Releases, Events und Projektvorstellungen landen zuerst hier. Die Bühne steht — die Bilder sind unterwegs.',
+      'event.sub': 'Neue Releases, Events und Projektvorstellungen erscheinen zuerst hier. Schau hier regelmäßig vorbei.',
       'event.join': 'Beitreten',
       'event.none': 'noch kein Event',
       'help.title': 'Hilfe',
@@ -351,7 +351,7 @@
       'nav.event': 'Événement',
       'event.kicker': 'Événement',
       'event.title': 'Événements et nouveaux projets',
-      'event.sub': 'Les nouvelles sorties, événements et présentations de projets arrivent ici en premier. La scène est prête — les visuels arrivent.',
+      'event.sub': 'Les nouvelles sorties, événements et présentations de projets arrivent ici en premier. Garde un œil par ici.',
       'event.join': 'Rejoindre',
       'event.none': 'aucun événement',
       'help.title': 'Aide',
@@ -454,7 +454,7 @@
       'nav.event': 'Evento',
       'event.kicker': 'Evento',
       'event.title': 'Eventos y nuevos proyectos',
-      'event.sub': 'Los nuevos lanzamientos, eventos y presentaciones de proyectos llegan aquí primero. El escenario está listo — las imágenes están en camino.',
+      'event.sub': 'Los nuevos lanzamientos, eventos y presentaciones de proyectos llegan aquí primero. Mantente atento.',
       'event.join': 'Unirse',
       'event.none': 'sin evento',
       'help.title': 'Ayuda',
@@ -557,7 +557,7 @@
       'nav.event': 'Evento',
       'event.kicker': 'Evento',
       'event.title': 'Eventos e novos projetos',
-      'event.sub': 'Novos lançamentos, eventos e apresentações de projetos chegam aqui primeiro. O palco está pronto — as imagens estão a caminho.',
+      'event.sub': 'Novos lançamentos, eventos e apresentações de projetos chegam aqui primeiro. Fique de olho.',
       'event.join': 'Entrar',
       'event.none': 'sem evento',
       'help.title': 'Ajuda',
@@ -660,7 +660,7 @@
       'nav.event': 'Событие',
       'event.kicker': 'Событие',
       'event.title': 'События и новые проекты',
-      'event.sub': 'Новые релизы, события и презентации проектов появляются здесь первыми. Сцена готова — изображения уже в пути.',
+      'event.sub': 'Новые релизы, события и презентации проектов появляются здесь первыми. Следите за обновлениями.',
       'event.join': 'Присоединиться',
       'event.none': 'событий пока нет',
       'help.title': 'Помощь',
@@ -763,7 +763,7 @@
       'nav.event': 'イベント',
       'event.kicker': 'イベント',
       'event.title': 'イベントと新しいプロジェクト',
-      'event.sub': '新しいリリース、イベント、プロジェクトの発表は最初にここに届きます。ステージは準備済み — 画像はもうすぐです。',
+      'event.sub': '新しいリリース、イベント、プロジェクトの発表は最初にここに届きます。ぜひチェックしてください。',
       'event.join': '参加',
       'event.none': 'イベントはまだありません',
       'help.title': 'ヘルプ',
@@ -1099,6 +1099,7 @@
       }
     }
     if (!opts.noScroll) scrollTop();
+    updateEventBtn();
   }
 
   /* ---------- project detail ---------- */
@@ -1454,6 +1455,7 @@
     var jump = function () {
       try { window.scrollTo({ top: top, behavior: 'auto' }); }
       catch (e) { window.scrollTo(0, top); }
+      updateEventBtn();
     };
     if (reduce) { jump(); return; }
     try { window.scrollTo({ top: top, behavior: 'smooth' }); }
@@ -1473,12 +1475,33 @@
     scrollToEvent();
   }
 
+  function updateEventBtn() {
+    if (!eventBtn || !eventSection) return;
+    var rect = eventSection.getBoundingClientRect();
+    var nav = document.querySelector('.nav-wrap');
+    var navH = nav ? nav.getBoundingClientRect().height : 0;
+    var vh = window.innerHeight || document.documentElement.clientHeight;
+    var atEvent = rect.top < vh * 0.6 && rect.bottom > navH + 60;
+    eventBtn.classList.toggle('is-rainbow', atEvent);
+  }
+
+  var eventBtnTimer = null;
+  function queueEventBtn() {
+    if (eventBtnTimer) return;
+    eventBtnTimer = setTimeout(function () {
+      eventBtnTimer = null;
+      updateEventBtn();
+    }, 80);
+  }
+
   if (eventBtn) {
     eventBtn.addEventListener('click', function () {
-      eventBtn.classList.add('is-rainbow');
       playEventChime();
       openEventSection();
     });
+    window.addEventListener('scroll', queueEventBtn, { passive: true });
+    window.addEventListener('resize', queueEventBtn);
+    updateEventBtn();
   }
 
   /* ---------- video frames: light follows the pointer ---------- */
@@ -1778,6 +1801,7 @@
 
   requestAnimationFrame(function () {
     positionGlow(activeTab(), false);
+    updateEventBtn();
   });
 
 })();

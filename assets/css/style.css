@@ -2523,6 +2523,7 @@ main { flex: 1 0 auto; display: flex; flex-direction: column; }
   flex: none;
 }
 .event-btn {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -2534,9 +2535,24 @@ main { flex: 1 0 auto; display: flex; flex-direction: column; }
   font-weight: 600;
   color: var(--muted);
   white-space: nowrap;
-  transition: color .25s ease, border-color .25s ease,
-              background-color .25s ease, box-shadow .3s ease;
+  overflow: hidden;
+  isolation: isolate;
+  transition: color .4s ease, border-color .4s ease,
+              background-color .4s ease, box-shadow .5s ease;
 }
+.event-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  background: conic-gradient(from 0turn,
+    #ff5c7a, #ffb347, #ffe680, #7ee8a2,
+    #5ce1f0, #7c8cff, #e07bff, #ff5c7a);
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+.event-btn > * { position: relative; z-index: 1; }
 .event-btn svg { width: 15px; height: 15px; flex: none; opacity: .8; }
 .event-btn:hover,
 .event-btn:focus-visible {
@@ -2547,13 +2563,14 @@ main { flex: 1 0 auto; display: flex; flex-direction: column; }
 .event-btn.is-rainbow {
   color: #0a0a0c;
   border-color: transparent;
-  background: conic-gradient(from 0turn,
-    #ff3b5c, #ff9f1c, #ffe14d, #4ade80,
-    #22d3ee, #6366f1, #d946ef, #ff3b5c);
-  box-shadow: 0 0 26px -6px rgba(255, 255, 255, .45);
-  text-shadow: 0 1px 0 rgba(255, 255, 255, .25);
-  animation: eventBtnHue 3.6s linear infinite,
-             eventBtnDance .55s cubic-bezier(.36,.07,.19,.97) 1;
+  background: transparent;
+  box-shadow: 0 0 26px -6px rgba(255, 255, 255, .4);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, .22);
+  animation: eventBtnDance .55s cubic-bezier(.36,.07,.19,.97) 1;
+}
+.event-btn.is-rainbow::before {
+  opacity: 1;
+  animation: eventBtnHue 12s linear infinite;
 }
 .event-btn.is-rainbow svg { opacity: 1; }
 @keyframes eventBtnHue { to { filter: hue-rotate(360deg); } }
@@ -2583,11 +2600,11 @@ main { flex: 1 0 auto; display: flex; flex-direction: column; }
   z-index: 0;
   border-radius: inherit;
   background: conic-gradient(from 0turn,
-    #ff3b5c, #ff9f1c, #ffe14d, #4ade80,
-    #22d3ee, #6366f1, #d946ef, #ff3b5c);
-  box-shadow: 0 0 44px -8px #ff3b8d,
-              0 0 110px -28px #5b7cff;
-  animation: eventLedHue 9s linear infinite;
+    #ff4d6d, #ff8a5b, #ffd166, #8be08b,
+    #4dd4e0, #6b8cff, #b57bff, #ff8ad4, #ff4d6d);
+  box-shadow: 0 0 44px -10px #ff6b9d,
+              0 0 110px -30px #6b8cff;
+  animation: eventLedHue 18s linear infinite;
 }
 .event-led::after {
   content: "";
