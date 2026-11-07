@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <script src="assets/js/theme-init.js?v=5"></script>
-<link rel="stylesheet" href="assets/css/style.css?v=18">
+<link rel="stylesheet" href="assets/css/style.css?v=19">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -84,31 +84,15 @@
     </nav>
 
     <div class="nav-end">
-      <div class="event" id="event">
-        <button class="event-btn" type="button" id="eventBtn" aria-expanded="false" aria-controls="eventCard">
+      <div class="event" id="eventNav">
+        <button class="event-btn" type="button" id="eventBtn" aria-describedby="eventTip">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="m11.4 3.6 1.9 4.8 4.8 1.9-4.8 1.9-1.9 4.8-1.9-4.8-4.8-1.9 4.8-1.9Z"/>
             <path d="m18.5 15.4.9 2.2 2.2.9-2.2.9-.9 2.2-.9-2.2-2.2-.9 2.2-.9Z"/>
           </svg>
           <span data-i18n="nav.event">Event</span>
         </button>
-
-        <div class="event-card" id="eventCard" role="group" data-i18n-aria="event.label" aria-label="Event or new project">
-          <!-- Event / new project embed.
-               Drop the image here: <img src="assets/event/image.png" alt="..."> — it is cropped to fit.
-               The outer glow takes its colour from this image automatically. -->
-          <div class="event-embed" id="eventEmbed"></div>
-
-          <!-- Shown with the card. Nothing to download yet, so it stays disabled and says soon. -->
-          <button class="event-download" id="eventDownload" type="button" disabled>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M12 4.2v11.2"/>
-              <path d="m7.4 11.2 4.6 4.6 4.6-4.6"/>
-              <path d="M5 19.4h14"/>
-            </svg>
-            <span>soon.</span>
-          </button>
-        </div>
+        <span class="event-tip" id="eventTip" role="tooltip">soon.</span>
       </div>
 
       <button class="nav-license" type="button" id="licenseTab" data-goto="license">
@@ -233,6 +217,27 @@
             <span class="led led-tr" aria-hidden="true"></span>
             <span class="led led-bl" aria-hidden="true"></span>
             <span class="led led-br" aria-hidden="true"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="event-home" id="event" aria-label="Event">
+      <div class="wrap">
+        <header class="section-head">
+          <p class="kicker" data-i18n="event.kicker">Event</p>
+          <h2 class="section-title" data-i18n="event.title">Events and new projects</h2>
+          <p class="section-sub" data-i18n="event.sub">New drops, events and project reveals land here first. The stage is ready — the art is on its way.</p>
+        </header>
+
+        <div class="event-stage">
+          <span class="event-led" aria-hidden="true"></span>
+          <div class="event-media" id="eventMediaHome">
+            <!-- Event image goes here: <img src="assets/event/image.png" alt="..."> -->
+            <div class="event-join">
+              <button class="event-join-btn" type="button" disabled data-i18n="event.join">Join</button>
+              <span class="event-join-note" data-i18n="event.none">no event yet</span>
+            </div>
           </div>
         </div>
       </div>
@@ -749,7 +754,7 @@
   </div>
 </div>
 
-<script src="assets/js/app.js?v=24"></script>
+<script src="assets/js/app.js?v=25"></script>
 <script src="assets/js/intro.js?v=7"></script>
 <script src="assets/js/protect.js?v=5"></script>
 <script src="assets/js/video.js?v=6"></script>

@@ -40,7 +40,11 @@
       'nav.patch': 'Patch Notes',
       'nav.help': 'Help',
       'nav.event': 'Event',
-      'event.label': 'Event or new project',
+      'event.kicker': 'Event',
+      'event.title': 'Events and new projects',
+      'event.sub': 'New drops, events and project reveals land here first. The stage is ready — the art is on its way.',
+      'event.join': 'Join',
+      'event.none': 'no event yet',
       'help.title': 'Help',
       'help.sub': 'Small team, fast answers. Discord is the quickest way to reach us.',
       'help.p1': 'Use the ticket channels on our Discord server for:',
@@ -139,7 +143,11 @@
       'nav.patch': 'Yama Notları',
       'nav.help': 'Yardım',
       'nav.event': 'Etkinlik',
-      'event.label': 'Etkinlik veya yeni proje',
+      'event.kicker': 'Etkinlik',
+      'event.title': 'Etkinlikler ve yeni projeler',
+      'event.sub': 'Yeni çıkışlar, etkinlikler ve proje tanıtımları ilk burada. Sahne hazır — görseller yolda.',
+      'event.join': 'Katıl',
+      'event.none': 'etkinlik yok',
       'help.title': 'Yardım',
       'help.sub': 'Küçük bir ekibiz, en hızlı yanıt Discord’da.',
       'help.p1': 'Discord sunucumuzdaki ticket kanallarını şunlar için kullanabilirsin:',
@@ -238,7 +246,11 @@
       'nav.patch': 'Patchnotes',
       'nav.help': 'Hilfe',
       'nav.event': 'Event',
-      'event.label': 'Event oder neues Projekt',
+      'event.kicker': 'Event',
+      'event.title': 'Events und neue Projekte',
+      'event.sub': 'Neue Releases, Events und Projektvorstellungen landen zuerst hier. Die Bühne steht — die Bilder sind unterwegs.',
+      'event.join': 'Beitreten',
+      'event.none': 'noch kein Event',
       'help.title': 'Hilfe',
       'help.sub': 'Kleines Team, schnelle Antworten. Discord ist der schnellste Weg zu uns.',
       'help.p1': 'Nutze die Ticket-Kanäle auf unserem Discord-Server für:',
@@ -337,7 +349,11 @@
       'nav.patch': 'Notes de version',
       'nav.help': 'Aide',
       'nav.event': 'Événement',
-      'event.label': 'Événement ou nouveau projet',
+      'event.kicker': 'Événement',
+      'event.title': 'Événements et nouveaux projets',
+      'event.sub': 'Les nouvelles sorties, événements et présentations de projets arrivent ici en premier. La scène est prête — les visuels arrivent.',
+      'event.join': 'Rejoindre',
+      'event.none': 'aucun événement',
       'help.title': 'Aide',
       'help.sub': 'Petite équipe, réponses rapides. Discord est le moyen le plus simple de nous joindre.',
       'help.p1': 'Utilise les salons de tickets sur notre serveur Discord pour :',
@@ -436,7 +452,11 @@
       'nav.patch': 'Notas de parche',
       'nav.help': 'Ayuda',
       'nav.event': 'Evento',
-      'event.label': 'Evento o nuevo proyecto',
+      'event.kicker': 'Evento',
+      'event.title': 'Eventos y nuevos proyectos',
+      'event.sub': 'Los nuevos lanzamientos, eventos y presentaciones de proyectos llegan aquí primero. El escenario está listo — las imágenes están en camino.',
+      'event.join': 'Unirse',
+      'event.none': 'sin evento',
       'help.title': 'Ayuda',
       'help.sub': 'Equipo pequeño, respuestas rápidas. Discord es la forma más rápida de contactarnos.',
       'help.p1': 'Usa los canales de tickets de nuestro servidor de Discord para:',
@@ -535,7 +555,11 @@
       'nav.patch': 'Notas de atualização',
       'nav.help': 'Ajuda',
       'nav.event': 'Evento',
-      'event.label': 'Evento ou novo projeto',
+      'event.kicker': 'Evento',
+      'event.title': 'Eventos e novos projetos',
+      'event.sub': 'Novos lançamentos, eventos e apresentações de projetos chegam aqui primeiro. O palco está pronto — as imagens estão a caminho.',
+      'event.join': 'Entrar',
+      'event.none': 'sem evento',
       'help.title': 'Ajuda',
       'help.sub': 'Equipe pequena, respostas rápidas. O Discord é o caminho mais rápido para falar com a gente.',
       'help.p1': 'Use os canais de ticket no nosso servidor do Discord para:',
@@ -634,7 +658,11 @@
       'nav.patch': 'Патчноуты',
       'nav.help': 'Помощь',
       'nav.event': 'Событие',
-      'event.label': 'Событие или новый проект',
+      'event.kicker': 'Событие',
+      'event.title': 'События и новые проекты',
+      'event.sub': 'Новые релизы, события и презентации проектов появляются здесь первыми. Сцена готова — изображения уже в пути.',
+      'event.join': 'Присоединиться',
+      'event.none': 'событий пока нет',
       'help.title': 'Помощь',
       'help.sub': 'Маленькая команда, быстрые ответы. Discord — самый быстрый способ связаться с нами.',
       'help.p1': 'Используй каналы тикетов на нашем сервере Discord для:',
@@ -733,7 +761,11 @@
       'nav.patch': 'パッチノート',
       'nav.help': 'ヘルプ',
       'nav.event': 'イベント',
-      'event.label': 'イベントまたは新しいプロジェクト',
+      'event.kicker': 'イベント',
+      'event.title': 'イベントと新しいプロジェクト',
+      'event.sub': '新しいリリース、イベント、プロジェクトの発表は最初にここに届きます。ステージは準備済み — 画像はもうすぐです。',
+      'event.join': '参加',
+      'event.none': 'イベントはまだありません',
       'help.title': 'ヘルプ',
       'help.sub': '小さなチームなので、Discord が一番早く連絡できます。',
       'help.p1': '以下の内容は、Discord サーバーのチケットチャンネルで受け付けています。',
@@ -1243,8 +1275,17 @@
 
   function route(hashValue) {
     var h = (hashValue || '').replace('#', '');
-    if (h.indexOf('project-') === 0) openProject(h.slice(8), { silent: true });
-    else setView({ projects: 1, members: 1, patch: 1, license: 1, help: 1, home: 1 }[h] ? h : 'home', { silent: true });
+    if (h.indexOf('project-') === 0) {
+      openProject(h.slice(8), { silent: true });
+      scrollTop();
+      return;
+    }
+    if (h === 'event') {
+      setView('home', { silent: true, noScroll: true });
+      scrollToEvent();
+      return;
+    }
+    setView({ projects: 1, members: 1, patch: 1, license: 1, help: 1, home: 1 }[h] ? h : 'home', { silent: true });
     scrollTop();
   }
 
@@ -1373,112 +1414,77 @@
     });
   });
 
-  /* ---------- event / new project widget ---------- */
-  (function () {
-    var wrap = document.getElementById('event');
-    var btn = document.getElementById('eventBtn');
-    var card = document.getElementById('eventCard');
-    var embed = document.getElementById('eventEmbed');
-    if (!wrap || !btn || !card) return;
+  /* ---------- event shortcut + main-menu event section ---------- */
+  var eventNav = document.getElementById('eventNav');
+  var eventBtn = document.getElementById('eventBtn');
+  var eventSection = document.getElementById('event');
 
-    var isOpen = false;
-    var closeTimer = null;
+  function playEventChime() {
+    try {
+      var Ctx = window.AudioContext || window.webkitAudioContext;
+      if (!Ctx) return;
+      if (!playEventChime.ctx) playEventChime.ctx = new Ctx();
+      var ctx = playEventChime.ctx;
+      if (ctx.state === 'suspended' && ctx.resume) ctx.resume();
+      var now = ctx.currentTime;
+      [659.25, 880, 1318.5].forEach(function (freq, i) {
+        var at = now + i * 0.075;
+        var osc = ctx.createOscillator();
+        var gain = ctx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(freq, at);
+        gain.gain.setValueAtTime(0.0001, at);
+        gain.gain.exponentialRampToValueAtTime(0.055, at + 0.012);
+        gain.gain.exponentialRampToValueAtTime(0.0001, at + 0.26);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(at);
+        osc.stop(at + 0.28);
+      });
+    } catch (e) { /* audio unavailable */ }
+  }
 
-    function setOpen(next) {
-      if (next === isOpen) return;
-      isOpen = next;
-      wrap.classList.toggle('is-open', next);
-      btn.setAttribute('aria-expanded', next ? 'true' : 'false');
-      if (!next && card.contains(document.activeElement)) btn.focus();
-    }
-
-    function openNow() {
-      clearTimeout(closeTimer);
-      setOpen(true);
-    }
-
-    function closeSoon() {
-      clearTimeout(closeTimer);
-      closeTimer = setTimeout(function () { setOpen(false); }, 140);
-    }
-
-    wrap.addEventListener('pointerenter', openNow);
-    wrap.addEventListener('pointerleave', closeSoon);
-    wrap.addEventListener('focusin', openNow);
-    wrap.addEventListener('focusout', function (e) {
-      if (!wrap.contains(e.relatedTarget)) closeSoon();
+  function scrollToEvent() {
+    if (!eventSection) return;
+    requestAnimationFrame(function () {
+      var nav = document.querySelector('.nav-wrap');
+      var offset = nav ? nav.getBoundingClientRect().height : 0;
+      var top = eventSection.getBoundingClientRect().top + (window.pageYOffset || 0) - offset - 10;
+      top = Math.max(0, top);
+      try { window.scrollTo({ top: top, behavior: 'smooth' }); }
+      catch (e) { window.scrollTo(0, top); }
     });
-    btn.addEventListener('click', function (e) {
-      e.stopPropagation();
-      clearTimeout(closeTimer);
-      setOpen(!isOpen);
+  }
+
+  function openEventSection() {
+    setView('home', { noScroll: true });
+    if (history.replaceState) {
+      try { history.replaceState(null, '', '#event'); } catch (e) { /* ignore */ }
+    }
+    scrollToEvent();
+  }
+
+  if (eventBtn) {
+    eventBtn.addEventListener('click', function () {
+      if (window.matchMedia && window.matchMedia('(hover: none)').matches && eventNav) {
+        eventNav.classList.add('is-tip');
+      }
+      eventBtn.classList.add('is-rainbow');
+      playEventChime();
+      openEventSection();
     });
+  }
+
+  if (eventNav) {
     document.addEventListener('click', function (e) {
-      if (isOpen && !wrap.contains(e.target)) setOpen(false);
+      if (eventNav.classList.contains('is-tip') && !eventNav.contains(e.target)) {
+        eventNav.classList.remove('is-tip');
+      }
     });
     document.addEventListener('keydown', function (e) {
-      if (e.key !== 'Escape' || !isOpen) return;
-      setOpen(false);
-      btn.focus();
+      if (e.key === 'Escape') eventNav.classList.remove('is-tip');
     });
-
-    /* the outer glow is sampled from the embed image */
-    var manualAccent = wrap.getAttribute('data-accent');
-    if (manualAccent) wrap.style.setProperty('--event-accent', manualAccent);
-
-    function dominantAccent(data) {
-      var buckets = {};
-      var best = null;
-      for (var i = 0; i < data.length; i += 4) {
-        if (data[i + 3] < 160) continue;
-        var r = data[i], g = data[i + 1], b = data[i + 2];
-        var max = Math.max(r, g, b), min = Math.min(r, g, b);
-        var lum = r * .299 + g * .587 + b * .114;
-        if (lum < 16 || lum > 244) continue;
-        var sat = max ? (max - min) / max : 0;
-        var key = (r >> 4) + ',' + (g >> 4) + ',' + (b >> 4);
-        var bucket = buckets[key] || (buckets[key] = { r: 0, g: 0, b: 0, n: 0, score: 0 });
-        bucket.r += r; bucket.g += g; bucket.b += b; bucket.n++;
-        bucket.score += 1 + sat * 2.4;
-      }
-      for (var k in buckets) {
-        if (!best || buckets[k].score > best.score) best = buckets[k];
-      }
-      if (!best) return '';
-      var cr = Math.round(best.r / best.n);
-      var cg = Math.round(best.g / best.n);
-      var cb = Math.round(best.b / best.n);
-      /* lift very dark picks so the glow still reads on a black page */
-      var peak = Math.max(cr, cg, cb);
-      if (peak < 128) {
-        var lift = 128 / Math.max(peak, 1);
-        cr = Math.min(255, Math.round(cr * lift));
-        cg = Math.min(255, Math.round(cg * lift));
-        cb = Math.min(255, Math.round(cb * lift));
-      }
-      return 'rgb(' + cr + ',' + cg + ',' + cb + ')';
-    }
-
-    function sampleAccent(img) {
-      if (manualAccent || !img || !img.complete || !img.naturalWidth) return;
-      try {
-        var canvas = document.createElement('canvas');
-        canvas.width = 24;
-        canvas.height = 24;
-        var ctx = canvas.getContext('2d');
-        ctx.drawImage(img, 0, 0, 24, 24);
-        var color = dominantAccent(ctx.getImageData(0, 0, 24, 24).data);
-        if (color) wrap.style.setProperty('--event-accent', color);
-      } catch (err) { /* cross-origin image: keep the fallback glow */ }
-    }
-
-    if (embed) {
-      embed.addEventListener('load', function (e) {
-        if (e.target && e.target.tagName === 'IMG') sampleAccent(e.target);
-      }, true);
-      sampleAccent(embed.querySelector('img'));
-    }
-  })();
+  }
 
   /* ---------- video frames: light follows the pointer ---------- */
   Array.prototype.forEach.call(document.querySelectorAll('.video-frame'), function (frame) {
@@ -1768,6 +1774,9 @@
   if (hash.indexOf('project-') === 0) {
     openProject(hash.slice(8), { silent: true });
     scrollTop();
+  } else if (hash === 'event') {
+    setView('home', { silent: true, noScroll: true });
+    scrollToEvent();
   } else if ({ projects: 1, members: 1, patch: 1, license: 1, help: 1, home: 1 }[hash]) {
     setView(hash, { silent: true });
   }
