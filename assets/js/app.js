@@ -1415,7 +1415,6 @@
   });
 
   /* ---------- event shortcut + main-menu event section ---------- */
-  var eventNav = document.getElementById('eventNav');
   var eventBtn = document.getElementById('eventBtn');
   var eventSection = document.getElementById('event');
 
@@ -1476,23 +1475,9 @@
 
   if (eventBtn) {
     eventBtn.addEventListener('click', function () {
-      if (window.matchMedia && window.matchMedia('(hover: none)').matches && eventNav) {
-        eventNav.classList.add('is-tip');
-      }
       eventBtn.classList.add('is-rainbow');
       playEventChime();
       openEventSection();
-    });
-  }
-
-  if (eventNav) {
-    document.addEventListener('click', function (e) {
-      if (eventNav.classList.contains('is-tip') && !eventNav.contains(e.target)) {
-        eventNav.classList.remove('is-tip');
-      }
-    });
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') eventNav.classList.remove('is-tip');
     });
   }
 

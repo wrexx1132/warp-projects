@@ -2563,40 +2563,6 @@ main { flex: 1 0 auto; display: flex; flex-direction: column; }
   48% { transform: rotate(3deg) scale(1.07); }
   72% { transform: rotate(-2deg) scale(1.04); }
 }
-.event-tip {
-  position: absolute;
-  top: calc(100% + 8px);
-  right: 0;
-  z-index: 2;
-  padding: 4px 8px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: color-mix(in srgb, var(--panel) 96%, transparent);
-  -webkit-backdrop-filter: blur(16px);
-  backdrop-filter: blur(16px);
-  box-shadow: 0 16px 32px -20px rgba(0, 0, 0, .9);
-  color: var(--muted);
-  font-size: 10.5px;
-  font-weight: 700;
-  letter-spacing: .04em;
-  line-height: 1;
-  white-space: nowrap;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-4px);
-  pointer-events: none;
-  transition: opacity .18s ease,
-              transform .24s cubic-bezier(.22,1,.36,1),
-              visibility 0s linear .24s;
-}
-.event:hover .event-tip,
-.event:focus-within .event-tip,
-.event.is-tip .event-tip {
-  opacity: 1;
-  visibility: visible;
-  transform: none;
-  transition-delay: 0s;
-}
 
 /* event section on the main menu */
 .event-home {
