@@ -2605,28 +2605,26 @@ main { flex: 1 0 auto; display: flex; flex-direction: column; }
   gap: 8px;
   width: 100%;
   height: 40px;
+  border: 1px solid var(--line-soft);
   border-radius: 12px;
-  background: var(--text);
-  color: var(--bg);
+  background: color-mix(in srgb, var(--text) 6%, transparent);
+  color: var(--faint);
+  font-family: inherit;
   font-size: 13.4px;
   font-weight: 700;
   letter-spacing: -.01em;
-  text-decoration: none;
+  cursor: not-allowed;
   opacity: 0;
-  transform: translateY(6px);
-  transition: opacity .22s ease,
-              transform .3s cubic-bezier(.22,1,.36,1),
-              background-color .2s ease;
+  transform: translateY(7px) scale(.97);
+  transition: opacity .24s ease,
+              transform .34s cubic-bezier(.22,1,.36,1);
 }
-.event-download svg { width: 16px; height: 16px; flex: none; }
-.event-card:hover .event-download,
-.event-card:focus-within .event-download,
-.event-download:focus-visible {
+.event-download svg { width: 16px; height: 16px; flex: none; opacity: .45; }
+.event.is-open .event-download {
   opacity: 1;
   transform: none;
+  transition-delay: .07s;
 }
-.event-download:hover { background: color-mix(in srgb, var(--text) 88%, var(--event-accent)); }
-.event-download:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
 
 /* ============ RESPONSIVE ============ */
 @media (max-width: 980px) {

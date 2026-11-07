@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <script src="assets/js/theme-init.js?v=5"></script>
-<link rel="stylesheet" href="assets/css/style.css?v=17">
+<link rel="stylesheet" href="assets/css/style.css?v=18">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -99,15 +99,15 @@
                The outer glow takes its colour from this image automatically. -->
           <div class="event-embed" id="eventEmbed"></div>
 
-          <!-- Revealed on hover. Point href at the real link; while it is "#" the button shows the "soon" toast. -->
-          <a class="event-download" id="eventDownload" href="#">
+          <!-- Shown with the card. Nothing to download yet, so it stays disabled and says soon. -->
+          <button class="event-download" id="eventDownload" type="button" disabled>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M12 4.2v11.2"/>
               <path d="m7.4 11.2 4.6 4.6 4.6-4.6"/>
               <path d="M5 19.4h14"/>
             </svg>
-            <span data-i18n="event.download">Download</span>
-          </a>
+            <span>soon.</span>
+          </button>
         </div>
       </div>
 
@@ -749,7 +749,7 @@
   </div>
 </div>
 
-<script src="assets/js/app.js?v=23"></script>
+<script src="assets/js/app.js?v=24"></script>
 <script src="assets/js/intro.js?v=7"></script>
 <script src="assets/js/protect.js?v=5"></script>
 <script src="assets/js/video.js?v=6"></script>

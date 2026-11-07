@@ -40,7 +40,6 @@
       'nav.patch': 'Patch Notes',
       'nav.help': 'Help',
       'nav.event': 'Event',
-      'event.download': 'Download',
       'event.label': 'Event or new project',
       'help.title': 'Help',
       'help.sub': 'Small team, fast answers. Discord is the quickest way to reach us.',
@@ -140,7 +139,6 @@
       'nav.patch': 'Yama Notları',
       'nav.help': 'Yardım',
       'nav.event': 'Etkinlik',
-      'event.download': 'İndir',
       'event.label': 'Etkinlik veya yeni proje',
       'help.title': 'Yardım',
       'help.sub': 'Küçük bir ekibiz, en hızlı yanıt Discord’da.',
@@ -240,7 +238,6 @@
       'nav.patch': 'Patchnotes',
       'nav.help': 'Hilfe',
       'nav.event': 'Event',
-      'event.download': 'Herunterladen',
       'event.label': 'Event oder neues Projekt',
       'help.title': 'Hilfe',
       'help.sub': 'Kleines Team, schnelle Antworten. Discord ist der schnellste Weg zu uns.',
@@ -340,7 +337,6 @@
       'nav.patch': 'Notes de version',
       'nav.help': 'Aide',
       'nav.event': 'Événement',
-      'event.download': 'Télécharger',
       'event.label': 'Événement ou nouveau projet',
       'help.title': 'Aide',
       'help.sub': 'Petite équipe, réponses rapides. Discord est le moyen le plus simple de nous joindre.',
@@ -440,7 +436,6 @@
       'nav.patch': 'Notas de parche',
       'nav.help': 'Ayuda',
       'nav.event': 'Evento',
-      'event.download': 'Descargar',
       'event.label': 'Evento o nuevo proyecto',
       'help.title': 'Ayuda',
       'help.sub': 'Equipo pequeño, respuestas rápidas. Discord es la forma más rápida de contactarnos.',
@@ -540,7 +535,6 @@
       'nav.patch': 'Notas de atualização',
       'nav.help': 'Ajuda',
       'nav.event': 'Evento',
-      'event.download': 'Baixar',
       'event.label': 'Evento ou novo projeto',
       'help.title': 'Ajuda',
       'help.sub': 'Equipe pequena, respostas rápidas. O Discord é o caminho mais rápido para falar com a gente.',
@@ -640,7 +634,6 @@
       'nav.patch': 'Патчноуты',
       'nav.help': 'Помощь',
       'nav.event': 'Событие',
-      'event.download': 'Скачать',
       'event.label': 'Событие или новый проект',
       'help.title': 'Помощь',
       'help.sub': 'Маленькая команда, быстрые ответы. Discord — самый быстрый способ связаться с нами.',
@@ -740,7 +733,6 @@
       'nav.patch': 'パッチノート',
       'nav.help': 'ヘルプ',
       'nav.event': 'イベント',
-      'event.download': 'ダウンロード',
       'event.label': 'イベントまたは新しいプロジェクト',
       'help.title': 'ヘルプ',
       'help.sub': '小さなチームなので、Discord が一番早く連絡できます。',
@@ -1387,7 +1379,6 @@
     var btn = document.getElementById('eventBtn');
     var card = document.getElementById('eventCard');
     var embed = document.getElementById('eventEmbed');
-    var download = document.getElementById('eventDownload');
     if (!wrap || !btn || !card) return;
 
     var isOpen = false;
@@ -1430,17 +1421,6 @@
       setOpen(false);
       btn.focus();
     });
-
-    /* no real link yet: the button says "soon" */
-    if (download) {
-      download.addEventListener('click', function (e) {
-        var href = download.getAttribute('href') || '';
-        if (href && href !== '#') return;
-        e.preventDefault();
-        var dict = I18N[currentLang] || I18N.en;
-        showToast(dict['project.toast'] || I18N.en['project.toast']);
-      });
-    }
 
     /* the outer glow is sampled from the embed image */
     var manualAccent = wrap.getAttribute('data-accent');
