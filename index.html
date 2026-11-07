@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <script src="assets/js/theme-init.js?v=5"></script>
-<link rel="stylesheet" href="assets/css/style.css?v=16">
+<link rel="stylesheet" href="assets/css/style.css?v=17">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -84,6 +84,33 @@
     </nav>
 
     <div class="nav-end">
+      <div class="event" id="event">
+        <button class="event-btn" type="button" id="eventBtn" aria-expanded="false" aria-controls="eventCard">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="m11.4 3.6 1.9 4.8 4.8 1.9-4.8 1.9-1.9 4.8-1.9-4.8-4.8-1.9 4.8-1.9Z"/>
+            <path d="m18.5 15.4.9 2.2 2.2.9-2.2.9-.9 2.2-.9-2.2-2.2-.9 2.2-.9Z"/>
+          </svg>
+          <span data-i18n="nav.event">Event</span>
+        </button>
+
+        <div class="event-card" id="eventCard" role="group" data-i18n-aria="event.label" aria-label="Event or new project">
+          <!-- Event / new project embed.
+               Drop the image here: <img src="assets/event/image.png" alt="..."> — it is cropped to fit.
+               The outer glow takes its colour from this image automatically. -->
+          <div class="event-embed" id="eventEmbed"></div>
+
+          <!-- Revealed on hover. Point href at the real link; while it is "#" the button shows the "soon" toast. -->
+          <a class="event-download" id="eventDownload" href="#">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 4.2v11.2"/>
+              <path d="m7.4 11.2 4.6 4.6 4.6-4.6"/>
+              <path d="M5 19.4h14"/>
+            </svg>
+            <span data-i18n="event.download">Download</span>
+          </a>
+        </div>
+      </div>
+
       <button class="nav-license" type="button" id="licenseTab" data-goto="license">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M12 3.4 19 6v5.6c0 4.2-2.8 7.4-7 9-4.2-1.6-7-4.8-7-9V6l7-2.6Z"/>
@@ -722,7 +749,7 @@
   </div>
 </div>
 
-<script src="assets/js/app.js?v=22"></script>
+<script src="assets/js/app.js?v=23"></script>
 <script src="assets/js/intro.js?v=7"></script>
 <script src="assets/js/protect.js?v=5"></script>
 <script src="assets/js/video.js?v=6"></script>

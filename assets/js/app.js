@@ -39,6 +39,9 @@
       'nav.members': 'Warp Projects Team',
       'nav.patch': 'Patch Notes',
       'nav.help': 'Help',
+      'nav.event': 'Event',
+      'event.download': 'Download',
+      'event.label': 'Event or new project',
       'help.title': 'Help',
       'help.sub': 'Small team, fast answers. Discord is the quickest way to reach us.',
       'help.p1': 'Use the ticket channels on our Discord server for:',
@@ -136,6 +139,9 @@
       'nav.members': 'Warp Projects Ekibi',
       'nav.patch': 'Yama Notları',
       'nav.help': 'Yardım',
+      'nav.event': 'Etkinlik',
+      'event.download': 'İndir',
+      'event.label': 'Etkinlik veya yeni proje',
       'help.title': 'Yardım',
       'help.sub': 'Küçük bir ekibiz, en hızlı yanıt Discord’da.',
       'help.p1': 'Discord sunucumuzdaki ticket kanallarını şunlar için kullanabilirsin:',
@@ -233,6 +239,9 @@
       'nav.members': 'Warp Projects Team',
       'nav.patch': 'Patchnotes',
       'nav.help': 'Hilfe',
+      'nav.event': 'Event',
+      'event.download': 'Herunterladen',
+      'event.label': 'Event oder neues Projekt',
       'help.title': 'Hilfe',
       'help.sub': 'Kleines Team, schnelle Antworten. Discord ist der schnellste Weg zu uns.',
       'help.p1': 'Nutze die Ticket-Kanäle auf unserem Discord-Server für:',
@@ -330,6 +339,9 @@
       'nav.members': 'Équipe Warp Projects',
       'nav.patch': 'Notes de version',
       'nav.help': 'Aide',
+      'nav.event': 'Événement',
+      'event.download': 'Télécharger',
+      'event.label': 'Événement ou nouveau projet',
       'help.title': 'Aide',
       'help.sub': 'Petite équipe, réponses rapides. Discord est le moyen le plus simple de nous joindre.',
       'help.p1': 'Utilise les salons de tickets sur notre serveur Discord pour :',
@@ -427,6 +439,9 @@
       'nav.members': 'Equipo de Warp Projects',
       'nav.patch': 'Notas de parche',
       'nav.help': 'Ayuda',
+      'nav.event': 'Evento',
+      'event.download': 'Descargar',
+      'event.label': 'Evento o nuevo proyecto',
       'help.title': 'Ayuda',
       'help.sub': 'Equipo pequeño, respuestas rápidas. Discord es la forma más rápida de contactarnos.',
       'help.p1': 'Usa los canales de tickets de nuestro servidor de Discord para:',
@@ -524,6 +539,9 @@
       'nav.members': 'Equipe da Warp Projects',
       'nav.patch': 'Notas de atualização',
       'nav.help': 'Ajuda',
+      'nav.event': 'Evento',
+      'event.download': 'Baixar',
+      'event.label': 'Evento ou novo projeto',
       'help.title': 'Ajuda',
       'help.sub': 'Equipe pequena, respostas rápidas. O Discord é o caminho mais rápido para falar com a gente.',
       'help.p1': 'Use os canais de ticket no nosso servidor do Discord para:',
@@ -621,6 +639,9 @@
       'nav.members': 'Команда Warp Projects',
       'nav.patch': 'Патчноуты',
       'nav.help': 'Помощь',
+      'nav.event': 'Событие',
+      'event.download': 'Скачать',
+      'event.label': 'Событие или новый проект',
       'help.title': 'Помощь',
       'help.sub': 'Маленькая команда, быстрые ответы. Discord — самый быстрый способ связаться с нами.',
       'help.p1': 'Используй каналы тикетов на нашем сервере Discord для:',
@@ -718,6 +739,9 @@
       'nav.members': 'Warp Projects チーム',
       'nav.patch': 'パッチノート',
       'nav.help': 'ヘルプ',
+      'nav.event': 'イベント',
+      'event.download': 'ダウンロード',
+      'event.label': 'イベントまたは新しいプロジェクト',
       'help.title': 'ヘルプ',
       'help.sub': '小さなチームなので、Discord が一番早く連絡できます。',
       'help.p1': '以下の内容は、Discord サーバーのチケットチャンネルで受け付けています。',
@@ -1356,6 +1380,125 @@
       setView(el.getAttribute('data-goto'));
     });
   });
+
+  /* ---------- event / new project widget ---------- */
+  (function () {
+    var wrap = document.getElementById('event');
+    var btn = document.getElementById('eventBtn');
+    var card = document.getElementById('eventCard');
+    var embed = document.getElementById('eventEmbed');
+    var download = document.getElementById('eventDownload');
+    if (!wrap || !btn || !card) return;
+
+    var isOpen = false;
+    var closeTimer = null;
+
+    function setOpen(next) {
+      if (next === isOpen) return;
+      isOpen = next;
+      wrap.classList.toggle('is-open', next);
+      btn.setAttribute('aria-expanded', next ? 'true' : 'false');
+      if (!next && card.contains(document.activeElement)) btn.focus();
+    }
+
+    function openNow() {
+      clearTimeout(closeTimer);
+      setOpen(true);
+    }
+
+    function closeSoon() {
+      clearTimeout(closeTimer);
+      closeTimer = setTimeout(function () { setOpen(false); }, 140);
+    }
+
+    wrap.addEventListener('pointerenter', openNow);
+    wrap.addEventListener('pointerleave', closeSoon);
+    wrap.addEventListener('focusin', openNow);
+    wrap.addEventListener('focusout', function (e) {
+      if (!wrap.contains(e.relatedTarget)) closeSoon();
+    });
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      clearTimeout(closeTimer);
+      setOpen(!isOpen);
+    });
+    document.addEventListener('click', function (e) {
+      if (isOpen && !wrap.contains(e.target)) setOpen(false);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key !== 'Escape' || !isOpen) return;
+      setOpen(false);
+      btn.focus();
+    });
+
+    /* no real link yet: the button says "soon" */
+    if (download) {
+      download.addEventListener('click', function (e) {
+        var href = download.getAttribute('href') || '';
+        if (href && href !== '#') return;
+        e.preventDefault();
+        var dict = I18N[currentLang] || I18N.en;
+        showToast(dict['project.toast'] || I18N.en['project.toast']);
+      });
+    }
+
+    /* the outer glow is sampled from the embed image */
+    var manualAccent = wrap.getAttribute('data-accent');
+    if (manualAccent) wrap.style.setProperty('--event-accent', manualAccent);
+
+    function dominantAccent(data) {
+      var buckets = {};
+      var best = null;
+      for (var i = 0; i < data.length; i += 4) {
+        if (data[i + 3] < 160) continue;
+        var r = data[i], g = data[i + 1], b = data[i + 2];
+        var max = Math.max(r, g, b), min = Math.min(r, g, b);
+        var lum = r * .299 + g * .587 + b * .114;
+        if (lum < 16 || lum > 244) continue;
+        var sat = max ? (max - min) / max : 0;
+        var key = (r >> 4) + ',' + (g >> 4) + ',' + (b >> 4);
+        var bucket = buckets[key] || (buckets[key] = { r: 0, g: 0, b: 0, n: 0, score: 0 });
+        bucket.r += r; bucket.g += g; bucket.b += b; bucket.n++;
+        bucket.score += 1 + sat * 2.4;
+      }
+      for (var k in buckets) {
+        if (!best || buckets[k].score > best.score) best = buckets[k];
+      }
+      if (!best) return '';
+      var cr = Math.round(best.r / best.n);
+      var cg = Math.round(best.g / best.n);
+      var cb = Math.round(best.b / best.n);
+      /* lift very dark picks so the glow still reads on a black page */
+      var peak = Math.max(cr, cg, cb);
+      if (peak < 128) {
+        var lift = 128 / Math.max(peak, 1);
+        cr = Math.min(255, Math.round(cr * lift));
+        cg = Math.min(255, Math.round(cg * lift));
+        cb = Math.min(255, Math.round(cb * lift));
+      }
+      return 'rgb(' + cr + ',' + cg + ',' + cb + ')';
+    }
+
+    function sampleAccent(img) {
+      if (manualAccent || !img || !img.complete || !img.naturalWidth) return;
+      try {
+        var canvas = document.createElement('canvas');
+        canvas.width = 24;
+        canvas.height = 24;
+        var ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, 24, 24);
+        var color = dominantAccent(ctx.getImageData(0, 0, 24, 24).data);
+        if (color) wrap.style.setProperty('--event-accent', color);
+      } catch (err) { /* cross-origin image: keep the fallback glow */ }
+    }
+
+    if (embed) {
+      embed.addEventListener('load', function (e) {
+        if (e.target && e.target.tagName === 'IMG') sampleAccent(e.target);
+      }, true);
+      sampleAccent(embed.querySelector('img'));
+    }
+  })();
 
   /* ---------- video frames: light follows the pointer ---------- */
   Array.prototype.forEach.call(document.querySelectorAll('.video-frame'), function (frame) {
