@@ -1099,7 +1099,13 @@
       }
     }
     if (!opts.noScroll) scrollTop();
-    updateEventBtn();
+    if (eventBtn) {
+      var evOn = name === 'event';
+      eventBtn.classList.toggle('is-rainbow', evOn);
+      eventBtn.classList.toggle('is-active', evOn);
+      if (evOn) eventBtn.setAttribute('aria-current', 'page');
+      else eventBtn.removeAttribute('aria-current');
+    }
   }
 
   /* ---------- project detail ---------- */
@@ -1281,12 +1287,7 @@
       scrollTop();
       return;
     }
-    if (h === 'event') {
-      setView('home', { silent: true, noScroll: true });
-      scrollToEvent();
-      return;
-    }
-    setView({ projects: 1, members: 1, patch: 1, license: 1, help: 1, home: 1 }[h] ? h : 'home', { silent: true });
+    setView({ projects: 1, members: 1, patch: 1, license: 1, help: 1, event: 1, home: 1 }[h] ? h : 'home', { silent: true });
     scrollTop();
   }
 
@@ -1415,9 +1416,8 @@
     });
   });
 
-  /* ---------- event shortcut + main-menu event section ---------- */
+  /* ---------- event tab ---------- */
   var eventBtn = document.getElementById('eventBtn');
-  var eventSection = document.getElementById('event');
 
   function playEventChime() {
     try {
@@ -1444,64 +1444,15 @@
     } catch (e) { /* audio unavailable */ }
   }
 
-  function scrollToEvent() {
-    if (!eventSection) return;
-    var nav = document.querySelector('.nav-wrap');
-    var offset = nav ? nav.getBoundingClientRect().height : 0;
-    var top = eventSection.getBoundingClientRect().top + (window.pageYOffset || 0) - offset - 10;
-    top = Math.max(0, top);
-    var startY = window.pageYOffset || 0;
-    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var jump = function () {
-      try { window.scrollTo({ top: top, behavior: 'auto' }); }
-      catch (e) { window.scrollTo(0, top); }
-      updateEventBtn();
-    };
-    if (reduce) { jump(); return; }
-    try { window.scrollTo({ top: top, behavior: 'smooth' }); }
-    catch (e) { jump(); }
-    /* if smooth scrolling is unavailable, finish the jump instead */
-    clearTimeout(scrollToEvent.fallback);
-    scrollToEvent.fallback = setTimeout(function () {
-      if (Math.abs((window.pageYOffset || 0) - startY) < 4) jump();
-    }, 500);
-  }
-
-  function openEventSection() {
-    setView('home', { noScroll: true });
-    if (history.replaceState) {
-      try { history.replaceState(null, '', '#event'); } catch (e) { /* ignore */ }
-    }
-    scrollToEvent();
-  }
-
-  function updateEventBtn() {
-    if (!eventBtn || !eventSection) return;
-    var rect = eventSection.getBoundingClientRect();
-    var nav = document.querySelector('.nav-wrap');
-    var navH = nav ? nav.getBoundingClientRect().height : 0;
-    var vh = window.innerHeight || document.documentElement.clientHeight;
-    var atEvent = rect.top < vh * 0.6 && rect.bottom > navH + 60;
-    eventBtn.classList.toggle('is-rainbow', atEvent);
-  }
-
-  var eventBtnTimer = null;
-  function queueEventBtn() {
-    if (eventBtnTimer) return;
-    eventBtnTimer = setTimeout(function () {
-      eventBtnTimer = null;
-      updateEventBtn();
-    }, 80);
+  function openEvent() {
+    setView('event');
   }
 
   if (eventBtn) {
     eventBtn.addEventListener('click', function () {
       playEventChime();
-      openEventSection();
+      openEvent();
     });
-    window.addEventListener('scroll', queueEventBtn, { passive: true });
-    window.addEventListener('resize', queueEventBtn);
-    updateEventBtn();
   }
 
   /* ---------- video frames: light follows the pointer ---------- */
@@ -1792,16 +1743,12 @@
   if (hash.indexOf('project-') === 0) {
     openProject(hash.slice(8), { silent: true });
     scrollTop();
-  } else if (hash === 'event') {
-    setView('home', { silent: true, noScroll: true });
-    scrollToEvent();
-  } else if ({ projects: 1, members: 1, patch: 1, license: 1, help: 1, home: 1 }[hash]) {
+  } else if ({ projects: 1, members: 1, patch: 1, license: 1, help: 1, event: 1, home: 1 }[hash]) {
     setView(hash, { silent: true });
   }
 
   requestAnimationFrame(function () {
     positionGlow(activeTab(), false);
-    updateEventBtn();
   });
 
 })();

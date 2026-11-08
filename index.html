@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <script src="assets/js/theme-init.js?v=5"></script>
-<link rel="stylesheet" href="assets/css/style.css?v=21">
+<link rel="stylesheet" href="assets/css/style.css?v=22">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -221,27 +221,6 @@
       </div>
     </section>
 
-    <section class="event-home" id="event" aria-label="Event">
-      <div class="wrap">
-        <header class="section-head">
-          <p class="kicker" data-i18n="event.kicker">Event</p>
-          <h2 class="section-title" data-i18n="event.title">Events and new projects</h2>
-          <p class="section-sub" data-i18n="event.sub">New drops, events and project reveals land here first. Keep an eye on this space.</p>
-        </header>
-
-        <div class="event-stage">
-          <span class="event-led" aria-hidden="true"></span>
-          <div class="event-media" id="eventMediaHome">
-            <!-- Event image goes here: <img src="assets/event/image.png" alt="..."> -->
-            <div class="event-join">
-              <button class="event-join-btn" type="button" disabled data-i18n="event.join">Join</button>
-              <span class="event-join-note" data-i18n="event.none">no event yet</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <section class="faq" id="faq">
       <div class="wrap">
         <header class="section-head">
@@ -307,6 +286,27 @@
         </ul>
       </div>
     </section>
+  </section>
+
+  <section class="view" id="view-event" aria-label="Event">
+    <div class="page event-page">
+      <div class="page-head event-head">
+        <p class="kicker" data-i18n="event.kicker">Event</p>
+        <h1 data-i18n="event.title">Events and new projects</h1>
+        <p class="lead" data-i18n="event.sub">New drops, events and project reveals land here first. Keep an eye on this space.</p>
+      </div>
+
+      <div class="event-stage">
+        <span class="event-led" aria-hidden="true"></span>
+        <div class="event-media" id="eventMediaHome">
+          <!-- Event image goes here: <img src="assets/event/image.png" alt="..."> -->
+          <div class="event-join">
+            <button class="event-join-btn" type="button" disabled data-i18n="event.join">Join</button>
+            <span class="event-join-note" data-i18n="event.none">no event yet</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <section class="view" id="view-projects" aria-label="Projects">
@@ -753,7 +753,7 @@
   </div>
 </div>
 
-<script src="assets/js/app.js?v=28"></script>
+<script src="assets/js/app.js?v=29"></script>
 <script src="assets/js/intro.js?v=7"></script>
 <script src="assets/js/protect.js?v=5"></script>
 <script src="assets/js/video.js?v=6"></script>
