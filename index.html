@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <script src="assets/js/theme-init.js?v=5"></script>
-<link rel="stylesheet" href="assets/css/style.css?v=22">
+<link rel="stylesheet" href="assets/css/style.css?v=23">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -727,6 +727,18 @@
 
 <div class="toast" id="toast" role="status" aria-live="polite"><span id="toastText"></span></div>
 
+<aside class="ann-card" id="annCard" aria-label="Announcement" data-i18n-aria="ann.aria">
+  <button class="ann-close" type="button" id="annClose" aria-label="Close announcement" data-i18n-aria="ann.close">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+      <path d="m6 6 12 12M18 6 6 18"/>
+    </svg>
+  </button>
+  <div class="ann-media">
+    <span class="ann-beta">BETA</span>
+    <span class="ann-label" data-i18n="ann.label">ANNOUNCEMENT!</span>
+  </div>
+</aside>
+
 <div class="intro" id="intro" role="dialog" aria-modal="true" aria-labelledby="introTitle" aria-describedby="introText" hidden>
   <div class="intro-card">
     <div class="intro-top">
@@ -753,7 +765,7 @@
   </div>
 </div>
 
-<script src="assets/js/app.js?v=29"></script>
+<script src="assets/js/app.js?v=30"></script>
 <script src="assets/js/intro.js?v=7"></script>
 <script src="assets/js/protect.js?v=5"></script>
 <script src="assets/js/video.js?v=6"></script>

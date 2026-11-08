@@ -45,6 +45,9 @@
       'event.sub': 'New drops, events and project reveals land here first. Keep an eye on this space.',
       'event.join': 'Join',
       'event.none': 'no event yet',
+      'ann.aria': 'Announcement',
+      'ann.label': 'ANNOUNCEMENT!',
+      'ann.close': 'Close announcement',
       'help.title': 'Help',
       'help.sub': 'Small team, fast answers. Discord is the quickest way to reach us.',
       'help.p1': 'Use the ticket channels on our Discord server for:',
@@ -148,6 +151,9 @@
       'event.sub': 'Yeni çıkışlar, etkinlikler ve proje tanıtımları ilk burada paylaşılır. Bu alanı takipte kal.',
       'event.join': 'Katıl',
       'event.none': 'etkinlik yok',
+      'ann.aria': 'Duyuru',
+      'ann.label': 'DUYURU!',
+      'ann.close': 'Duyuruyu kapat',
       'help.title': 'Yardım',
       'help.sub': 'Küçük bir ekibiz, en hızlı yanıt Discord’da.',
       'help.p1': 'Discord sunucumuzdaki ticket kanallarını şunlar için kullanabilirsin:',
@@ -251,6 +257,9 @@
       'event.sub': 'Neue Releases, Events und Projektvorstellungen erscheinen zuerst hier. Schau hier regelmäßig vorbei.',
       'event.join': 'Beitreten',
       'event.none': 'noch kein Event',
+      'ann.aria': 'Ankündigung',
+      'ann.label': 'ANKÜNDIGUNG!',
+      'ann.close': 'Ankündigung schließen',
       'help.title': 'Hilfe',
       'help.sub': 'Kleines Team, schnelle Antworten. Discord ist der schnellste Weg zu uns.',
       'help.p1': 'Nutze die Ticket-Kanäle auf unserem Discord-Server für:',
@@ -354,6 +363,9 @@
       'event.sub': 'Les nouvelles sorties, événements et présentations de projets arrivent ici en premier. Garde un œil par ici.',
       'event.join': 'Rejoindre',
       'event.none': 'aucun événement',
+      'ann.aria': 'Annonce',
+      'ann.label': 'ANNONCE !',
+      'ann.close': 'Fermer l’annonce',
       'help.title': 'Aide',
       'help.sub': 'Petite équipe, réponses rapides. Discord est le moyen le plus simple de nous joindre.',
       'help.p1': 'Utilise les salons de tickets sur notre serveur Discord pour :',
@@ -457,6 +469,9 @@
       'event.sub': 'Los nuevos lanzamientos, eventos y presentaciones de proyectos llegan aquí primero. Mantente atento.',
       'event.join': 'Unirse',
       'event.none': 'sin evento',
+      'ann.aria': 'Anuncio',
+      'ann.label': '¡ANUNCIO!',
+      'ann.close': 'Cerrar anuncio',
       'help.title': 'Ayuda',
       'help.sub': 'Equipo pequeño, respuestas rápidas. Discord es la forma más rápida de contactarnos.',
       'help.p1': 'Usa los canales de tickets de nuestro servidor de Discord para:',
@@ -560,6 +575,9 @@
       'event.sub': 'Novos lançamentos, eventos e apresentações de projetos chegam aqui primeiro. Fique de olho.',
       'event.join': 'Entrar',
       'event.none': 'sem evento',
+      'ann.aria': 'Anúncio',
+      'ann.label': 'ANÚNCIO!',
+      'ann.close': 'Fechar anúncio',
       'help.title': 'Ajuda',
       'help.sub': 'Equipe pequena, respostas rápidas. O Discord é o caminho mais rápido para falar com a gente.',
       'help.p1': 'Use os canais de ticket no nosso servidor do Discord para:',
@@ -663,6 +681,9 @@
       'event.sub': 'Новые релизы, события и презентации проектов появляются здесь первыми. Следите за обновлениями.',
       'event.join': 'Присоединиться',
       'event.none': 'событий пока нет',
+      'ann.aria': 'Объявление',
+      'ann.label': 'ОБЪЯВЛЕНИЕ!',
+      'ann.close': 'Закрыть объявление',
       'help.title': 'Помощь',
       'help.sub': 'Маленькая команда, быстрые ответы. Discord — самый быстрый способ связаться с нами.',
       'help.p1': 'Используй каналы тикетов на нашем сервере Discord для:',
@@ -766,6 +787,9 @@
       'event.sub': '新しいリリース、イベント、プロジェクトの発表は最初にここに届きます。ぜひチェックしてください。',
       'event.join': '参加',
       'event.none': 'イベントはまだありません',
+      'ann.aria': 'お知らせ',
+      'ann.label': 'お知らせ！',
+      'ann.close': 'お知らせを閉じる',
       'help.title': 'ヘルプ',
       'help.sub': '小さなチームなので、Discord が一番早く連絡できます。',
       'help.p1': '以下の内容は、Discord サーバーのチケットチャンネルで受け付けています。',
@@ -1452,6 +1476,18 @@
     eventBtn.addEventListener('click', function () {
       playEventChime();
       openEvent();
+    });
+  }
+
+  /* ---------- floating announcement ---------- */
+  var annCard = document.getElementById('annCard');
+  var annClose = document.getElementById('annClose');
+  if (annCard && annClose) {
+    annClose.addEventListener('click', function () {
+      annCard.classList.add('is-closing');
+      setTimeout(function () {
+        if (annCard.parentNode) annCard.parentNode.removeChild(annCard);
+      }, 620);
     });
   }
 
