@@ -2750,7 +2750,18 @@ main { flex: 1 0 auto; display: flex; flex-direction: column; }
   opacity: 0;
   transform: translateX(calc(-100% - 48px)) rotate(-2deg);
   pointer-events: none;
-  transition: transform .55s cubic-bezier(.4, 0, .2, 1), opacity .5s ease;
+  transition: none;
+  animation: annSlideOut .55s cubic-bezier(.4, 0, .2, 1) forwards;
+}
+@keyframes annSlideOut {
+  from {
+    opacity: 1;
+    transform: perspective(950px) rotateX(var(--ann-rx, 0deg)) rotateY(var(--ann-ry, 0deg));
+  }
+  to {
+    opacity: 0;
+    transform: translateX(calc(-100% - 48px)) rotate(-2deg);
+  }
 }
 .ann-media {
   position: relative;
