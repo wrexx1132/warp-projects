@@ -1506,6 +1506,14 @@
         if (annCard.parentNode) annCard.parentNode.removeChild(annCard);
       }, 620);
     });
+
+    /* the card slides in three seconds after the page opens */
+    setTimeout(function () {
+      annCard.classList.add('is-in');
+      setTimeout(function () {
+        annCard.classList.add('is-ready');
+      }, 850);
+    }, 3000);
   }
 
   /* ---------- video frames: light follows the pointer ---------- */

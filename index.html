@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <script src="assets/js/theme-init.js?v=5"></script>
-<link rel="stylesheet" href="assets/css/style.css?v=27">
+<link rel="stylesheet" href="assets/css/style.css?v=28">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -733,10 +733,12 @@
       <path d="m6 6 12 12M18 6 6 18"/>
     </svg>
   </button>
-  <div class="ann-media">
-    <span class="ann-soon">soon</span>
-    <span class="ann-label" data-i18n="ann.label">ANNOUNCEMENT!</span>
-  </div>
+  <a class="ann-link" href="#event" data-goto="event" aria-label="Announcement" data-i18n-aria="ann.aria">
+    <div class="ann-media">
+      <img class="ann-img" src="assets/img/soon.jpg" alt="">
+      <span class="ann-label" data-i18n="ann.label">ANNOUNCEMENT!</span>
+    </div>
+  </a>
 </aside>
 
 <div class="intro" id="intro" role="dialog" aria-modal="true" aria-labelledby="introTitle" aria-describedby="introText" hidden>
@@ -765,7 +767,7 @@
   </div>
 </div>
 
-<script src="assets/js/app.js?v=31"></script>
+<script src="assets/js/app.js?v=32"></script>
 <script src="assets/js/intro.js?v=7"></script>
 <script src="assets/js/protect.js?v=5"></script>
 <script src="assets/js/video.js?v=6"></script>
