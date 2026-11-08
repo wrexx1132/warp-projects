@@ -1483,6 +1483,23 @@
   var annCard = document.getElementById('annCard');
   var annClose = document.getElementById('annClose');
   if (annCard && annClose) {
+    var annFlat = function () {
+      annCard.style.setProperty('--ann-rx', '0deg');
+      annCard.style.setProperty('--ann-ry', '0deg');
+    };
+    annCard.addEventListener('pointermove', function (e) {
+      if (e.pointerType === 'touch') return;
+      var r = annCard.getBoundingClientRect();
+      if (!r.width || !r.height) return;
+      var px = (e.clientX - r.left) / r.width - 0.5;
+      var py = (e.clientY - r.top) / r.height - 0.5;
+      annCard.style.setProperty('--ann-ry', (px * 11).toFixed(2) + 'deg');
+      annCard.style.setProperty('--ann-rx', (-py * 9).toFixed(2) + 'deg');
+    });
+    annCard.addEventListener('pointerleave', annFlat);
+    annCard.addEventListener('focusout', function (e) {
+      if (!annCard.contains(e.relatedTarget)) annFlat();
+    });
     annClose.addEventListener('click', function () {
       annCard.classList.add('is-closing');
       setTimeout(function () {
