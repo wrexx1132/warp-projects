@@ -1111,10 +1111,26 @@
     return name;
   }
 
+  function dismissAnnouncementCard() {
+    var card = document.getElementById('annCard');
+    if (!card || card.classList.contains('is-closing')) return;
+    /* if the card has not slid in yet, remove it without a flash */
+    if (!card.classList.contains('is-in')) {
+      if (card.parentNode) card.parentNode.removeChild(card);
+      return;
+    }
+    card.classList.add('is-closing');
+    setTimeout(function () {
+      if (card.parentNode) card.parentNode.removeChild(card);
+    }, 620);
+  }
+
   function setView(name, opts) {
     opts = opts || {};
     if (name !== 'project') closeShot();
     name = showView(name);
+    /* the teaser card counts as read once the announcement page is opened */
+    if (name === 'announcement') dismissAnnouncementCard();
     if (!opts.silent) {
       if (opts.push) {
         try { history.pushState(null, '', '#' + name); }
@@ -1573,16 +1589,9 @@
     annCard.addEventListener('focusout', function (e) {
       if (!annCard.contains(e.relatedTarget)) annFlat();
     });
-    var dismissAnn = function () {
-      if (annCard.classList.contains('is-closing')) return;
-      annCard.classList.add('is-closing');
-      setTimeout(function () {
-        if (annCard.parentNode) annCard.parentNode.removeChild(annCard);
-      }, 620);
-    };
-    annClose.addEventListener('click', dismissAnn);
+    annClose.addEventListener('click', dismissAnnouncementCard);
     var annLink = annCard.querySelector('.ann-link');
-    if (annLink) annLink.addEventListener('click', dismissAnn);
+    if (annLink) annLink.addEventListener('click', dismissAnnouncementCard);
 
     /* the card slides in three seconds after the page opens */
     setTimeout(function () {
