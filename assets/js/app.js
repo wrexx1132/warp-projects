@@ -1005,8 +1005,10 @@
     if (!wgrid || !wgridTrack) return;
     var w = window.innerWidth;
     var h = window.innerHeight;
-    var cols = Math.max(9, Math.round(w / 56));
-    var rows = Math.max(7, Math.round(h / 68));
+    /* fewer cells on phones: same look, less paint work */
+    var compact = w <= 620;
+    var cols = Math.max(compact ? 7 : 9, Math.round(w / (compact ? 64 : 56)));
+    var rows = Math.max(compact ? 5 : 7, Math.round(h / (compact ? 78 : 68)));
     var cellW = (w * 1.16) / cols;
     var cellH = (h * 1.16) / rows;
     var size = Math.min(cellW * 1.26, cellH * 1.6);

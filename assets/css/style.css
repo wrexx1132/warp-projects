@@ -2895,7 +2895,6 @@ main { flex: 1 0 auto; display: flex; flex-direction: column; }
               border-color .3s ease,
               box-shadow .35s ease;
   isolation: isolate;
-  will-change: transform;
 }
 .ann-card.is-in {
   opacity: 1;
@@ -2911,10 +2910,12 @@ main { flex: 1 0 auto; display: flex; flex-direction: column; }
               border-color .3s ease,
               box-shadow .35s ease, opacity .5s ease;
 }
+.ann-card.is-in:not(.is-ready) { will-change: transform, opacity; }
 .ann-card:hover,
 .ann-card:focus-within {
   --ann-lift: -6px;
   --ann-scale: 1.02;
+  will-change: transform;
   border-color: color-mix(in srgb, var(--text) 52%, transparent);
   box-shadow:
     0 38px 70px -26px rgba(0, 0, 0, .95),
@@ -2928,6 +2929,7 @@ main { flex: 1 0 auto; display: flex; flex-direction: column; }
   transform: translateX(calc(-100% - 48px)) rotate(-2deg);
   pointer-events: none;
   transition: none;
+  will-change: transform, opacity;
   animation: annSlideOut .55s cubic-bezier(.4, 0, .2, 1) forwards;
 }
 @keyframes annSlideOut {
@@ -3068,8 +3070,15 @@ main { flex: 1 0 auto; display: flex; flex-direction: column; }
   .ann-label { font-size: 11.5px; }
 }
 @media (prefers-reduced-motion: reduce) {
+  /* a gentle, short entrance instead of a large movement */
   .ann-card,
-  .ann-card.is-ready { transition: opacity .25s ease; }
+  .ann-card.is-ready {
+    transition: transform .35s cubic-bezier(.22, 1, .36, 1),
+                opacity .3s ease,
+                border-color .3s ease,
+                box-shadow .35s ease;
+  }
+  .ann-card.is-closing { transition: none; }
 }
 
 /* ============ RESPONSIVE ============ */
@@ -3163,19 +3172,74 @@ main { flex: 1 0 auto; display: flex; flex-direction: column; }
   .event-btn span { display: none; }
 }
 
+/* ---------- mobile performance ---------- */
+@media (max-width: 620px) {
+  /* the sticky header repaints on every scroll frame, so drop its blur
+     and use a near-opaque background instead: same look, no repaint cost */
+  .nav-wrap {
+    background: color-mix(in srgb, var(--bg) 96%, transparent);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+  .ann-card {
+    background:
+      linear-gradient(160deg,
+        color-mix(in srgb, var(--text) 6%, transparent),
+        transparent 55%),
+      color-mix(in srgb, var(--panel) 94%, transparent);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+  /* the image fills the frame, so the heavy backdrop blur is not needed */
+  .announce-media {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    background: color-mix(in srgb, var(--panel) 68%, transparent);
+  }
+  #view-event::before {
+    height: 420px;
+    filter: blur(70px);
+  }
+  .event-led {
+    box-shadow: 0 0 26px -10px #ff6b9d,
+                0 0 60px -26px #6b8cff;
+  }
+  /* no animated blur filter on the hero title */
+  .hero-title { animation-name: titleInSoft; }
+}
+@keyframes titleInSoft {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  /* looping and ambient animations stop, but short UI transitions stay:
+     they give feedback without large movement */
   *, *::before, *::after {
     animation-duration: .001ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: .001ms !important;
   }
   /* the ambient W drift is intentionally kept, just slower */
   .wgrid-track {
     animation-duration: 150s !important;
     animation-iteration-count: infinite !important;
   }
-  /* entrance animations are skipped entirely so content can never stay hidden */
-  .hero-title, .hero-sub, .view, .faq-panel { animation: none !important; }
+  /* entrances remain, but short and without blur or big movement */
+  .hero-title, .hero-sub, .view, .faq-panel {
+    animation-duration: .45s !important;
+    animation-timing-function: cubic-bezier(.22, 1, .36, 1) !important;
+  }
+  .hero-title { animation-name: titleInSoft !important; }
+
+  /* the announcement card keeps its short, purposeful motions */
+  .ann-card.is-closing {
+    animation: annSlideOut .5s cubic-bezier(.4, 0, .2, 1) forwards !important;
+  }
+  .ann-card:hover .ann-label,
+  .ann-card:focus-within .ann-label {
+    animation: annShine 1.5s linear infinite !important;
+  }
+  .ann-nav-dot { animation: none !important; }
   html { scroll-behavior: auto; }
 }
 
