@@ -115,65 +115,32 @@ ul { list-style: none; padding: 0; }
   padding: 10px 0;
 }
 
-/* announcement shortcut (left of the brand) */
-.ann-nav-btn {
+/* announcement tab: tiny translucent marks around the icon (both themes) */
+.tab-ann-icon {
   position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 38px;
-  height: 38px;
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
   flex: none;
-  padding: 0;
-  border: 1px solid color-mix(in srgb, var(--text) 14%, transparent);
-  border-radius: 11px;
-  background: color-mix(in srgb, var(--text) 4%, transparent);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  color: color-mix(in srgb, var(--text) 58%, transparent);
-  transition: color .25s ease, border-color .25s ease,
-              background-color .25s ease, box-shadow .3s ease,
-              transform .25s cubic-bezier(.22,1,.36,1);
 }
-.ann-nav-btn[hidden] { display: none; }
-.ann-nav-btn,
-.ann-close,
-.ann-link { touch-action: manipulation; }
-.ann-nav-btn svg {
-  width: 19px;
-  height: 19px;
-  transition: transform .3s cubic-bezier(.22,1,.36,1);
-}
-.ann-nav-btn:hover,
-.ann-nav-btn:focus-visible {
-  color: var(--text);
-  border-color: color-mix(in srgb, var(--text) 38%, transparent);
-  background: color-mix(in srgb, var(--text) 8%, transparent);
-  transform: translateY(-1px);
-}
-.ann-nav-btn:hover svg { transform: scale(1.06); }
-.ann-nav-btn.is-active {
-  color: var(--text);
-  background: var(--hover);
-  border-color: transparent;
-  box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--text) 58%, transparent),
-              0 0 16px -8px color-mix(in srgb, var(--text) 55%, transparent);
-}
-.ann-nav-dot {
+.tab-ann-icon > svg { width: 17px; height: 17px; }
+.ann-spark {
   position: absolute;
-  top: 6px;
-  right: 6px;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: color-mix(in srgb, var(--text) 78%, transparent);
-  box-shadow: 0 0 8px color-mix(in srgb, var(--text) 55%, transparent);
-  animation: annDotPulse 2.8s ease-in-out infinite;
+  font-size: 7px;
+  font-weight: 900;
+  line-height: 1;
+  color: color-mix(in srgb, var(--text) 44%, transparent);
+  pointer-events: none;
+  user-select: none;
+  transition: color .3s ease, opacity .3s ease;
 }
-.ann-nav-btn.is-active .ann-nav-dot { animation: none; }
-@keyframes annDotPulse {
-  0%, 100% { opacity: .45; transform: scale(.85); }
-  50% { opacity: 1; transform: scale(1); }
+.ann-spark-a { top: -3px; right: -2px; }
+.ann-spark-b { bottom: -2px; right: -5px; font-size: 6px; }
+.ann-spark-c { top: 0; left: -5px; font-size: 6px; }
+.tab-ann:hover .ann-spark,
+.tab-ann.is-active .ann-spark {
+  color: color-mix(in srgb, var(--text) 74%, transparent);
 }
 
 /* brand */
@@ -229,6 +196,7 @@ ul { list-style: none; padding: 0; }
   white-space: nowrap;
   transition: color .22s ease, transform .22s ease;
 }
+.tab[hidden] { display: none; }
 .tab svg {
   width: 17px; height: 17px; flex: none;
   opacity: .8;
@@ -2152,6 +2120,63 @@ main { flex: 1 0 auto; display: flex; flex-direction: column; }
 .video-full:active { transform: scale(.94); }
 .video-full:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
 
+/* desktop fullscreen hint beside the fullscreen button (never on phones) */
+.vp-hint {
+  position: absolute;
+  top: 20px;
+  right: 62px;
+  z-index: 6;
+  display: none;
+  align-items: center;
+  gap: 8px;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(-5px);
+  transition: opacity 1.1s ease,
+              transform .6s cubic-bezier(.22, 1, .36, 1);
+}
+@media (hover: hover) and (pointer: fine) and (min-width: 900px) {
+  .vp-hint { display: flex; }
+}
+.vp-hint-bubble {
+  padding: 7px 11px;
+  border: 1px solid rgba(255, 255, 255, .26);
+  border-radius: 9px;
+  background: rgba(8, 8, 8, .62);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: .01em;
+  line-height: 1.2;
+  white-space: nowrap;
+  box-shadow: 0 10px 26px -14px rgba(0, 0, 0, .9);
+}
+.vp-hint-mark {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  color: rgba(255, 255, 255, .92);
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, .7));
+}
+.vp-hint-mark svg { width: 20px; height: 20px; display: block; }
+.video-frame:hover .vp-hint,
+.video-frame:focus-within .vp-hint,
+.video-frame.is-hint-nudge .vp-hint {
+  opacity: 1;
+  transform: none;
+  transition-duration: .4s, .5s;
+}
+/* slow fade once the user goes fullscreen with the button, F or F11 */
+.video-frame.is-hint-done .vp-hint,
+.video-frame.is-fullscreen .vp-hint {
+  opacity: 0 !important;
+  transform: translateY(-5px);
+  transition-duration: 1.4s, .6s !important;
+}
+
 /* fullscreen presentation */
 .video-frame:fullscreen,
 .video-frame:-webkit-full-screen {
@@ -2804,16 +2829,16 @@ main { flex: 1 0 auto; display: flex; flex-direction: column; }
   padding-top: clamp(40px, 5.6vw, 76px);
   padding-bottom: clamp(48px, 6vw, 84px);
 }
+.announce-head { margin: 0 0 clamp(18px, 2.6vw, 30px); }
+.announce-head .kicker { margin-bottom: clamp(10px, 1.4vw, 16px); }
 .announce-page .announce-title {
-  margin: 0 0 clamp(20px, 3vw, 34px);
-  text-align: center;
-  font-size: clamp(26px, 4.4vw, 52px);
+  margin: 0;
+  font-size: clamp(30px, 5vw, 56px);
   font-weight: 900;
-  line-height: 1.05;
-  letter-spacing: .2em;
-  text-transform: uppercase;
-  color: color-mix(in srgb, var(--text) 32%, transparent);
-  text-shadow: 0 1px 0 color-mix(in srgb, var(--bg) 55%, transparent);
+  line-height: 1.04;
+  letter-spacing: -.03em;
+  color: var(--text);
+  overflow-wrap: anywhere;
   user-select: none;
 }
 .announce-media {
@@ -2843,14 +2868,14 @@ main { flex: 1 0 auto; display: flex; flex-direction: column; }
   box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--text) 10%, transparent);
 }
 .announce-desc {
-  width: min(660px, 100%);
-  margin: clamp(22px, 3vw, 34px) auto 0;
+  width: min(760px, 100%);
+  margin: clamp(22px, 3vw, 34px) 0 0;
   padding-top: clamp(16px, 2.2vw, 24px);
   border-top: 1px solid color-mix(in srgb, var(--text) 12%, transparent);
-  text-align: center;
-  font-size: clamp(14px, 1.35vw, 16px);
+  text-align: left;
+  font-size: clamp(15px, 1.4vw, 17px);
   line-height: 1.75;
-  color: color-mix(in srgb, var(--text) 68%, transparent);
+  color: color-mix(in srgb, var(--text) 72%, transparent);
   white-space: pre-line;
   overflow-wrap: anywhere;
 }
@@ -2860,116 +2885,120 @@ main { flex: 1 0 auto; display: flex; flex-direction: column; }
     width: calc(100% - 28px);
     padding-top: 34px;
   }
-  .announce-page .announce-title { letter-spacing: .14em; }
+  .announce-head { margin-bottom: 16px; }
   .announce-media { padding: 7px; border-radius: 18px; }
   .announce-img { aspect-ratio: 4 / 3; border-radius: 12px; }
 }
 
-/* floating announcement card */
-.ann-card {
+/* entrance announcement (full dialog) */
+html.ann-lock { overflow: hidden; }
+.ann-modal {
   position: fixed;
-  left: clamp(14px, 2.2vw, 26px);
-  bottom: clamp(14px, 2.2vw, 26px);
-  z-index: 95;
-  width: min(380px, calc(100vw - 28px));
-  padding: 8px;
-  border: 1px solid color-mix(in srgb, var(--text) 22%, transparent);
-  border-radius: 13px;
+  inset: 0;
+  z-index: 420;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+}
+.ann-modal[hidden] { display: none; }
+.ann-modal-veil {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, .62);
+  opacity: 0;
+  transition: opacity .35s ease;
+}
+[data-theme="light"] .ann-modal-veil { background: rgba(10, 10, 12, .46); }
+.ann-modal-panel {
+  position: relative;
+  z-index: 1;
+  width: min(560px, 100%);
+  max-height: min(88vh, 760px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 18px 18px 16px;
+  border: 1px solid color-mix(in srgb, var(--text) 16%, transparent);
+  border-radius: 22px;
   background:
     linear-gradient(160deg,
       color-mix(in srgb, var(--text) 6%, transparent),
       transparent 55%),
-    color-mix(in srgb, var(--panel) 64%, transparent);
-  -webkit-backdrop-filter: blur(18px) saturate(120%);
-  backdrop-filter: blur(18px) saturate(120%);
+    color-mix(in srgb, var(--panel) 96%, transparent);
   box-shadow:
-    0 24px 48px -24px rgba(0, 0, 0, .9),
-    0 8px 18px -12px rgba(0, 0, 0, .6),
+    0 40px 90px -40px rgba(0, 0, 0, .95),
+    0 14px 34px -20px rgba(0, 0, 0, .7),
     inset 0 1px 0 color-mix(in srgb, var(--text) 14%, transparent);
   opacity: 0;
-  pointer-events: none;
-  transform: perspective(950px) translateY(26px) scale(.94);
-  transform-origin: center;
-  transition: transform .7s cubic-bezier(.22,1,.36,1),
-              opacity .55s ease,
-              border-color .3s ease,
-              box-shadow .35s ease;
-  isolation: isolate;
+  transform: translateY(18px) scale(.97);
+  transition: opacity .38s ease,
+              transform .48s cubic-bezier(.22, 1, .36, 1);
 }
-.ann-card.is-in {
-  opacity: 1;
-  pointer-events: auto;
-  transform: perspective(950px)
-             translateY(var(--ann-lift, 0px))
-             scale(var(--ann-scale, 1))
-             rotateX(var(--ann-rx, 0deg))
-             rotateY(var(--ann-ry, 0deg));
+.ann-modal.is-open .ann-modal-veil { opacity: 1; }
+.ann-modal.is-open .ann-modal-panel { opacity: 1; transform: none; }
+.ann-modal-x {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 1px solid color-mix(in srgb, var(--text) 18%, transparent);
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--panel) 90%, transparent);
+  color: var(--muted);
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: color .2s ease, border-color .2s ease,
+              background-color .2s ease, transform .2s ease;
 }
-.ann-card.is-ready {
-  transition: transform .2s ease-out,
-              border-color .3s ease,
-              box-shadow .35s ease, opacity .5s ease;
+.ann-modal-x svg { width: 14px; height: 14px; }
+.ann-modal-x:hover,
+.ann-modal-x:focus-visible {
+  color: var(--text);
+  border-color: color-mix(in srgb, var(--text) 45%, transparent);
+  background: var(--hover-strong);
 }
-.ann-card.is-in:not(.is-ready) { will-change: transform, opacity; }
-.ann-card:hover,
-.ann-card:focus-within {
-  --ann-lift: -6px;
-  --ann-scale: 1.02;
-  will-change: transform;
-  border-color: color-mix(in srgb, var(--text) 52%, transparent);
-  box-shadow:
-    0 38px 70px -26px rgba(0, 0, 0, .95),
-    0 16px 30px -12px rgba(0, 0, 0, .6),
-    0 0 0 1px color-mix(in srgb, var(--text) 32%, transparent),
-    0 0 34px -16px color-mix(in srgb, var(--text) 32%, transparent),
-    inset 0 1px 0 color-mix(in srgb, var(--text) 26%, transparent);
+.ann-modal-x:active { transform: scale(.94); }
+.ann-kicker {
+  margin: 0 0 6px;
+  padding-right: 40px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--text) 42%, transparent);
 }
-.ann-card.is-closing {
-  opacity: 0;
-  transform: translateX(calc(-100% - 48px)) rotate(-2deg);
-  pointer-events: none;
-  transition: none;
-  will-change: transform, opacity;
-  animation: annSlideOut .55s cubic-bezier(.4, 0, .2, 1) forwards;
+.ann-modal-title {
+  margin: 0 0 12px;
+  padding-right: 40px;
+  font-size: clamp(24px, 3.4vw, 34px);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -.03em;
+  color: var(--text);
+  overflow-wrap: anywhere;
 }
-@keyframes annSlideOut {
-  from {
-    opacity: 1;
-    transform: perspective(950px)
-               translateY(var(--ann-lift, 0px))
-               scale(var(--ann-scale, 1))
-               rotateX(var(--ann-rx, 0deg))
-               rotateY(var(--ann-ry, 0deg));
-  }
-  to {
-    opacity: 0;
-    transform: translateX(calc(-100% - 48px)) rotate(-2deg);
-  }
-}
-.ann-link {
+.ann-modal-link {
   display: block;
   color: inherit;
   text-decoration: none;
-  border-radius: 8px;
-  cursor: pointer;
+  border-radius: 12px;
   outline-offset: 3px;
 }
-.ann-link:focus-visible {
+.ann-modal-link:focus-visible {
   outline: 2px solid color-mix(in srgb, var(--text) 55%, transparent);
 }
-.ann-media {
+.ann-modal-media {
   position: relative;
   aspect-ratio: 2.25 / 1;
-  border-radius: 8px;
+  border-radius: 12px;
   overflow: hidden;
-  display: grid;
-  place-items: center;
-  background:
-    linear-gradient(180deg,
-      color-mix(in srgb, var(--text) 6%, transparent),
-      color-mix(in srgb, var(--text) 3%, transparent)),
-    color-mix(in srgb, var(--bg-soft) 52%, transparent);
-  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--text) 9%, transparent),
+  background: color-mix(in srgb, var(--bg-soft) 60%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--text) 10%, transparent),
               inset 0 -20px 34px -26px rgba(0, 0, 0, .6);
 }
 .ann-img {
@@ -2980,105 +3009,39 @@ main { flex: 1 0 auto; display: flex; flex-direction: column; }
   object-fit: cover;
   display: block;
 }
-.ann-label {
-  position: absolute;
-  left: 10px;
-  bottom: 8px;
-  font-size: 13px;
-  font-weight: 900;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: color-mix(in srgb, var(--text) 52%, transparent);
-  pointer-events: none;
-}
-.ann-card:hover .ann-label,
-.ann-card:focus-within .ann-label {
-  background-image: linear-gradient(100deg,
-    currentColor 0%,
-    currentColor 35%,
-    #ffffff 48%,
-    #ffffff 52%,
-    currentColor 65%,
-    currentColor 100%);
-  background-size: 220% 100%;
-  background-position: 140% 0;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: annShine 1.5s linear infinite;
-}
-@keyframes annShine {
-  from { background-position: 140% 0; }
-  to { background-position: -60% 0; }
-}
-.ann-close {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  z-index: 3;
-  display: grid;
-  place-items: center;
-  width: 24px;
-  height: 24px;
-  padding: 0;
-  border: 1px solid color-mix(in srgb, var(--text) 22%, transparent);
-  border-radius: 50%;
-  background: color-mix(in srgb, var(--panel) 92%, transparent);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  color: var(--muted);
-  opacity: 0;
-  transform: translateY(-4px) scale(.86);
-  pointer-events: none;
-  box-shadow: 0 6px 14px -8px rgba(0, 0, 0, .6);
-  transition: opacity .2s ease, transform .28s cubic-bezier(.22,1,.36,1),
-              background-color .2s ease, border-color .2s ease, color .2s ease;
-}
-.ann-close svg { width: 12px; height: 12px; }
-.ann-card:hover .ann-close,
-.ann-card:focus-within .ann-close {
-  opacity: 1;
-  transform: none;
-  pointer-events: auto;
-}
-.ann-close:hover,
-.ann-close:focus-visible {
-  background: var(--hover-strong);
-  border-color: var(--text);
-  color: var(--text);
-}
-@media (hover: none) {
-  .ann-close {
-    opacity: 1;
-    transform: none;
-    pointer-events: auto;
-    width: 30px;
-    height: 30px;
-    top: 6px;
-    right: 6px;
-  }
-  .ann-close svg { width: 14px; height: 14px; }
+.ann-modal-desc {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid color-mix(in srgb, var(--text) 12%, transparent);
+  max-height: min(26vh, 220px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: color-mix(in srgb, var(--text) 72%, transparent);
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--text) 28%, transparent) transparent;
 }
 @media (max-width: 620px) {
-  .ann-card {
-    left: 12px;
-    bottom: 12px;
-    width: min(320px, calc(100vw - 24px));
-    border-radius: 12px;
+  .ann-modal { padding: 14px; align-items: end; }
+  .ann-modal-panel {
+    width: 100%;
+    max-height: 86vh;
+    padding: 16px 14px 14px;
+    border-radius: 20px;
   }
-  .ann-media { aspect-ratio: 2.05 / 1; border-radius: 8px; }
-  .ann-label { font-size: 11.5px; }
+  .ann-modal-x { width: 36px; height: 36px; top: 10px; right: 10px; }
+  .ann-modal-media { aspect-ratio: 16 / 10; border-radius: 10px; }
+  .ann-modal-desc { max-height: 30vh; }
 }
 @media (prefers-reduced-motion: reduce) {
-  /* a gentle, short entrance instead of a large movement */
-  .ann-card,
-  .ann-card.is-ready {
-    transition: transform .35s cubic-bezier(.22, 1, .36, 1),
-                opacity .3s ease,
-                border-color .3s ease,
-                box-shadow .35s ease;
+  .ann-modal-veil { transition: opacity .25s ease; }
+  .ann-modal-panel {
+    transition: opacity .25s ease,
+                transform .3s cubic-bezier(.22, 1, .36, 1);
   }
-  .ann-card.is-closing { transition: none; }
 }
 
 /* ============ RESPONSIVE ============ */
@@ -3181,12 +3144,12 @@ main { flex: 1 0 auto; display: flex; flex-direction: column; }
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
   }
-  .ann-card {
+  .ann-modal-panel {
     background:
       linear-gradient(160deg,
         color-mix(in srgb, var(--text) 6%, transparent),
         transparent 55%),
-      color-mix(in srgb, var(--panel) 94%, transparent);
+      color-mix(in srgb, var(--panel) 96%, transparent);
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
   }
@@ -3231,15 +3194,6 @@ main { flex: 1 0 auto; display: flex; flex-direction: column; }
   }
   .hero-title { animation-name: titleInSoft !important; }
 
-  /* the announcement card keeps its short, purposeful motions */
-  .ann-card.is-closing {
-    animation: annSlideOut .5s cubic-bezier(.4, 0, .2, 1) forwards !important;
-  }
-  .ann-card:hover .ann-label,
-  .ann-card:focus-within .ann-label {
-    animation: annShine 1.5s linear infinite !important;
-  }
-  .ann-nav-dot { animation: none !important; }
   html { scroll-behavior: auto; }
 }
 

@@ -46,7 +46,6 @@
       'event.join': 'Join',
       'event.none': 'no event yet',
       'ann.aria': 'Announcement',
-      'ann.label': 'ANNOUNCEMENT!',
       'ann.close': 'Close announcement',
       'help.title': 'Help',
       'help.sub': 'Small team, fast answers. Discord is the quickest way to reach us.',
@@ -122,6 +121,7 @@
       'video.kicker': 'Showcase',
       'video.title': 'Warp Projects in motion',
       'video.sub': 'A short video that explains what Warp Projects is and what you can do here.',
+      'video.fsHint': 'Press F or F11 for fullscreen',
       'video.soon': 'Video coming soon',
       'faq.kicker': 'FAQ',
       'faq.title': 'Frequently asked questions',
@@ -152,7 +152,6 @@
       'event.join': 'Katıl',
       'event.none': 'etkinlik yok',
       'ann.aria': 'Duyuru',
-      'ann.label': 'DUYURU!',
       'ann.close': 'Duyuruyu kapat',
       'help.title': 'Yardım',
       'help.sub': 'Küçük bir ekibiz, en hızlı yanıt Discord’da.',
@@ -228,6 +227,7 @@
       'video.kicker': 'Vitrin',
       'video.title': 'Warp Projects hareket halinde',
       'video.sub': 'Warp Projects’in ne olduğunu ve burada neler yapabileceğini anlatan kısa bir video.',
+      'video.fsHint': 'Tam ekran için F ya da F11’e bas',
       'video.soon': 'Video yakında',
       'faq.kicker': 'S.S.S.',
       'faq.title': 'Sıkça sorulan sorular',
@@ -258,7 +258,6 @@
       'event.join': 'Beitreten',
       'event.none': 'noch kein Event',
       'ann.aria': 'Ankündigung',
-      'ann.label': 'ANKÜNDIGUNG!',
       'ann.close': 'Ankündigung schließen',
       'help.title': 'Hilfe',
       'help.sub': 'Kleines Team, schnelle Antworten. Discord ist der schnellste Weg zu uns.',
@@ -334,6 +333,7 @@
       'video.kicker': 'Einblick',
       'video.title': 'Warp Projects in Bewegung',
       'video.sub': 'Ein kurzes Video, das erklärt, was Warp Projects ist und was du hier machen kannst.',
+      'video.fsHint': 'Für Vollbild F oder F11 drücken',
       'video.soon': 'Video folgt in Kürze',
       'faq.kicker': 'FAQ',
       'faq.title': 'Häufige Fragen',
@@ -364,7 +364,6 @@
       'event.join': 'Rejoindre',
       'event.none': 'aucun événement',
       'ann.aria': 'Annonce',
-      'ann.label': 'ANNONCE !',
       'ann.close': 'Fermer l’annonce',
       'help.title': 'Aide',
       'help.sub': 'Petite équipe, réponses rapides. Discord est le moyen le plus simple de nous joindre.',
@@ -440,6 +439,7 @@
       'video.kicker': 'Aperçu',
       'video.title': 'Warp Projects en mouvement',
       'video.sub': 'Une courte vidéo qui explique ce qu’est Warp Projects et ce que vous pouvez y faire.',
+      'video.fsHint': 'Appuyez sur F ou F11 pour le plein écran',
       'video.soon': 'Vidéo bientôt disponible',
       'faq.kicker': 'FAQ',
       'faq.title': 'Questions fréquentes',
@@ -470,7 +470,6 @@
       'event.join': 'Unirse',
       'event.none': 'sin evento',
       'ann.aria': 'Anuncio',
-      'ann.label': '¡ANUNCIO!',
       'ann.close': 'Cerrar anuncio',
       'help.title': 'Ayuda',
       'help.sub': 'Equipo pequeño, respuestas rápidas. Discord es la forma más rápida de contactarnos.',
@@ -546,6 +545,7 @@
       'video.kicker': 'Muestra',
       'video.title': 'Warp Projects en movimiento',
       'video.sub': 'Un vídeo corto que explica qué es Warp Projects y qué puedes hacer aquí.',
+      'video.fsHint': 'Pulsa F o F11 para pantalla completa',
       'video.soon': 'Vídeo muy pronto',
       'faq.kicker': 'FAQ',
       'faq.title': 'Preguntas frecuentes',
@@ -576,7 +576,6 @@
       'event.join': 'Entrar',
       'event.none': 'sem evento',
       'ann.aria': 'Anúncio',
-      'ann.label': 'ANÚNCIO!',
       'ann.close': 'Fechar anúncio',
       'help.title': 'Ajuda',
       'help.sub': 'Equipe pequena, respostas rápidas. O Discord é o caminho mais rápido para falar com a gente.',
@@ -652,6 +651,7 @@
       'video.kicker': 'Vitrine',
       'video.title': 'Warp Projects em movimento',
       'video.sub': 'Um vídeo curto que explica o que é o Warp Projects e o que você pode fazer aqui.',
+      'video.fsHint': 'Pressione F ou F11 para tela cheia',
       'video.soon': 'Vídeo em breve',
       'faq.kicker': 'FAQ',
       'faq.title': 'Perguntas frequentes',
@@ -682,7 +682,6 @@
       'event.join': 'Присоединиться',
       'event.none': 'событий пока нет',
       'ann.aria': 'Объявление',
-      'ann.label': 'ОБЪЯВЛЕНИЕ!',
       'ann.close': 'Закрыть объявление',
       'help.title': 'Помощь',
       'help.sub': 'Маленькая команда, быстрые ответы. Discord — самый быстрый способ связаться с нами.',
@@ -758,6 +757,7 @@
       'video.kicker': 'Витрина',
       'video.title': 'Warp Projects в движении',
       'video.sub': 'Короткое видео о том, что такое Warp Projects и что здесь можно сделать.',
+      'video.fsHint': 'Нажмите F или F11 для полного экрана',
       'video.soon': 'Видео скоро появится',
       'faq.kicker': 'FAQ',
       'faq.title': 'Частые вопросы',
@@ -788,7 +788,6 @@
       'event.join': '参加',
       'event.none': 'イベントはまだありません',
       'ann.aria': 'お知らせ',
-      'ann.label': 'お知らせ！',
       'ann.close': 'お知らせを閉じる',
       'help.title': 'ヘルプ',
       'help.sub': '小さなチームなので、Discord が一番早く連絡できます。',
@@ -864,6 +863,7 @@
       'video.kicker': 'ショーケース',
       'video.title': 'Warp Projects の動く姿',
       'video.sub': 'Warp Projects とは何か、ここで何ができるかを紹介する短い動画です。',
+      'video.fsHint': 'F または F11 で全画面表示',
       'video.soon': '動画は近日公開',
       'faq.kicker': 'FAQ',
       'faq.title': 'よくある質問',
@@ -1113,26 +1113,12 @@
     return name;
   }
 
-  function dismissAnnouncementCard() {
-    var card = document.getElementById('annCard');
-    if (!card || card.classList.contains('is-closing')) return;
-    /* if the card has not slid in yet, remove it without a flash */
-    if (!card.classList.contains('is-in')) {
-      if (card.parentNode) card.parentNode.removeChild(card);
-      return;
-    }
-    card.classList.add('is-closing');
-    setTimeout(function () {
-      if (card.parentNode) card.parentNode.removeChild(card);
-    }, 620);
-  }
-
   function setView(name, opts) {
     opts = opts || {};
     if (name !== 'project') closeShot();
     name = showView(name);
-    /* the teaser card counts as read once the announcement page is opened */
-    if (name === 'announcement') dismissAnnouncementCard();
+    /* opening the announcement page counts as read too */
+    if (name === 'announcement') closeAnnouncementModal();
     if (!opts.silent) {
       if (opts.push) {
         try { history.pushState(null, '', '#' + name); }
@@ -1512,42 +1498,118 @@
     active: true,
     image: 'assets/img/soon.jpg',
     alt: '',
-    description: '',
-    descriptionByLang: {}
+    title: 'soon!',
+    description: 'not found!',
+    descriptionByLang: {},
+    titleByLang: {},
+    version: ''
   };
+  var ANN_SEEN_KEY = 'warp.ann.seen';
 
-  function annDescription() {
-    var byLang = ANN.descriptionByLang || {};
-    if (Object.prototype.hasOwnProperty.call(byLang, currentLang) && byLang[currentLang]) {
-      return byLang[currentLang];
+  function annPick(byLang, base) {
+    var map = byLang || {};
+    if (Object.prototype.hasOwnProperty.call(map, currentLang) && map[currentLang]) {
+      return map[currentLang];
     }
-    return ANN.description || '';
+    return base || '';
   }
 
+  function annDescription() {
+    return annPick(ANN.descriptionByLang, ANN.description) || 'not found!';
+  }
+
+  function annTitle() {
+    return annPick(ANN.titleByLang, ANN.title) || 'soon!';
+  }
+
+  /* A new version, image, title or base description counts as a new announcement,
+     so returning visitors see it again only after fresh content is published.
+     The language-neutral base text keeps the signature stable across languages. */
+  function annSignature() {
+    return [ANN.version || '', ANN.image || '', ANN.title || '', ANN.description || ''].join('|');
+  }
+
+  function annSeen() {
+    try { return localStorage.getItem(ANN_SEEN_KEY) === annSignature(); } catch (e) { return true; }
+  }
+
+  function markAnnSeen() {
+    try { localStorage.setItem(ANN_SEEN_KEY, annSignature()); } catch (e) { /* ignore */ }
+  }
+
+  var annModal = document.getElementById('annModal');
+  var annModalImg = document.getElementById('annModalImg');
+  var annModalTitle = document.getElementById('annModalTitle');
+  var annModalDesc = document.getElementById('annModalDesc');
+  var annModalClose = document.getElementById('annModalClose');
+  var annModalOpen = false;
+  var annLastFocus = null;
+
   function renderAnnouncement() {
-    var img = document.getElementById('annImage');
-    var desc = document.getElementById('annDesc');
-    var card = document.getElementById('annCard');
-    var cardImg = card ? card.querySelector('.ann-img') : null;
+    var src = ANN.image || 'assets/img/soon.jpg';
+    var titleText = annTitle();
+    var text = annDescription().trim() || 'not found!';
 
-    if (img) {
-      img.src = ANN.image || 'assets/img/soon.jpg';
-      if (ANN.alt) img.alt = ANN.alt;
-      else img.removeAttribute('alt');
-    }
-    if (cardImg) cardImg.src = ANN.image || 'assets/img/soon.jpg';
+    ['annImage', 'annModalImg'].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      el.src = src;
+      if (ANN.alt) el.alt = ANN.alt;
+      else el.removeAttribute('alt');
+    });
 
-    if (desc) {
-      var text = annDescription().trim();
-      desc.textContent = text;
-      desc.hidden = !text;
-    }
+    ['annTitle', 'annModalTitle'].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) el.textContent = titleText;
+    });
+
+    ['annDesc', 'annModalDesc'].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) el.textContent = text;
+    });
 
     if (annNavBtn) annNavBtn.hidden = !ANN.active;
+    if (!ANN.active) closeAnnouncementModal(true);
+  }
 
-    if (card && !ANN.active) {
-      card.classList.add('is-off');
-      if (card.parentNode) card.parentNode.removeChild(card);
+  function openAnnouncementModal() {
+    if (!annModal || annModalOpen || !ANN.active) return;
+    if (annSeen()) return;
+    /* the beta intro sits above everything: wait until it is dismissed */
+    var intro = document.getElementById('intro');
+    if (intro && !intro.hidden && intro.classList.contains('is-open')) {
+      setTimeout(openAnnouncementModal, 600);
+      return;
+    }
+    annModalOpen = true;
+    annLastFocus = document.activeElement;
+    annModal.hidden = false;
+    document.documentElement.classList.add('ann-lock');
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        annModal.classList.add('is-open');
+      });
+    });
+    if (annModalClose) {
+      try { annModalClose.focus({ preventScroll: true }); }
+      catch (e) { annModalClose.focus(); }
+    }
+  }
+
+  function closeAnnouncementModal(instant) {
+    if (!annModal || !annModalOpen) return;
+    annModalOpen = false;
+    markAnnSeen();
+    annModal.classList.remove('is-open');
+    document.documentElement.classList.remove('ann-lock');
+    if (instant) {
+      annModal.hidden = true;
+    } else {
+      setTimeout(function () { annModal.hidden = true; }, 340);
+    }
+    if (annLastFocus && typeof annLastFocus.focus === 'function') {
+      try { annLastFocus.focus({ preventScroll: true }); }
+      catch (e) { /* ignore */ }
     }
   }
 
@@ -1563,46 +1625,59 @@
         ANN.active = data.active !== false;
         if (data.image) ANN.image = data.image;
         ANN.alt = data.alt || '';
-        ANN.description = data.description || '';
+        ANN.title = data.title || 'soon!';
+        ANN.titleByLang = data.titleByLang || {};
+        ANN.description = data.description || 'not found!';
         ANN.descriptionByLang = data.descriptionByLang || {};
+        ANN.version = data.version || '';
       })
       .catch(function () { /* keep the defaults */ })
-      .then(renderAnnouncement);
+      .then(function () {
+        renderAnnouncement();
+        if (!annModalOpen) {
+          setTimeout(function () { openAnnouncementModal(); }, 900);
+        }
+      });
   }
 
-  /* ---------- floating announcement ---------- */
-  var annCard = document.getElementById('annCard');
-  var annClose = document.getElementById('annClose');
-  if (annCard && annClose) {
-    var annFlat = function () {
-      annCard.style.setProperty('--ann-rx', '0deg');
-      annCard.style.setProperty('--ann-ry', '0deg');
-    };
-    annCard.addEventListener('pointermove', function (e) {
-      if (e.pointerType === 'touch') return;
-      var r = annCard.getBoundingClientRect();
-      if (!r.width || !r.height) return;
-      var px = (e.clientX - r.left) / r.width - 0.5;
-      var py = (e.clientY - r.top) / r.height - 0.5;
-      annCard.style.setProperty('--ann-ry', (px * 11).toFixed(2) + 'deg');
-      annCard.style.setProperty('--ann-rx', (-py * 9).toFixed(2) + 'deg');
+  /* ---------- announcement modal ---------- */
+  if (annModal) {
+    annModal.addEventListener('click', function (e) {
+      var t = e.target;
+      if (!t || !t.closest) return;
+      if (t.closest('[data-ann-dismiss]')) { closeAnnouncementModal(); return; }
+      if (t.closest('.ann-modal-link')) closeAnnouncementModal();
     });
-    annCard.addEventListener('pointerleave', annFlat);
-    annCard.addEventListener('focusout', function (e) {
-      if (!annCard.contains(e.relatedTarget)) annFlat();
-    });
-    annClose.addEventListener('click', dismissAnnouncementCard);
-    var annLink = annCard.querySelector('.ann-link');
-    if (annLink) annLink.addEventListener('click', dismissAnnouncementCard);
 
-    /* the card slides in three seconds after the page opens */
-    setTimeout(function () {
-      if (!ANN.active) return;
-      annCard.classList.add('is-in');
-      setTimeout(function () {
-        annCard.classList.add('is-ready');
-      }, 850);
-    }, 3000);
+    if (annModalClose) {
+      annModalClose.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        closeAnnouncementModal();
+      });
+    }
+
+    document.addEventListener('keydown', function (e) {
+      if (!annModalOpen) return;
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        closeAnnouncementModal();
+        return;
+      }
+      if (e.key !== 'Tab') return;
+      var link = annModal.querySelector('.ann-modal-link');
+      var items = [annModalClose, link].filter(Boolean);
+      if (!items.length) return;
+      var first = items[0];
+      var last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    });
   }
 
   /* ---------- video frames: light follows the pointer ---------- */

@@ -15,22 +15,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <script src="assets/js/theme-init.js?v=5"></script>
-<link rel="stylesheet" href="assets/css/style.css?v=33">
+<link rel="stylesheet" href="assets/css/style.css?v=34">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
 <header class="nav-wrap">
   <div class="nav">
-    <button class="ann-nav-btn" type="button" id="annNavBtn" data-goto="announcement" aria-label="Announcement" data-i18n-aria="ann.aria">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M3.4 10.4v3.2a1.9 1.9 0 0 0 1.9 1.9h2.1l7.9 3.6V4.9l-7.9 3.6H5.3a1.9 1.9 0 0 0-1.9 1.9Z"/>
-        <path d="M18.4 8.6a5 5 0 0 1 0 6.8"/>
-        <path d="M7.6 15.5v3.1a1.5 1.5 0 0 0 1.5 1.5h.7a1.2 1.2 0 0 0 1.2-1.2v-2.4"/>
-      </svg>
-      <span class="ann-nav-dot" aria-hidden="true"></span>
-    </button>
-
     <a class="brand" href="#home" data-goto="home" aria-label="Warp Projects — Main Menu">
       <span class="brand-mark" aria-hidden="true">
         <svg viewBox="0 0 40 40" width="34" height="34">
@@ -89,6 +80,19 @@
           <path d="M12.2 17.1h.01"/>
         </svg>
         <span data-i18n="nav.help">Help</span>
+      </button>
+      <button class="tab tab-ann" type="button" id="annNavBtn" data-view="announcement">
+        <span class="tab-ann-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3.4 10.4v3.2a1.9 1.9 0 0 0 1.9 1.9h2.1l7.9 3.6V4.9l-7.9 3.6H5.3a1.9 1.9 0 0 0-1.9 1.9Z"/>
+            <path d="M18.4 8.6a5 5 0 0 1 0 6.8"/>
+            <path d="M7.6 15.5v3.1a1.5 1.5 0 0 0 1.5 1.5h.7a1.2 1.2 0 0 0 1.2-1.2v-2.4"/>
+          </svg>
+          <span class="ann-spark ann-spark-a">!</span>
+          <span class="ann-spark ann-spark-b">!</span>
+          <span class="ann-spark ann-spark-c">!</span>
+        </span>
+        <span data-i18n="ann.aria">Announcement</span>
       </button>
     </nav>
 
@@ -225,6 +229,17 @@
             <span class="led led-tr" aria-hidden="true"></span>
             <span class="led led-bl" aria-hidden="true"></span>
             <span class="led led-br" aria-hidden="true"></span>
+            <div class="vp-hint" aria-hidden="true">
+              <span class="vp-hint-bubble" data-i18n="video.fsHint">Press F or F11 for fullscreen</span>
+              <span class="vp-hint-mark">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9 4H5.6A1.6 1.6 0 0 0 4 5.6V9"/>
+                  <path d="M15 4h3.4A1.6 1.6 0 0 1 20 5.6V9"/>
+                  <path d="M9 20H5.6A1.6 1.6 0 0 1 4 18.4V15"/>
+                  <path d="M15 20h3.4a1.6 1.6 0 0 0 1.6-1.6V15"/>
+                </svg>
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -320,11 +335,14 @@
 
   <section class="view" id="view-announcement" aria-label="Announcement">
     <div class="page announce-page">
-      <h1 class="announce-title" data-i18n="ann.label">ANNOUNCEMENT!</h1>
+      <header class="announce-head">
+        <p class="kicker" data-i18n="ann.aria">Announcement</p>
+        <h1 class="announce-title" id="annTitle">soon!</h1>
+      </header>
       <figure class="announce-media">
         <img class="announce-img" id="annImage" src="assets/img/soon.jpg" alt="" decoding="async">
       </figure>
-      <div class="announce-desc" id="annDesc" hidden></div>
+      <div class="announce-desc" id="annDesc">not found!</div>
     </div>
   </section>
 
@@ -746,19 +764,24 @@
 
 <div class="toast" id="toast" role="status" aria-live="polite"><span id="toastText"></span></div>
 
-<aside class="ann-card" id="annCard" aria-label="Announcement" data-i18n-aria="ann.aria">
-  <button class="ann-close" type="button" id="annClose" aria-label="Close announcement" data-i18n-aria="ann.close">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
-      <path d="m6 6 12 12M18 6 6 18"/>
-    </svg>
-  </button>
-  <a class="ann-link" href="#announcement" data-goto="announcement" aria-label="Announcement" data-i18n-aria="ann.aria">
-    <div class="ann-media">
-      <img class="ann-img" src="assets/img/soon.jpg" alt="" decoding="async">
-      <span class="ann-label" data-i18n="ann.label">ANNOUNCEMENT!</span>
-    </div>
-  </a>
-</aside>
+<div class="ann-modal" id="annModal" role="dialog" aria-modal="true" aria-labelledby="annModalTitle" hidden>
+  <div class="ann-modal-veil" data-ann-dismiss></div>
+  <div class="ann-modal-panel" role="document">
+    <button class="ann-modal-x" type="button" id="annModalClose" aria-label="Close announcement" data-i18n-aria="ann.close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+        <path d="m6 6 12 12M18 6 6 18"/>
+      </svg>
+    </button>
+    <p class="ann-kicker" data-i18n="ann.aria">Announcement</p>
+    <h2 class="ann-modal-title" id="annModalTitle">soon!</h2>
+    <a class="ann-modal-link" href="#announcement" data-goto="announcement" aria-label="Announcement" data-i18n-aria="ann.aria">
+      <div class="ann-modal-media">
+        <img class="ann-img" id="annModalImg" src="assets/img/soon.jpg" alt="" decoding="async">
+      </div>
+    </a>
+    <div class="ann-modal-desc" id="annModalDesc">not found!</div>
+  </div>
+</div>
 
 <div class="intro" id="intro" role="dialog" aria-modal="true" aria-labelledby="introTitle" aria-describedby="introText" hidden>
   <div class="intro-card">
@@ -786,10 +809,10 @@
   </div>
 </div>
 
-<script src="assets/js/app.js?v=36"></script>
+<script src="assets/js/app.js?v=37"></script>
 <script src="assets/js/intro.js?v=7"></script>
 <script src="assets/js/protect.js?v=5"></script>
-<script src="assets/js/video.js?v=6"></script>
+<script src="assets/js/video.js?v=7"></script>
 <script src="assets/js/qr-code.min.js?v=5"></script>
 <script src="assets/js/qr.js?v=5"></script>
 </body>

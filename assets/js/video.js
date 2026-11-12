@@ -397,6 +397,7 @@
       fullBtn.addEventListener('click', function (e) {
         e.preventDefault();
         e.stopPropagation();
+        markHintDone();
         closeMenu();
         var doc = document;
         if (doc.fullscreenElement === frame || doc.webkitFullscreenElement === frame) {
@@ -474,12 +475,59 @@
 
   frames.forEach(init);
 
+  /* The desktop hint mentions F / F11: hide it for good once either is used. */
+  function markHintDone() {
+    frames.forEach(function (frame) { frame.classList.add('is-hint-done'); });
+  }
+
+  /* Desktop only: nudge the hint in once the video is actually on screen. */
+  var hintMq = window.matchMedia('(hover: hover) and (pointer: fine) and (min-width: 900px)');
+  if ('IntersectionObserver' in window && frames.length) {
+    var nudgeTimer = 0;
+    var hintIo = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        var frame = entry.target;
+        if (!entry.isIntersecting || !hintMq.matches) return;
+        hintIo.unobserve(frame);
+        if (frame.classList.contains('is-hint-done')) return;
+        frame.classList.add('is-hint-nudge');
+        clearTimeout(nudgeTimer);
+        nudgeTimer = setTimeout(function () {
+          frame.classList.remove('is-hint-nudge');
+        }, 5200);
+      });
+    }, { threshold: 0.45 });
+    frames.forEach(function (frame) { hintIo.observe(frame); });
+  }
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'F11') { markHintDone(); return; }
+    if (e.key !== 'f' && e.key !== 'F') return;
+    if (e.ctrlKey || e.metaKey || e.altKey || e.shiftKey) return;
+    var t = e.target;
+    if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
+    var frame = frames[0];
+    if (!frame || !frame.offsetParent) return;
+    markHintDone();
+    e.preventDefault();
+    var doc = document;
+    if (doc.fullscreenElement === frame || doc.webkitFullscreenElement === frame) {
+      (doc.exitFullscreen || doc.webkitExitFullscreen).call(doc);
+    } else if (frame.requestFullscreen) {
+      var req = frame.requestFullscreen();
+      if (req && typeof req.catch === 'function') req.catch(function () {});
+    } else if (frame.webkitRequestFullscreen) {
+      frame.webkitRequestFullscreen();
+    }
+  });
+
   /* Keep the fullscreen icon and labels in sync (Esc included). */
   function syncFullscreen() {
     var current = document.fullscreenElement || document.webkitFullscreenElement || null;
     frames.forEach(function (frame) {
       var on = current === frame;
       frame.classList.toggle('is-fullscreen', on);
+      if (on) frame.classList.add('is-hint-done');
       var btn = frame.querySelector('.video-full');
       if (btn) {
         btn.setAttribute('aria-label', on ? 'Exit fullscreen' : 'Fullscreen');

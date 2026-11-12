@@ -1,7 +1,18 @@
 {
   "active": true,
+  "version": "1",
   "image": "assets/img/soon.jpg",
   "alt": "",
-  "description": "",
-  "descriptionByLang": {}
+  "title": "soon!",
+  "description": "not found!",
+  "descriptionByLang": {
+    "en": "not found!",
+    "tr": "bulunamadı!",
+    "de": "nicht gefunden!",
+    "fr": "introuvable !",
+    "es": "¡no encontrado!",
+    "pt": "não encontrado!",
+    "ru": "не найдено!",
+    "ja": "見つかりません！"
+  }
 }
