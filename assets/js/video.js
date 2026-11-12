@@ -399,17 +399,7 @@
         e.stopPropagation();
         markHintDone();
         closeMenu();
-        var doc = document;
-        if (doc.fullscreenElement === frame || doc.webkitFullscreenElement === frame) {
-          (doc.exitFullscreen || doc.webkitExitFullscreen).call(doc);
-        } else if (frame.requestFullscreen) {
-          var req = frame.requestFullscreen();
-          if (req && typeof req.catch === 'function') req.catch(function () {});
-        } else if (frame.webkitRequestFullscreen) {
-          frame.webkitRequestFullscreen();
-        } else if (video.webkitEnterFullscreen) {
-          video.webkitEnterFullscreen();
-        }
+        toggleFrameFullscreen(frame);
       });
     }
 
@@ -480,6 +470,33 @@
     frames.forEach(function (frame) { frame.classList.add('is-hint-done'); });
   }
 
+  function isFrameFullscreen(frame) {
+    return document.fullscreenElement === frame || document.webkitFullscreenElement === frame;
+  }
+
+  /* One toggle for the button, F and F11: the same key both enters and exits. */
+  function toggleFrameFullscreen(frame) {
+    var doc = document;
+    if (isFrameFullscreen(frame)) {
+      var exit = doc.exitFullscreen || doc.webkitExitFullscreen;
+      if (!exit) return;
+      try {
+        var out = exit.call(doc);
+        if (out && typeof out.catch === 'function') out.catch(function () {});
+      } catch (err) { /* ignore */ }
+      return;
+    }
+    if (frame.requestFullscreen) {
+      var req = frame.requestFullscreen();
+      if (req && typeof req.catch === 'function') req.catch(function () {});
+    } else if (frame.webkitRequestFullscreen) {
+      frame.webkitRequestFullscreen();
+    } else {
+      var video = frame.querySelector('video');
+      if (video && video.webkitEnterFullscreen) video.webkitEnterFullscreen();
+    }
+  }
+
   /* Desktop only: nudge the hint in once the video is actually on screen. */
   var hintMq = window.matchMedia('(hover: hover) and (pointer: fine) and (min-width: 900px)');
   if ('IntersectionObserver' in window && frames.length) {
@@ -501,24 +518,26 @@
   }
 
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'F11') { markHintDone(); return; }
+    var frame = frames[0];
+    if (!frame) return;
+    if (e.key === 'F11') {
+      markHintDone();
+      /* if the video itself is fullscreen, F11 should leave it again */
+      if (isFrameFullscreen(frame)) {
+        e.preventDefault();
+        toggleFrameFullscreen(frame);
+      }
+      return;
+    }
     if (e.key !== 'f' && e.key !== 'F') return;
     if (e.ctrlKey || e.metaKey || e.altKey || e.shiftKey) return;
     var t = e.target;
     if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
-    var frame = frames[0];
-    if (!frame || !frame.offsetParent) return;
+    /* a frame hidden on another view has no boxes; fullscreen still has them */
+    if (!isFrameFullscreen(frame) && !frame.getClientRects().length) return;
     markHintDone();
     e.preventDefault();
-    var doc = document;
-    if (doc.fullscreenElement === frame || doc.webkitFullscreenElement === frame) {
-      (doc.exitFullscreen || doc.webkitExitFullscreen).call(doc);
-    } else if (frame.requestFullscreen) {
-      var req = frame.requestFullscreen();
-      if (req && typeof req.catch === 'function') req.catch(function () {});
-    } else if (frame.webkitRequestFullscreen) {
-      frame.webkitRequestFullscreen();
-    }
+    toggleFrameFullscreen(frame);
   });
 
   /* Keep the fullscreen icon and labels in sync (Esc included). */
