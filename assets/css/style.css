@@ -2417,13 +2417,6 @@ main { flex: 1 0 auto; display: flex; flex-direction: column; }
   backdrop-filter: blur(20px) saturate(118%);
   box-shadow: var(--card-shadow);
 }
-.lic-head-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px;
-  flex-wrap: wrap;
-}
 .lic-kicker {
   font-size: 10.5px;
   font-weight: 800;
@@ -2431,27 +2424,17 @@ main { flex: 1 0 auto; display: flex; flex-direction: column; }
   text-transform: uppercase;
   color: var(--faint);
 }
-.lic-state {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  height: 27px;
-  padding: 0 11px;
-  border: 1px solid var(--line-soft);
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--text) 5%, transparent);
-  font-size: 11.5px;
-  font-weight: 600;
-  color: var(--muted);
-}
-.lic-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: color-mix(in srgb, var(--text) 62%, transparent);
+.lic-rule {
+  display: block;
+  width: 62px;
+  height: 1px;
+  margin-top: 11px;
+  background: linear-gradient(90deg,
+    color-mix(in srgb, var(--text) 42%, transparent),
+    color-mix(in srgb, var(--text) 12%, transparent));
 }
 .lic-title {
-  margin-top: clamp(14px, 2vw, 20px);
+  margin-top: clamp(16px, 2.2vw, 22px);
   max-width: 24ch;
   font-size: clamp(30px, 4.4vw, 50px);
   font-weight: 900;
