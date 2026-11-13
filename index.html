@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <script src="assets/js/theme-init.js?v=5"></script>
-<link rel="stylesheet" href="assets/css/style.css?v=35">
+<link rel="stylesheet" href="assets/css/style.css?v=36">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -601,37 +601,78 @@
 
   <section class="view" id="view-license" aria-label="License">
     <div class="lic-bg" aria-hidden="true">
-      <span class="lic-orb lic-orb-a"></span>
-      <span class="lic-orb lic-orb-b"></span>
-      <span class="lic-orb lic-orb-c"></span>
+      <span class="lic-glow"></span>
       <span class="lic-grid"></span>
-      <span class="lic-scan"></span>
     </div>
     <div class="page lic-page">
-      <div class="lic-card">
-        <span class="lic-mark" aria-hidden="true">W</span>
-        <p class="lic-kicker" data-i18n="license.kicker">License</p>
-        <h1 class="lic-title" data-i18n="license.title">Open source. Openly shared.</h1>
-        <p class="lic-body" data-i18n="license.body">Warp Projects are fully open source. As long as they are not used for malicious purposes, anyone is free to use, study and improve them. We accept no responsibility in any situation. Thank you for using our projects.</p>
+      <article class="lic-doc">
+        <header class="lic-head">
+          <div class="lic-head-row">
+            <p class="lic-kicker" data-i18n="license.kicker">License</p>
+            <span class="lic-state">
+              <span class="lic-dot" aria-hidden="true"></span>
+              <span data-i18n="license.status">Open source</span>
+            </span>
+          </div>
+          <h1 class="lic-title" data-i18n="license.title">Open source. Openly shared.</h1>
+          <p class="lic-body" data-i18n="license.body">Warp Projects are fully open source. As long as they are not used for malicious purposes, anyone is free to use, study and improve them. We accept no responsibility in any situation. Thank you for using our projects.</p>
+          <div class="lic-meta">
+            <span data-i18n="license.updated">Last updated: November 2026</span>
+            <span class="lic-meta-sep" aria-hidden="true"></span>
+            <span>v1.0</span>
+            <span class="lic-meta-sep" aria-hidden="true"></span>
+            <span data-i18n="license.scope">Applies to all Warp Projects</span>
+          </div>
+        </header>
 
-        <ul class="lic-points">
-          <li class="lic-point">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.6 12.4 9.4 17 19.4 6.6"/></svg>
-            <p><b data-i18n="license.p1t">Free to use</b><span data-i18n="license.p1">No account, no paywall, no tracking.</span></p>
-          </li>
-          <li class="lic-point">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8.6 7.6-4.2 4.4 4.2 4.4"/><path d="m15.4 7.6 4.2 4.4-4.2 4.4"/></svg>
-            <p><b data-i18n="license.p2t">Open to study</b><span data-i18n="license.p2">Read the code, fork it, learn from it.</span></p>
-          </li>
-          <li class="lic-point">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.4 19 6v5.6c0 4.2-2.8 7.4-7 9-4.2-1.6-7-4.8-7-9V6l7-2.6Z"/><path d="m9.1 11.7 2.1 2.1 4-4.2"/></svg>
-            <p><b data-i18n="license.p3t">Use responsibly</b><span data-i18n="license.p3">No guarantee is provided for any other site or page outside ours, including in cases of misuse or modification.</span></p>
-          </li>
-        </ul>
+        <div class="lic-main">
+          <aside class="lic-aside">
+            <span class="lic-seal" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.4 19 6v5.6c0 4.2-2.8 7.4-7 9-4.2-1.6-7-4.8-7-9V6l7-2.6Z"/><path d="m9.1 11.7 2.1 2.1 4-4.2"/></svg>
+            </span>
+            <p class="lic-aside-kicker" data-i18n="license.summaryLabel">In short</p>
+            <p class="lic-aside-text" data-i18n="license.summary">Use them, study them, share them — just not to cause harm.</p>
+          </aside>
 
-        <p class="lic-thanks" data-i18n="license.thanks">Thank you for using our projects.</p>
-        <p class="lic-copy">© 2026 Warp Projects · All rights reserved.</p>
-      </div>
+          <ol class="lic-clauses">
+            <li class="lic-clause">
+              <span class="lic-num" aria-hidden="true">01</span>
+              <div class="lic-clause-copy">
+                <h2 data-i18n="license.p1t">Free to use</h2>
+                <p data-i18n="license.p1">No account, no paywall, no tracking.</p>
+              </div>
+              <span class="lic-clause-ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.6 12.4 9.4 17 19.4 6.6"/></svg>
+              </span>
+            </li>
+            <li class="lic-clause">
+              <span class="lic-num" aria-hidden="true">02</span>
+              <div class="lic-clause-copy">
+                <h2 data-i18n="license.p2t">Open to study</h2>
+                <p data-i18n="license.p2">Read the code, fork it, learn from it.</p>
+              </div>
+              <span class="lic-clause-ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m8.6 7.6-4.2 4.4 4.2 4.4"/><path d="m15.4 7.6 4.2 4.4-4.2 4.4"/></svg>
+              </span>
+            </li>
+            <li class="lic-clause">
+              <span class="lic-num" aria-hidden="true">03</span>
+              <div class="lic-clause-copy">
+                <h2 data-i18n="license.p3t">Use responsibly</h2>
+                <p data-i18n="license.p3">No guarantee is provided for any other site or page outside ours, including in cases of misuse or modification.</p>
+              </div>
+              <span class="lic-clause-ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.4 19 6v5.6c0 4.2-2.8 7.4-7 9-4.2-1.6-7-4.8-7-9V6l7-2.6Z"/><path d="m9.1 11.7 2.1 2.1 4-4.2"/></svg>
+              </span>
+            </li>
+          </ol>
+        </div>
+
+        <footer class="lic-foot">
+          <p class="lic-thanks" data-i18n="license.thanks">Thank you for using our projects.</p>
+          <p class="lic-copy">© 2026 Warp Projects · <span data-i18n="foot.rights">All rights reserved.</span></p>
+        </footer>
+      </article>
     </div>
   </section>
 
@@ -798,7 +839,7 @@
   </div>
 </div>
 
-<script src="assets/js/app.js?v=39"></script>
+<script src="assets/js/app.js?v=40"></script>
 <script src="assets/js/intro.js?v=7"></script>
 <script src="assets/js/protect.js?v=5"></script>
 <script src="assets/js/video.js?v=8"></script>
